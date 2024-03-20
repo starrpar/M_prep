@@ -2,10 +2,23 @@ package mprep;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
-public class RemoveElement {
+public class ArrayMethods {
 
-    public int removeElement1(int[] arr, int val) {
+    // package-private access (default)
+    int[] createRandomIntArray(int length, int bound) {
+        Random rdm = new Random();
+        int[] returnArray = new int[length];
+
+        for (int i = 0; i < length; i++) {
+            returnArray[i] = rdm.nextInt(bound);
+        }
+
+        return returnArray;
+    }
+
+    public int removeElementInPlace1(int[] arr, int val) {
         int count = 0;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] != val) {
@@ -19,7 +32,7 @@ public class RemoveElement {
         return count;
     }
 
-    public int removeElement2(int[] arr, int val) {
+    public int removeElementInPlace2(int[] arr, int val) {
         int count = 0;
         List<Integer> tmpArray = new ArrayList<>();
 
