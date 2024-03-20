@@ -1,0 +1,5 @@
+{
+    "cmake.configureOnOpen": true,
+    "java.dependency.packagePresentation": "flat",
+    "java.project.explorer.showNonJavaResources": true
+}

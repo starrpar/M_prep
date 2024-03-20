@@ -1,0 +1,22 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "java (buildArtifact)",
+			"mainClass": "mprep.App",
+			"targetPath": "${workspaceFolder}/${workspaceFolderBasename}.jar",
+			"elements": [
+				"${compileOutput:M_prep}",
+				"${dependencies:M_prep}",
+				"${compileOutput:mprep}",
+				"${dependencies:mprep}"
+			],
+			"problemMatcher": [],
+			"label": "java (buildArtifact): M_prep",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}

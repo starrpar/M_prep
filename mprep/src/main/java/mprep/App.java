@@ -1,13 +1,16 @@
 package mprep;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class App {
 
     public static void main(String[] args) {
 
         ArrayMethods fcns = new ArrayMethods();
 
-        int arrayLength = 4000;
-        int bound = 10;
+        int arrayLength = 1000;
+        int bound = 100;
         int[] newIntArr = fcns.createRandomIntArray(arrayLength, bound);
         char[] newCharArr = fcns.createRandomCharArray(arrayLength);
         int[] arr1 = newIntArr.clone();
@@ -24,8 +27,10 @@ public class App {
             // System.out.print(arr4[i]);
         }
 
-        // int[] arr1 = { 1, 2, 2, 3, 4, 5, 5, 1, 1 };
-        // int[] arr2 = { 1, 2, 2, 3, 4, 5, 5, 1, 1 };
+        int[] testArr1 = { 1, 2, 2, 3, 4, 5, 5, 17, 1, 1 };
+        // int[] testArr2 = { 1, 2, 2, 3, 4, 5, 5, 1, 1 };
+
+        System.out.println("\nNum primes: " + fcns.countPrimes(arr1));
 
         int val = 8;
         System.out.println("\nFirst - doesn't fix: ");
@@ -62,5 +67,13 @@ public class App {
             System.out.println(
                     "...so value is less common than expected, so \'randomeness\' is more conservative in this case");
         }
+
+        Integer[] testArr = { 0, 1, 2, 1, 0, 0, 2, 0, 1, 1, 2, 0, 2, 1, 2, 1, 2, 2, 0, 0, 2 };
+        List<Integer> listArr = Arrays.asList(testArr);
+        System.out.println("listArr: " + listArr);
+        List<Integer> resultArr = fcns.moveZeroes(listArr);
+        System.out.println("resultArr: " + resultArr);
+        resultArr = fcns.moveZeroesMoreEfficient(testArr);
+        System.out.println("resultArr: " + resultArr);
     }
 }
