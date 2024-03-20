@@ -8,9 +8,14 @@ public class App {
 
         RemoveElement fcns = new RemoveElement();
 
-        int[] arr = { 1, 2, 2, 3, 4, 5, 5, 1, 1 };
+        int[] arr1 = { 1, 2, 2, 3, 4, 5, 5, 1, 1 };
+        int[] arr2 = { 1, 2, 2, 3, 4, 5, 5, 1, 1 };
         int val = 5;
-        int count = fcns.removeElement(arr, val);
-        System.out.println(count);
+        System.out.println("\nFirst - doesn't fix: ");
+        int count = fcns.removeElement1(arr1, val);
+        System.out.println("\n" + count);
+        System.out.println("\nSecond - does fix: ");
+        count = fcns.removeElement2(arr2, val);
+        System.out.println("\n" + count);
     }
 }
