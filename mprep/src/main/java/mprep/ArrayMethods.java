@@ -70,6 +70,180 @@ public class ArrayMethods {
     // << NEXT >> longest increasing subsequence
     // << ??? >> -trapping rain water
 
+    // EASY:
+    // 1.1 Merge two sorted arrays
+    // Text guide (GeeksforGeeks)
+    // Video guide (TECH DOSE)
+    // 1.2 Remove duplicates from an array
+    // Video guide (Kevin Naughton Jr.)
+    // Text guide (W3Schools)
+    // Text guide (Javarevisted)
+    // Code example (LeetCode)
+    // 1.3 Count the frequency of an element in an array
+    // Text guide (GeeksforGeeks)
+    // Video guide (SDET)
+    // 1.4 Two sum
+    // Text guide (Codeburst)
+    // Video guide (Kevin Naughton Jr.)
+    // 1.5 Find the minimum (or maximum) element of an array
+    // Text guide (Enjoy Algorithms)
+    // Text guide (After Academy)
+    // Video guide (GeeksforGeeks)
+    // 1.6 Remove duplicates from sorted array
+    // Text guide (Redquark)
+    // Video guide (Kevin Naughton Jr.)
+    // Video guide (Take u Forward)
+    // 1.7 Remove element in-place
+    // Text guide (Redquark)
+    // Video guide (Nick White)
+    // Code example (LeetCode)
+    // 1.8 Search Insert Position
+    // Text guide (GeeksforGeeks)
+    // Text guide (Codesdope)
+    // Video guide (NeetCode)
+    // 1.9 Maximum Subarray
+    // Text guide (Wikipedia)
+    // Text guide (Techie Delight)
+    // Video guide (CS Dojo)
+    // 1.10 Plus One
+    // Text guide (Medium/Punitkmryh)
+    // Video guide (Kevin Naughton Jr.)
+    // Video guide (Back to Back SWE)
+    // 1.11 Convert Sorted Array to Binary Search Tree (Arrays/Binary Trees)
+    // Text guide (GeeksForGeeks)
+    // Video guide (Kevin Naughton Jr)
+    // 1.12 Single Number
+    // Text guide (Akhilpokle)
+    // Video guide (Kevin Naughton Jr)
+    // Video guide (TECH DOSE)
+    // 1.13 Count Primes
+    // Text guide (GeeksForGeeks)
+    // Video guide (Terrible Whiteboard)
+    // 1.14 Contains Duplicate
+    // Text guide (Medium/Punitkmryh)
+    // Video guide (Terrible Whiteboard)
+    // Code example (LeetCode)
+    // 1.15 Third Largest Number
+    // Text guide (GeeksForGeeks)
+    // Video guide (Terrible Whiteboard)
+    // 1.16 Count Odd Even
+    // Text guide (W3resource)
+    // Text guide (GeeksForGeeks)
+    // Video guide (Technotip)
+
+    // MEDIUM:
+    // 2.1 Move all zeros to the beginning/end of an array
+    // Text guide (Educative)
+    // Video guide (Programming tutorials)
+    // Code example (LeetCode)
+    // 2.2 Find if a given element is in a sorted array (binary search)
+    // Text guide (Khan academy)
+    // Video guide (HackerRank)
+    // Code example (LeetCode)
+    // 2.3 Rotate an array
+    // Text guide (GeeksforGeeks)
+    // Video guide (Nick White)
+    // Code example (LeetCode)
+    // 2.4 Largest sum of non-adjacent numbers (Dynamic Programming)
+    // Text guide (Medium/Arun Kumar)
+    // Text guide (GeeksForGeeks)
+    // Video guide (Coding Simplified)
+    // 2.5 A Product Array Puzzle
+    // Text guide (TutorialCup)
+    // Text guide (Akhilpokle)
+    // Video guide (Nick White)
+    // 2.6 Maximum Product Subarray (Dynamic programming)
+    // Text guide (Techie Delight)
+    // Video guide (NeetCode)
+    // Video guide (Back to Back SWE)
+    // 2.7 Shortest Unsorted Continuous Subarray
+    // Text guide (GeeksForGeeks)
+    // Text guide (Seanpgallivan)
+    // Video guide (Nick White)
+    // 2.8 Maximum sum of hour glass in matrix
+    // Text guide (GeeksforGeeks)
+    // Video guide(Over The Shoulder Coding)
+    // 2.9 Paint House (Dynamic programming)
+    // Text guide (ProgrammerSought)
+    // Video guide (NeetCode)
+    // 2.10 Minimum number of jumps to reach end
+    // Text guide (Medium/Himanshu)
+    // Video guide (Nick White)
+    // 2.11 Find duplicates in O(n) time and O(1) extra space
+    // Text guide (GeeksForGeeks)
+    // Video guide (Nick White)
+    // 2.12 Find three numbers with the maximum product
+    // Text guide (Techie Delight)
+    // Video guide (Programmer Mitch)
+    // 2.13 Maximum Sum Circular Subarray
+    // Text Guide (Techie Delight)
+    // Video Guide (TECH DOSE)
+    // 2.14 Minimum number of swaps to sort an array
+    // Text guide (GeeksForGeeks)
+    // Video guide (Brian Dyck)
+
+    // HARD:
+    // 3.1 Rotate a 2D array
+    // Text guide (Jack)
+    // Text guide (GeeksforGeeks)
+    // Video guide (Nick White)
+    // 3.2 Create change with coins (dynamic programming)
+    // Text guide (Educative)
+    // Video guide (Back to Back SWE)
+    // 3.3 Sliding window maximum
+    // Text guide (After Academy)
+    // Video guide (Jessica Lin)
+    // 3.4 Find the smallest positive number missing from an unsorted array
+    // Text guide (Codes Dope)
+    // Video guide (Michael Muinos)
+    // 3.5 Find the missing number in unordered Arithmetic Progression
+    // Text guide (GeeksForGeeks)
+    // 3.6 Find the maximum j – i such that arr[j] > arr[i] (Distance maximising
+    // problem)
+    // Text guide (GeeksForGeeks)
+    // Text guide (Techie Delight)
+    // Video guide (Genetic Coders)
+    // 3.7 Array manipulation
+    // Text guide (The Poor Coder)
+    // Video guide (Brian Dyck)
+    // 3.8 Median of Two Sorted Arrays
+    // Text guide (GeeksForGeeks)
+    // Video guide (Take u Forward)
+    // Code example (LeetCode)
+    // 3.9 Sudoku Solver
+    // Text guide (After Academy)
+    // Video guide (Back To Back SWE)
+    // Code example (LeetCode)
+    // 3.10 Largest Rectangle in Histogram
+    // Text guide (After Academy)
+    // Video guide (TECH DOSE)
+    // 3.11 Maximal Rectangle in binary matrix
+    // Text guide (GeeksForGeeks)
+    // Video guide (TECH DOSE)
+    // 3.12 Find Minimum in Rotated Sorted Array
+    // Text guide (Algorithmsandme)
+    // Video guide (Nick White)
+    // 3.13 Count of Smaller Numbers After Self
+    // Text guide (CodeStudio)
+    // Text guide (GeeksForGeeks)
+    // Video guide (Happygirlzt)
+    // 3.14 Palindrome Pairs
+    // Text guide (Seanpgallivan)
+    // Video guide (Happygirlzt)
+    // 3.15 Sort an array containing 0’s, 1’s and 2’s
+    // Text guide (Techie Delight)
+    // Text guide (GeeksForGeeks)
+    // Video guide (Take u Forward)
+    // Video guide (Back To Back SWE)
+    // 3.16 Longest increasing subsequence
+    // Text guide (GeeksForGeeks)
+    // Video guide (Back To Back SWE)
+    // Code example (LeetCode)
+    // 3.17 Trapping Rain Water
+    // Text guide (GeeksForGeeks)
+    // Video guide (Take u Forward)
+    // Code example (LeetCode)
+
     // ALSO...
     // Given an array nums of n integers where n > 1, return an array output such
     // that output[i] is equal to the product of all the elements of nums except
