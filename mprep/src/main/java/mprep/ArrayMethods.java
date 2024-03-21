@@ -1,8 +1,11 @@
 package mprep;
 
 import java.util.List;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Random;
 
 public class ArrayMethods {
@@ -66,8 +69,169 @@ public class ArrayMethods {
     // longest increasing subsequence
     // trapping rain water
 
+    // ALSO:
+    // Implement next permutation, which rearranges numbers into the
+    // lexicographically next greater permutation of numbers.
+
+    // A permutation of an array of integers is an arrangement of its members into a
+    // sequence or linear order.
+
+    // For example, for arr = [1,2,3], the following are all the permutations of
+    // arr:
+    // [1,2,3], [1,3,2], [2, 1, 3], [2, 3, 1], [3,1,2], [3,2,1].
+    // The next permutation of an array of integers is the next lexicographically
+    // greater permutation of its integer. More formally, if all the permutations
+    // of the array are sorted in one container according to their lexicographical
+    // order,
+    // then the next permutation of that array is the permutation that follows it in
+    // the
+    // sorted container. If such arrangement is not possible, the array must be
+    // rearranged
+    // as the lowest possible order (i.e., sorted in ascending order).
+
+    // For example, the next permutation of arr = [1,2,3] is [1,3,2].
+    // Similarly, the next permutation of arr = [2,3,1] is [3,1,2].
+    // While the next permutation of arr = [3,2,1] is [1,2,3] because
+    // [3,2,1] does not have a lexicographical larger rearrangement.
+    // Given an array of integers nums, find the next permutation of nums.
+
+    // The replacement must be in-place and use only constant extra memory.
+
+    // Example 1:
+    // Input: nums = [1,2,3]
+    // Output: [1,3,2]
+
+    // Example 2:
+    // Input: nums = [3,2,1]
+    // Output: [1,2,3]
+
+    // Example 3:
+    // Input: nums = [1,1,5]
+    // Output: [1,5,1]
+
+    // NOTES: this is not finished yet - logic is not implemented for parsing
+    // array(s)
+    List<Integer[]> getNextLexicographicalOutputOfArray(int[] arr) {
+        // logic: the idea is to start with the lowest numbers from the first position
+        // (0th) and similarly
+        // throughout the rest of the array; following that initial sorted arrangement,
+        // each "next step" will
+        // simply involve allowing the "next highest sorted" set of values occupy all
+        // positions in a sorted
+        // manner, until ultimately the order consists of the highest values from the
+        // beginning of the array
+        // and throughout, which will be the last position. The next lexicographical
+        // value after that is to
+        // wrap back to the first.
+
+        // given the array, sort it in lexicographical order
+        System.out.print("\n");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        List<Integer[]> orderArrayList = sortArrayLexicographically(arr);
+
+        // based on what was initially provided (input parameter), provide in return the
+        // next progression (permutation)
+        // from that lexicographically ordered list
+
+        // return orderArrayList.get(0);
+        return orderArrayList;
+    }
+
+    List<Integer[]> sortArrayLexicographically(int[] arr) {
+        int arrLength = arr.length;
+        Map<Integer, Integer> valueMap = new HashMap<Integer, Integer>();
+        List<Integer[]> retVal = new ArrayList<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            if (valueMap.get(arr[i]) == null) {
+                System.out.println("\nadding initial entry: " + arr[i]);
+                valueMap.put(arr[i], 1);
+            } else {
+                System.out
+                        .println("\nupdating entry: " + arr[i] + ", with new value of: " + (valueMap.get(arr[i]) + 1));
+                valueMap.put(arr[i], (valueMap.get(arr[i]) + 1)); // increment already existing by 1
+            }
+        }
+        Integer[] tmpArr = new Integer[arrLength];
+        List<Integer> tmpList = new ArrayList<>();
+        // now construct a listing of possible enumerations / permutations from the
+        // listing extracted from the input array
+        for (int i = 0; i < arrLength; i++) {
+            // int tmpInt = valueMap.get(arr[i]);
+            // if (tmpInt >= arrLength) {
+            // for (int j = 0; j < arrLength; j++) {
+            // tmpList.add(arr[i]); // will be full here
+            // }
+            // } else {
+            for (int j = 0; j < 1; j++) {
+                tmpList.add(arr[i]); // will be partial here
+            }
+            // }
+            for (int j = 0; j < arr.length; j++) {
+                System.out.println(tmpList);
+            }
+            // tmpList will be empty otherwise
+
+            // at this point, tmpList is either empty, or has some entries, or is full (of
+            // length arrLength)
+            // now have to do bookkeeping to ensure all values are used and none are missed
+
+            // just to mention, same values for each entry is one, and only one
+            // lexicographic representation
+            // i.e. there is not "rearranging" the same values and having a different set...
+            // for example, if the following array was sent in [1, 1, 1] that would be the
+            // only lexicographic
+            // order/arrangement to be done - there are no other "variations" - the number
+            // have to differ for
+            // that to be the case...
+        }
+        for (int i = 0; i < 100; i++) {
+            System.out.print("\n");
+            if (tmpList.size() == arrLength) {
+                for (int j = 0; j < tmpList.size(); j++) {
+                    tmpArr[j] = tmpList.get(j);
+                    // System.out.println(tmpArr[j]);
+                }
+                retVal.add(tmpArr);
+            }
+            // else {
+            // for (int j = 0; j < arr.length; j++) {
+            // System.out.println(tmpList);
+            // }
+            // }
+        }
+        return retVal;
+    }
+
+    // Given an array nums of n integers where n > 1, return an array output such
+    // that output[i] is equal to the product of all the elements of nums except
+    // nums[i] - see sumOfAllElementsPreviousToSpecified() below...
+
+    int[] sumOfAllElementsPreviousToSpecified(int[] arr) throws InvalidParameterException {
+        int product = 1; // product, not sum, so start with 1 as identity
+        int[] products = new int[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+            product = 1;
+            if (arr[i] > 1) {
+                for (int j = 0; j < arr.length; j++) {
+                    if (j != i) {
+                        product *= arr[j];
+                    }
+                }
+            } else {
+                throw new InvalidParameterException("Invalid input value: " + arr[i] + " <= 1");
+            }
+            products[i] = product;
+        }
+
+        return products;
+    }
+
     // this is the brute force O(n^2) version I was trying during the interview
-    public static List<Integer> moveZeroes(List<Integer> arr) {
+    List<Integer> moveZeroes(List<Integer> arr) {
         int arrayLen = arr.size();
 
         for (int i = 0; i < arrayLen; i++) {
@@ -90,7 +254,7 @@ public class ArrayMethods {
 
     // todo: find a better than O(n^2) means of solving this
     // following is O(n)
-    public static List<Integer> moveZeroesMoreEfficient(Integer[] arr) {
+    List<Integer> moveZeroesMoreEfficient(Integer[] arr) {
         int arrayLen = arr.length;
         List<Integer> arrList;
         List<Integer> newArr = new ArrayList<>();

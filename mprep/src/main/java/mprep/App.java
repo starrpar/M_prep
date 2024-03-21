@@ -27,11 +27,33 @@ public class App {
             // System.out.print(arr4[i]);
         }
 
-        int[] testArr1 = { 1, 2, 2, 3, 4, 5, 5, 17, 1, 1 };
-        // int[] testArr2 = { 1, 2, 2, 3, 4, 5, 5, 1, 1 };
+        // int[] testArr1 = { 1, 2, 2, 3, 4, 5, 5, 17, 1, 1 };
+        int[] testArr2 = { 13, 2, 2, 3, 4, 5, 5, 17, 10, 11 };
+        int[] resultsArr = null;
 
         System.out.println("\nNum primes: " + fcns.countPrimes(arr1));
 
+        for (int i = 0; i < testArr2.length; i++) {
+            System.out.print(testArr2[i] + " ");
+        }
+        System.out.println(" ");
+        resultsArr = fcns.sumOfAllElementsPreviousToSpecified(testArr2);
+        for (int i = 0; i < resultsArr.length; i++) {
+            System.out.print(resultsArr[i] + " ");
+        }
+
+        List<Integer[]> lexiList = fcns.getNextLexicographicalOutputOfArray(testArr2);
+        if (lexiList.size() <= 0) {
+            System.out.println("lexiList is empty");
+        }
+        for (int i = 0; i < lexiList.size(); i++) {
+            System.out.print("\n");
+            for (int j = 0; j < lexiList.get(i).length; j++) {
+                System.out.print(lexiList.get(i)[j] + " ");
+            }
+        }
+
+        // ************************************************************
         int val = 8;
         System.out.println("\nFirst - doesn't fix: ");
         int count = fcns.removeElementInPlace1(arr1, val);
@@ -75,5 +97,6 @@ public class App {
         System.out.println("resultArr: " + resultArr);
         resultArr = fcns.moveZeroesMoreEfficient(testArr);
         System.out.println("resultArr: " + resultArr);
+
     }
 }
