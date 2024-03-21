@@ -17,194 +17,60 @@ public class ArrayMethods {
     // }
 
     // EASY:
-    // merge 2 sorted arrays
-    // DONE: --remove dupes from an array--
-    // DONE: --count frequency of element in array--
-    // <<???>> two sum
-    // find min/max element in array
-    // remove dupes from sorted array
-    // DONE: --remove element in-place (pass array by ref)--
-    // search insert position
-    // <<<TO DO>>> max subarray
-    // <<???>> plus one
-    // <<<TO DO>>> convert sorted array to binary search tree
-    // single number
-    // DONE: --count primes--
-    // DONE: --contains dupe--
-    // third largest num
-    // count odd/even
+    // [SKIP] ----merge 2 sorted arrays
+    // DONE: -----remove dupes from an array--
+    // DONE: -----count frequency of element in array--
+    // << ??? >> -two sum
+    // [SKIP] ----find min/max element in array
+    // [SKIP] ----remove dupes from sorted array
+    // DONE: -----remove element in-place (pass array by ref)--
+    // [SKIP] ----search insert position
+    // << NEXT >> max subarray
+    // << ??? >> -plus one
+    // << NEXT >> convert sorted array to binary search tree
+    // [SKIP] ----single number
+    // DONE: -----count primes--
+    // DONE: -----contains dupe--
+    // [SKIP] ----third largest num
+    // [SKIP] ----count odd/even
 
     // MEDIUM:
-    // DONE: --move all zeros to beginning/end of array--
-    // find if given element is in a sorted array (binary search)
-    // rotate array
-    // largest sum of non-adjacent numbers (dynamic programming)
-    // product array puzzle
-    // max product subarray (dynamic programming)
-    // shortest unsorted continuous subarray
-    // max sum of hour glass in matrix
-    // paint house (dynamic programming)
-    // min number of jumps to reach end
-    // find dupes in O(n) time and O(1) extra space
-    // find 3 numbers with max product
-    // max sum circular subarray
-    // min number swaps to sort array
+    // DONE: -----move all zeros to beginning/end of array--
+    // << NEXT >> find if given element is in a sorted array (binary search)
+    // [SKIP] ----rotate array
+    // << NEXT >> largest sum of non-adjacent numbers (dynamic programming)
+    // << ??? >> -product array puzzle
+    // << NEXT >> max product subarray (dynamic programming)
+    // << NEXT >> shortest unsorted continuous subarray
+    // << ??? >> -max sum of hour glass in matrix
+    // << ??? >> -paint house (dynamic programming)
+    // << NEXT >> min number of jumps to reach end
+    // << NEXT >> find dupes in O(n) time and O(1) extra space
+    // << NEXT >> find 3 numbers with max product
+    // << ??? >> -max sum circular subarray
+    // << NEXT >> min number swaps to sort array
 
     // HARD:
-    // rotate 2D array
-    // create change with coins
-    // sliding window max
-    // find smallest positive number missing from unsorted array
-    // find missing number in ordered arithmetic progression
-    // find max j-1, such that arr[j] > arr[i] (distance maximizing problem)
-    // array manipulation
-    // median of 2 sorted arrays
-    // sudoku solver
-    // largest rectangle in a histogram
-    // max rectangle in binary matrix
-    // find min in rotated sorted array
-    // count of smaller numbers after self
-    // palindrome pairs
-    // sort an array containing 0's, 1's and 2's
-    // longest increasing subsequence
-    // trapping rain water
+    // << NEXT >> rotate 2D array
+    // << NEXT >> create change with coins
+    // << NEXT >> sliding window max
+    // << NEXT >> find smallest positive number missing from unsorted array
+    // << NEXT >> find missing number in ordered arithmetic progression
+    // << ??? >> -find max j-1, such that arr[j] > arr[i] (distance maximizing
+    // problem)
+    // << ??? >> -array manipulation
+    // << ??? >> -median of 2 sorted arrays
+    // << NEXT >> sudoku solver
+    // << ??? >> -largest rectangle in a histogram
+    // << ??? >> -max rectangle in binary matrix
+    // << NEXT >> find min in rotated sorted array
+    // << ??? >> -count of smaller numbers after self
+    // << ??? >> -palindrome pairs
+    // << NEXT >> sort an array containing 0's, 1's and 2's
+    // << NEXT >> longest increasing subsequence
+    // << ??? >> -trapping rain water
 
-    // ALSO:
-    // Implement next permutation, which rearranges numbers into the
-    // lexicographically next greater permutation of numbers.
-
-    // A permutation of an array of integers is an arrangement of its members into a
-    // sequence or linear order.
-
-    // For example, for arr = [1,2,3], the following are all the permutations of
-    // arr:
-    // [1,2,3], [1,3,2], [2, 1, 3], [2, 3, 1], [3,1,2], [3,2,1].
-    // The next permutation of an array of integers is the next lexicographically
-    // greater permutation of its integer. More formally, if all the permutations
-    // of the array are sorted in one container according to their lexicographical
-    // order,
-    // then the next permutation of that array is the permutation that follows it in
-    // the
-    // sorted container. If such arrangement is not possible, the array must be
-    // rearranged
-    // as the lowest possible order (i.e., sorted in ascending order).
-
-    // For example, the next permutation of arr = [1,2,3] is [1,3,2].
-    // Similarly, the next permutation of arr = [2,3,1] is [3,1,2].
-    // While the next permutation of arr = [3,2,1] is [1,2,3] because
-    // [3,2,1] does not have a lexicographical larger rearrangement.
-    // Given an array of integers nums, find the next permutation of nums.
-
-    // The replacement must be in-place and use only constant extra memory.
-
-    // Example 1:
-    // Input: nums = [1,2,3]
-    // Output: [1,3,2]
-
-    // Example 2:
-    // Input: nums = [3,2,1]
-    // Output: [1,2,3]
-
-    // Example 3:
-    // Input: nums = [1,1,5]
-    // Output: [1,5,1]
-
-    // NOTES: this is not finished yet - logic is not implemented for parsing
-    // array(s)
-    List<Integer[]> getNextLexicographicalOutputOfArray(int[] arr) {
-        // logic: the idea is to start with the lowest numbers from the first position
-        // (0th) and similarly
-        // throughout the rest of the array; following that initial sorted arrangement,
-        // each "next step" will
-        // simply involve allowing the "next highest sorted" set of values occupy all
-        // positions in a sorted
-        // manner, until ultimately the order consists of the highest values from the
-        // beginning of the array
-        // and throughout, which will be the last position. The next lexicographical
-        // value after that is to
-        // wrap back to the first.
-
-        // given the array, sort it in lexicographical order
-        System.out.print("\n");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        List<Integer[]> orderArrayList = sortArrayLexicographically(arr);
-
-        // based on what was initially provided (input parameter), provide in return the
-        // next progression (permutation)
-        // from that lexicographically ordered list
-
-        // return orderArrayList.get(0);
-        return orderArrayList;
-    }
-
-    List<Integer[]> sortArrayLexicographically(int[] arr) {
-        int arrLength = arr.length;
-        Map<Integer, Integer> valueMap = new HashMap<Integer, Integer>();
-        List<Integer[]> retVal = new ArrayList<>();
-
-        for (int i = 0; i < arr.length; i++) {
-            if (valueMap.get(arr[i]) == null) {
-                System.out.println("\nadding initial entry: " + arr[i]);
-                valueMap.put(arr[i], 1);
-            } else {
-                System.out
-                        .println("\nupdating entry: " + arr[i] + ", with new value of: " + (valueMap.get(arr[i]) + 1));
-                valueMap.put(arr[i], (valueMap.get(arr[i]) + 1)); // increment already existing by 1
-            }
-        }
-        Integer[] tmpArr = new Integer[arrLength];
-        List<Integer> tmpList = new ArrayList<>();
-        // now construct a listing of possible enumerations / permutations from the
-        // listing extracted from the input array
-        for (int i = 0; i < arrLength; i++) {
-            // int tmpInt = valueMap.get(arr[i]);
-            // if (tmpInt >= arrLength) {
-            // for (int j = 0; j < arrLength; j++) {
-            // tmpList.add(arr[i]); // will be full here
-            // }
-            // } else {
-            for (int j = 0; j < 1; j++) {
-                tmpList.add(arr[i]); // will be partial here
-            }
-            // }
-            for (int j = 0; j < arr.length; j++) {
-                System.out.println(tmpList);
-            }
-            // tmpList will be empty otherwise
-
-            // at this point, tmpList is either empty, or has some entries, or is full (of
-            // length arrLength)
-            // now have to do bookkeeping to ensure all values are used and none are missed
-
-            // just to mention, same values for each entry is one, and only one
-            // lexicographic representation
-            // i.e. there is not "rearranging" the same values and having a different set...
-            // for example, if the following array was sent in [1, 1, 1] that would be the
-            // only lexicographic
-            // order/arrangement to be done - there are no other "variations" - the number
-            // have to differ for
-            // that to be the case...
-        }
-        for (int i = 0; i < 100; i++) {
-            System.out.print("\n");
-            if (tmpList.size() == arrLength) {
-                for (int j = 0; j < tmpList.size(); j++) {
-                    tmpArr[j] = tmpList.get(j);
-                    // System.out.println(tmpArr[j]);
-                }
-                retVal.add(tmpArr);
-            }
-            // else {
-            // for (int j = 0; j < arr.length; j++) {
-            // System.out.println(tmpList);
-            // }
-            // }
-        }
-        return retVal;
-    }
-
+    // ALSO...
     // Given an array nums of n integers where n > 1, return an array output such
     // that output[i] is equal to the product of all the elements of nums except
     // nums[i] - see sumOfAllElementsPreviousToSpecified() below...
@@ -433,5 +299,141 @@ public class ArrayMethods {
         }
         System.out.print("\nLength of final array: " + arr.length);
         return count;
+    }
+
+    // ALSO:
+    // Implement next permutation, which rearranges numbers into the
+    // lexicographically next greater permutation of numbers.
+
+    // A permutation of an array of integers is an arrangement of its members into a
+    // sequence or linear order.
+
+    // For example, for arr = [1,2,3], the following are all the permutations of
+    // arr:
+    // [1,2,3], [1,3,2], [2, 1, 3], [2, 3, 1], [3,1,2], [3,2,1].
+    // The next permutation of an array of integers is the next lexicographically
+    // greater permutation of its integer. More formally, if all the permutations
+    // of the array are sorted in one container according to their lexicographical
+    // order,
+    // then the next permutation of that array is the permutation that follows it in
+    // the
+    // sorted container. If such arrangement is not possible, the array must be
+    // rearranged
+    // as the lowest possible order (i.e., sorted in ascending order).
+
+    // For example, the next permutation of arr = [1,2,3] is [1,3,2].
+    // Similarly, the next permutation of arr = [2,3,1] is [3,1,2].
+    // While the next permutation of arr = [3,2,1] is [1,2,3] because
+    // [3,2,1] does not have a lexicographical larger rearrangement.
+    // Given an array of integers nums, find the next permutation of nums.
+
+    // The replacement must be in-place and use only constant extra memory.
+
+    // Example 1:
+    // Input: nums = [1,2,3]
+    // Output: [1,3,2]
+
+    // Example 2:
+    // Input: nums = [3,2,1]
+    // Output: [1,2,3]
+
+    // Example 3:
+    // Input: nums = [1,1,5]
+    // Output: [1,5,1]
+
+    // NOTES: this is not finished yet - logic is not implemented for parsing
+    // array(s)
+    List<Integer[]> getNextLexicographicalOutputOfArray(int[] arr) {
+        // logic: the idea is to start with the lowest numbers from the first position
+        // (0th) and similarly
+        // throughout the rest of the array; following that initial sorted arrangement,
+        // each "next step" will
+        // simply involve allowing the "next highest sorted" set of values occupy all
+        // positions in a sorted
+        // manner, until ultimately the order consists of the highest values from the
+        // beginning of the array
+        // and throughout, which will be the last position. The next lexicographical
+        // value after that is to
+        // wrap back to the first.
+
+        // given the array, sort it in lexicographical order
+        System.out.print("\n");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        List<Integer[]> orderArrayList = sortArrayLexicographically(arr);
+
+        // based on what was initially provided (input parameter), provide in return the
+        // next progression (permutation)
+        // from that lexicographically ordered list
+
+        // return orderArrayList.get(0);
+        return orderArrayList;
+    }
+
+    List<Integer[]> sortArrayLexicographically(int[] arr) {
+        int arrLength = arr.length;
+        Map<Integer, Integer> valueMap = new HashMap<Integer, Integer>();
+        List<Integer[]> retVal = new ArrayList<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            if (valueMap.get(arr[i]) == null) {
+                System.out.println("\nadding initial entry: " + arr[i]);
+                valueMap.put(arr[i], 1);
+            } else {
+                System.out
+                        .println("\nupdating entry: " + arr[i] + ", with new value of: " + (valueMap.get(arr[i]) + 1));
+                valueMap.put(arr[i], (valueMap.get(arr[i]) + 1)); // increment already existing by 1
+            }
+        }
+        Integer[] tmpArr = new Integer[arrLength];
+        List<Integer> tmpList = new ArrayList<>();
+        // now construct a listing of possible enumerations / permutations from the
+        // listing extracted from the input array
+        for (int i = 0; i < arrLength; i++) {
+            // int tmpInt = valueMap.get(arr[i]);
+            // if (tmpInt >= arrLength) {
+            // for (int j = 0; j < arrLength; j++) {
+            // tmpList.add(arr[i]); // will be full here
+            // }
+            // } else {
+            for (int j = 0; j < 1; j++) {
+                tmpList.add(arr[i]); // will be partial here
+            }
+            // }
+            for (int j = 0; j < arr.length; j++) {
+                System.out.println(tmpList);
+            }
+            // tmpList will be empty otherwise
+
+            // at this point, tmpList is either empty, or has some entries, or is full (of
+            // length arrLength)
+            // now have to do bookkeeping to ensure all values are used and none are missed
+
+            // just to mention, same values for each entry is one, and only one
+            // lexicographic representation
+            // i.e. there is not "rearranging" the same values and having a different set...
+            // for example, if the following array was sent in [1, 1, 1] that would be the
+            // only lexicographic
+            // order/arrangement to be done - there are no other "variations" - the number
+            // have to differ for
+            // that to be the case...
+        }
+        for (int i = 0; i < 100; i++) {
+            System.out.print("\n");
+            if (tmpList.size() == arrLength) {
+                for (int j = 0; j < tmpList.size(); j++) {
+                    tmpArr[j] = tmpList.get(j);
+                    // System.out.println(tmpArr[j]);
+                }
+                retVal.add(tmpArr);
+            }
+            // else {
+            // for (int j = 0; j < arr.length; j++) {
+            // System.out.println(tmpList);
+            // }
+            // }
+        }
+        return retVal;
     }
 }
