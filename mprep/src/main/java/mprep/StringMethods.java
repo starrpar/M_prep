@@ -231,6 +231,215 @@ public class StringMethods {
     // 1 <= s.length <= 105
     // s consists of lowercase English letters.
 
+    boolean isPalindrome2(String s) {
+        // put all characters into a Hashmap (or List<KeyValuePair> ) with character as
+        // key and count as value
+
+        // determine if there is an "odd count" for any chars; if so, determine if that
+        // is for a character in the exact middle of the palindrome - a palindrome can
+        // have an unmatched char as the middle character if it is an odd number of
+        // characters
+        // possible scenarios:
+        //
+        // LOGIC:
+        // - no odd number of characters
+        // - test for palindrome; if not pass, could never be one with removal of a
+        // single char
+        // - above is not true - could have an odd-numbered string with one char as the
+        // middle
+        // char and an additional entry somewhere (making it have an even number of that
+        // char)
+        // elsewhere in the string, which would then make its removal create a
+        // palindrome
+        // - so above is only valid if current string is odd-numbered length; will need
+        // a
+        // different strategy for even numbered string length; possibly verify first if
+        // the
+        // "two center" chars are the same, in which case, is likely either the string
+        // is
+        // already a palindrome, and also would be if removal of one of those middle 2
+        // chars
+        // was done, because the other remaining char of the same character would be the
+        // middle char in a now-odd-numbered string which is a palindrome (or could be
+        // tested
+        // for being one)
+        // - the only other case for that is if it is an even-numbered string length,
+        // and the two
+        // chars at the center were NOT the same latter, then determining what the
+        // "middle 4"
+        // were would indicate which one was the "actual center" (if it's going to be a
+        // palindrome and either letters 1 and 3 or letters 2 and 4 would match). The
+        // task then would be to find the location of the other occurrence of whatever
+        // letter
+        // is in the "actual middle" (determined using logic just above), or the "odd
+        // one out"
+        // if there are multiple other occurrences of the same letter in the string.
+        // - one odd number of char
+        // - determine if string has an odd number of chars, and if so, if that char
+        // that has
+        // an odd number of occurrences is the middle char; test for palindrome if so
+        // - multiple odd number chars (if more than two, then won't be palindrome with
+        // removal of one)
+        // - only two odd number of char occurrences
+        // - identify if one or other is middle char of string
+        // - look for occurrence of other char, remove it, and test for palindrome
+
+        String tempStr = s.toLowerCase().replaceAll("\\s", "").replaceAll(",", "");
+        int sLen = tempStr.length();
+        char[] cArr = tempStr.toCharArray();
+        boolean notMatching = false;
+        boolean possible = false;
+        boolean first = false;
+        boolean nonMatchingNotYetConveyed = true;
+        boolean typeAlreadyFound = false;
+
+        for (int i = 0; i < sLen; i++) {
+            System.out.print(cArr[i]);
+        }
+        for (int i = 0; i < sLen; i++) {
+            int reversei = (sLen - 1) - i;
+            System.out.print("\n(i0): " + i + ", " + (sLen - 1 - i));
+            System.out.print("\n");
+            for (int j = 0; j < cArr.length; j++) {
+                System.out.print(cArr[j]);
+            }
+            possible = false;
+            if (cArr[i] == cArr[reversei]) {
+                System.out.println("\nMatching (i): " + i + ", " + cArr[i] + ":" + cArr[(sLen - 1) - i]);
+                continue;
+            } else if (cArr[i + 1] == cArr[reversei] && !typeAlreadyFound) {
+                System.out.print("\n1typeFound: " + typeAlreadyFound);
+                System.out.println("\nNot matching (i): " + i + ", " + cArr[i] + ":" + cArr[(sLen - 1) - i]);
+                if (nonMatchingNotYetConveyed) {
+                    System.out.println("\nNon-matching char: " + cArr[i]);
+                    nonMatchingNotYetConveyed = false;
+                }
+                System.out.print("\n(i1): " + i + ", " + (sLen - 1 - i));
+                for (int j = i; j < sLen - 1; j++) {
+                    System.out.println("\n***************************************");
+                    System.out.print("\n1Replacing: " + cArr[j] + " with " + cArr[j + 1]);
+                    cArr[j] = cArr[j + 1];
+                }
+                cArr[sLen - 1] = '\0';
+                System.out.print("\n");
+                for (int j = 0; j < cArr.length; j++) {
+                    System.out.print(cArr[j]);
+                }
+                reversei++;
+                sLen--;
+                typeAlreadyFound = true;
+            } else if (cArr[i] == cArr[reversei - 1] && !typeAlreadyFound) {
+                System.out.print("\n2typeFound: " + typeAlreadyFound);
+                System.out.println("\nNot matching (i): " + i + ", " + cArr[i] + ":" + cArr[(sLen - 1) - i]);
+                for (int j = 0; j < cArr.length; j++) {
+                    System.out.print(j + ": " + cArr[j] + ", ");
+                }
+                if (nonMatchingNotYetConveyed) {
+                    System.out.println("\n***************************************");
+                    System.out.println("\nNon-matching char: " + cArr[(sLen - 1) - i]);
+                    nonMatchingNotYetConveyed = false;
+                }
+                System.out.print("\n(i2): " + i + ", " + (sLen - 1 - i));
+                for (int j = (sLen - 1) - i; j < sLen - 1; j++) {
+                    System.out.print("\n2Replacing: " + cArr[j] + " with " + cArr[j + 1]);
+                    cArr[j] = cArr[j + 1];
+                    System.out.print("\n:" + reversei + ", " + sLen);
+                }
+                cArr[sLen - 1] = '\0';
+                System.out.print("\n");
+                for (int j = 0; j < cArr.length; j++) {
+                    System.out.print(cArr[j]);
+                }
+                reversei--;
+                sLen--;
+                typeAlreadyFound = true;
+                System.out.print("\n:" + reversei + ", " + sLen);
+            } else {
+                notMatching = true;
+            }
+        }
+
+        return !notMatching;
+    }
+
+    boolean isPalindrome3(String s) {
+
+        // this version can adjust for multiple typos and still find a palindrome
+
+        String tempStr = s.toLowerCase().replaceAll("\\s", "").replaceAll(",", "");
+        int sLen = tempStr.length();
+        char[] cArr = tempStr.toCharArray();
+        boolean notMatching = false;
+        boolean possible = false;
+        boolean first = false;
+        boolean nonMatchingNotYetConveyed = true;
+
+        for (int i = 0; i < sLen; i++) {
+            System.out.print(cArr[i]);
+        }
+        for (int i = 0; i < sLen; i++) {
+            int reversei = (sLen - 1) - i;
+            System.out.print("\n(i0): " + i + ", " + (sLen - 1 - i));
+            System.out.print("\n");
+            for (int j = 0; j < cArr.length; j++) {
+                System.out.print(cArr[j]);
+            }
+            possible = false;
+            if (cArr[i] == cArr[reversei]) {
+                System.out.println("\nMatching (i): " + i + ", " + cArr[i] + ":" + cArr[(sLen - 1) - i]);
+                continue;
+            } else if (cArr[i + 1] == cArr[reversei]) {
+                System.out.println("\nNot matching (i): " + i + ", " + cArr[i] + ":" + cArr[(sLen - 1) - i]);
+                if (nonMatchingNotYetConveyed) {
+                    System.out.println("\nNon-matching char: " + cArr[i]);
+                    nonMatchingNotYetConveyed = false;
+                }
+                System.out.print("\n(i1): " + i + ", " + (sLen - 1 - i));
+                for (int j = i; j < sLen - 1; j++) {
+                    System.out.println("\n***************************************");
+                    System.out.print("\n1Replacing: " + cArr[j] + " with " + cArr[j + 1]);
+                    cArr[j] = cArr[j + 1];
+                }
+                cArr[sLen - 1] = '\0';
+                System.out.print("\n");
+                for (int j = 0; j < cArr.length; j++) {
+                    System.out.print(cArr[j]);
+                }
+                reversei++;
+                sLen--;
+            } else if (cArr[i] == cArr[reversei - 1]) {
+                System.out.println("\nNot matching (i): " + i + ", " + cArr[i] + ":" + cArr[(sLen - 1) - i]);
+                for (int j = 0; j < cArr.length; j++) {
+                    System.out.print(j + ": " + cArr[j] + ", ");
+                }
+                if (nonMatchingNotYetConveyed) {
+                    System.out.println("\n***************************************");
+                    System.out.println("\nNon-matching char: " + cArr[(sLen - 1) - i]);
+                    nonMatchingNotYetConveyed = false;
+                }
+                System.out.print("\n(i2): " + i + ", " + (sLen - 1 - i));
+                for (int j = (sLen - 1) - i; j < sLen - 1; j++) {
+                    System.out.print("\n2Replacing: " + cArr[j] + " with " + cArr[j + 1]);
+                    cArr[j] = cArr[j + 1];
+                    System.out.print("\n:" + reversei + ", " + sLen);
+                }
+                cArr[sLen - 1] = '\0';
+                System.out.print("\n");
+                for (int j = 0; j < cArr.length; j++) {
+                    System.out.print(cArr[j]);
+                }
+                reversei--;
+                sLen--;
+
+                System.out.print("\n:" + reversei + ", " + sLen);
+            } else {
+                notMatching = true;
+            }
+        }
+
+        return !notMatching;
+    }
+
     // Minimum window substring
     // Given a string S and a string T, find the minimum window in S which will
     // contain all the characters in T in complexity O(n).

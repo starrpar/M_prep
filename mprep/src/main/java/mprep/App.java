@@ -1,14 +1,12 @@
 package mprep;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class App {
 
     public static void main(String[] args) {
 
         ArrayMethods arrMethods = new ArrayMethods();
         DynamicProgrammingMethods dp = new DynamicProgrammingMethods();
+        StringMethods strMethods = new StringMethods();
 
         System.out.println("\nFib: " + dp.calculateNthFibonacci(6));
 
@@ -35,16 +33,33 @@ public class App {
         int[] testArr2 = { 13, 2, 2, 3, 4, 5, 5, 17, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
         long[] resultsArr = null;
 
-        System.out.println("\nNum primes: " + arrMethods.countPrimes(arr1));
+        // String testStr = "a man, a plan, a canal, panama";
+        // String testStr = "rrrrrrrrrrrrrrrrrrrrr";
+        // String testStr = "a man, a plant, a canal, panama"; // 1 typo
+        // String testStr = "a man, a plant, a canall, panama"; //2 typos
+        String testStr = "a main, a plant, a canall, panama"; // 3 typos
 
-        for (int i = 0; i < testArr2.length; i++) {
-            System.out.print(testArr2[i] + " ");
-        }
-        System.out.println(" ");
-        resultsArr = arrMethods.sumOfAllElementsPreviousToSpecified(testArr2);
-        for (int i = 0; i < resultsArr.length; i++) {
-            System.out.print(resultsArr[i] + " ");
-        }
+        // this one will only succeed with a single typo to correct
+        System.out.println("\nPalindrome? " + strMethods.isPalindrome2(testStr));
+        System.out.println("\n\n");
+
+        // this version will succeed with having to cleanup up multiple typos
+        // (as long as they are not adjacent to one another to include when mirrored)
+        System.out.println("\nPalindrome? " + strMethods.isPalindrome3(testStr));
+
+        /*
+         * System.out.println("\nNum primes: " + arrMethods.countPrimes(arr1));
+         * 
+         * for (int i = 0; i < testArr2.length; i++) {
+         * System.out.print(testArr2[i] + " ");
+         * }
+         * System.out.println(" ");
+         * resultsArr = arrMethods.sumOfAllElementsPreviousToSpecified(testArr2);
+         * for (int i = 0; i < resultsArr.length; i++) {
+         * System.out.print(resultsArr[i] + " ");
+         * }
+         */
+
         /*
          * List<Integer[]> lexiList =
          * fcns.getNextLexicographicalOutputOfArray(testArr2);
@@ -59,53 +74,64 @@ public class App {
          * }
          */
 
-        int seqLen = arrMethods.findLongestIncreasingSequence(arr5, false);
-        System.out.println("\nLongestSequenceLength: " + seqLen);
+        // int seqLen = arrMethods.findLongestIncreasingSequence(arr5, false);
+        // System.out.println("\nLongestSequenceLength: " + seqLen);
 
         // ************************************************************
-        int val = 8;
-        System.out.println("\nFirst - doesn't fix: ");
-        int count = arrMethods.removeElementInPlace1(arr1, val);
-        System.out.println("\n" + count);
-        System.out.println("\nSecond - does fix: ");
-        count = arrMethods.removeElementInPlace2(arr2, val);
-        System.out.println("\n" + count);
-        System.out.println("\n" + arrMethods.removeDuplicates(arr3));
-        System.out.println("\n" + arrMethods.removeDuplicates(arr4));
-
-        int numIntOccurrences = arrMethods.countFrequencyOfElement(arr3, (Object) 3);
-        System.out.println("\nFrequency of number 3: " + numIntOccurrences);
-        int expectedOccurrences = arrayLength / bound;
-        System.out.println("number of expected \"random\" occurrences in array of int of length: " + arrayLength
-                + " is: " + expectedOccurrences);
-        if (numIntOccurrences > expectedOccurrences) {
-            System.out.println(
-                    "...so value is more common than expected, so \'randomeness\' is more liberal in this case");
-        } else {
-            System.out.println(
-                    "...so value is less common than expected, so \'randomeness\' is more conservative in this case");
-        }
-
-        int numCharOccurrences = arrMethods.countFrequencyOfElement(arr4, (Object) 'c');
-        System.out.println("\nFrequency of character \'c\': " + numCharOccurrences);
-        expectedOccurrences = arrayLength / 52;
-        System.out.println("number of expected \"random\" occurrences in array of char of length: " + arrayLength
-                + " is: " + expectedOccurrences);
-        if (numCharOccurrences > expectedOccurrences) {
-            System.out.println(
-                    "...so value is more common than expected, so \'randomeness\' is more liberal in this case");
-        } else {
-            System.out.println(
-                    "...so value is less common than expected, so \'randomeness\' is more conservative in this case");
-        }
-
-        Integer[] testArr = { 0, 1, 2, 1, 0, 0, 2, 0, 1, 1, 2, 0, 2, 1, 2, 1, 2, 2, 0, 0, 2 };
-        List<Integer> listArr = Arrays.asList(testArr);
-        System.out.println("listArr: " + listArr);
-        List<Integer> resultArr = arrMethods.moveZeroes(listArr);
-        System.out.println("resultArr: " + resultArr);
-        resultArr = arrMethods.moveZeroesMoreEfficient(testArr);
-        System.out.println("resultArr: " + resultArr);
-
+        /*
+         * int val = 8;
+         * System.out.println("\nFirst - doesn't fix: ");
+         * int count = arrMethods.removeElementInPlace1(arr1, val);
+         * System.out.println("\n" + count);
+         * System.out.println("\nSecond - does fix: ");
+         * count = arrMethods.removeElementInPlace2(arr2, val);
+         * System.out.println("\n" + count);
+         * System.out.println("\n" + arrMethods.removeDuplicates(arr3));
+         * System.out.println("\n" + arrMethods.removeDuplicates(arr4));
+         * 
+         * int numIntOccurrences = arrMethods.countFrequencyOfElement(arr3, (Object) 3);
+         * System.out.println("\nFrequency of number 3: " + numIntOccurrences);
+         * int expectedOccurrences = arrayLength / bound;
+         * System.out.
+         * println("number of expected \"random\" occurrences in array of int of length: "
+         * + arrayLength
+         * + " is: " + expectedOccurrences);
+         * if (numIntOccurrences > expectedOccurrences) {
+         * System.out.println(
+         * "...so value is more common than expected, so \'randomeness\' is more liberal in this case"
+         * );
+         * } else {
+         * System.out.println(
+         * "...so value is less common than expected, so \'randomeness\' is more conservative in this case"
+         * );
+         * }
+         * 
+         * int numCharOccurrences = arrMethods.countFrequencyOfElement(arr4, (Object)
+         * 'c');
+         * System.out.println("\nFrequency of character \'c\': " + numCharOccurrences);
+         * expectedOccurrences = arrayLength / 52;
+         * System.out.
+         * println("number of expected \"random\" occurrences in array of char of length: "
+         * + arrayLength
+         * + " is: " + expectedOccurrences);
+         * if (numCharOccurrences > expectedOccurrences) {
+         * System.out.println(
+         * "...so value is more common than expected, so \'randomeness\' is more liberal in this case"
+         * );
+         * } else {
+         * System.out.println(
+         * "...so value is less common than expected, so \'randomeness\' is more conservative in this case"
+         * );
+         * }
+         * 
+         * Integer[] testArr = { 0, 1, 2, 1, 0, 0, 2, 0, 1, 1, 2, 0, 2, 1, 2, 1, 2, 2,
+         * 0, 0, 2 };
+         * List<Integer> listArr = Arrays.asList(testArr);
+         * System.out.println("listArr: " + listArr);
+         * List<Integer> resultArr = arrMethods.moveZeroes(listArr);
+         * System.out.println("resultArr: " + resultArr);
+         * resultArr = arrMethods.moveZeroesMoreEfficient(testArr);
+         * System.out.println("resultArr: " + resultArr);
+         */
     }
 }
