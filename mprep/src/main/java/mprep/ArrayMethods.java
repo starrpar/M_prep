@@ -4,9 +4,12 @@ import java.util.List;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Random;
+
+import javax.xml.crypto.dsig.keyinfo.KeyValue;
 
 public class ArrayMethods {
 
@@ -70,188 +73,205 @@ public class ArrayMethods {
     // << NEXT >> longest increasing subsequence
     // << ??? >> -trapping rain water
 
-    // EASY:
-    // 1.1 Merge two sorted arrays
-    // Text guide (GeeksforGeeks)
-    // Video guide (TECH DOSE)
-    // 1.2 Remove duplicates from an array
-    // Video guide (Kevin Naughton Jr.)
-    // Text guide (W3Schools)
-    // Text guide (Javarevisted)
-    // Code example (LeetCode)
-    // 1.3 Count the frequency of an element in an array
-    // Text guide (GeeksforGeeks)
-    // Video guide (SDET)
-    // 1.4 Two sum
-    // Text guide (Codeburst)
-    // Video guide (Kevin Naughton Jr.)
-    // 1.5 Find the minimum (or maximum) element of an array
-    // Text guide (Enjoy Algorithms)
-    // Text guide (After Academy)
-    // Video guide (GeeksforGeeks)
-    // 1.6 Remove duplicates from sorted array
-    // Text guide (Redquark)
-    // Video guide (Kevin Naughton Jr.)
-    // Video guide (Take u Forward)
-    // 1.7 Remove element in-place
-    // Text guide (Redquark)
-    // Video guide (Nick White)
-    // Code example (LeetCode)
-    // 1.8 Search Insert Position
-    // Text guide (GeeksforGeeks)
-    // Text guide (Codesdope)
-    // Video guide (NeetCode)
-    // 1.9 Maximum Subarray
-    // Text guide (Wikipedia)
-    // Text guide (Techie Delight)
-    // Video guide (CS Dojo)
-    // 1.10 Plus One
-    // Text guide (Medium/Punitkmryh)
-    // Video guide (Kevin Naughton Jr.)
-    // Video guide (Back to Back SWE)
-    // 1.11 Convert Sorted Array to Binary Search Tree (Arrays/Binary Trees)
-    // Text guide (GeeksForGeeks)
-    // Video guide (Kevin Naughton Jr)
-    // 1.12 Single Number
-    // Text guide (Akhilpokle)
-    // Video guide (Kevin Naughton Jr)
-    // Video guide (TECH DOSE)
-    // 1.13 Count Primes
-    // Text guide (GeeksForGeeks)
-    // Video guide (Terrible Whiteboard)
-    // 1.14 Contains Duplicate
-    // Text guide (Medium/Punitkmryh)
-    // Video guide (Terrible Whiteboard)
-    // Code example (LeetCode)
-    // 1.15 Third Largest Number
-    // Text guide (GeeksForGeeks)
-    // Video guide (Terrible Whiteboard)
-    // 1.16 Count Odd Even
-    // Text guide (W3resource)
-    // Text guide (GeeksForGeeks)
-    // Video guide (Technotip)
+    // longest increasing subsequence
+    // find longest continuously increasing sequence
+    // per requirements, does NOT have to be continuous
+    int findLongestIncreasingSequence(int[] nums, boolean first) {
+        // create container to hold "sub-sequences"
+        // don't know how many will exist (meaning will be determined only in the end)
+        // (for example, could start towards the end and be longer than any other
+        // heretofore)
+        // could keep only "2 longest" - and if a new longer one comes in, just drop the
+        // 2nd longest
+        // thereby still keeping the 2 longest by having the new one and the previously
+        // longest ones
+        // so could just use a KVP with keys 1 and 2, and values are List<Integer> that
+        // could be
+        // converted back to int[] once complete.
 
-    // MEDIUM:
-    // 2.1 Move all zeros to the beginning/end of an array
-    // Text guide (Educative)
-    // Video guide (Programming tutorials)
-    // Code example (LeetCode)
-    // 2.2 Find if a given element is in a sorted array (binary search)
-    // Text guide (Khan academy)
-    // Video guide (HackerRank)
-    // Code example (LeetCode)
-    // 2.3 Rotate an array
-    // Text guide (GeeksforGeeks)
-    // Video guide (Nick White)
-    // Code example (LeetCode)
-    // 2.4 Largest sum of non-adjacent numbers (Dynamic Programming)
-    // Text guide (Medium/Arun Kumar)
-    // Text guide (GeeksForGeeks)
-    // Video guide (Coding Simplified)
-    // 2.5 A Product Array Puzzle
-    // Text guide (TutorialCup)
-    // Text guide (Akhilpokle)
-    // Video guide (Nick White)
-    // 2.6 Maximum Product Subarray (Dynamic programming)
-    // Text guide (Techie Delight)
-    // Video guide (NeetCode)
-    // Video guide (Back to Back SWE)
-    // 2.7 Shortest Unsorted Continuous Subarray
-    // Text guide (GeeksForGeeks)
-    // Text guide (Seanpgallivan)
-    // Video guide (Nick White)
-    // 2.8 Maximum sum of hour glass in matrix
-    // Text guide (GeeksforGeeks)
-    // Video guide(Over The Shoulder Coding)
-    // 2.9 Paint House (Dynamic programming)
-    // Text guide (ProgrammerSought)
-    // Video guide (NeetCode)
-    // 2.10 Minimum number of jumps to reach end
-    // Text guide (Medium/Himanshu)
-    // Video guide (Nick White)
-    // 2.11 Find duplicates in O(n) time and O(1) extra space
-    // Text guide (GeeksForGeeks)
-    // Video guide (Nick White)
-    // 2.12 Find three numbers with the maximum product
-    // Text guide (Techie Delight)
-    // Video guide (Programmer Mitch)
-    // 2.13 Maximum Sum Circular Subarray
-    // Text Guide (Techie Delight)
-    // Video Guide (TECH DOSE)
-    // 2.14 Minimum number of swaps to sort an array
-    // Text guide (GeeksForGeeks)
-    // Video guide (Brian Dyck)
+        if (first) {
 
-    // HARD:
-    // 3.1 Rotate a 2D array
-    // Text guide (Jack)
-    // Text guide (GeeksforGeeks)
-    // Video guide (Nick White)
-    // 3.2 Create change with coins (dynamic programming)
-    // Text guide (Educative)
-    // Video guide (Back to Back SWE)
-    // 3.3 Sliding window maximum
-    // Text guide (After Academy)
-    // Video guide (Jessica Lin)
-    // 3.4 Find the smallest positive number missing from an unsorted array
-    // Text guide (Codes Dope)
-    // Video guide (Michael Muinos)
-    // 3.5 Find the missing number in unordered Arithmetic Progression
-    // Text guide (GeeksForGeeks)
-    // 3.6 Find the maximum j – i such that arr[j] > arr[i] (Distance maximising
-    // problem)
-    // Text guide (GeeksForGeeks)
-    // Text guide (Techie Delight)
-    // Video guide (Genetic Coders)
-    // 3.7 Array manipulation
-    // Text guide (The Poor Coder)
-    // Video guide (Brian Dyck)
-    // 3.8 Median of Two Sorted Arrays
-    // Text guide (GeeksForGeeks)
-    // Video guide (Take u Forward)
-    // Code example (LeetCode)
-    // 3.9 Sudoku Solver
-    // Text guide (After Academy)
-    // Video guide (Back To Back SWE)
-    // Code example (LeetCode)
-    // 3.10 Largest Rectangle in Histogram
-    // Text guide (After Academy)
-    // Video guide (TECH DOSE)
-    // 3.11 Maximal Rectangle in binary matrix
-    // Text guide (GeeksForGeeks)
-    // Video guide (TECH DOSE)
-    // 3.12 Find Minimum in Rotated Sorted Array
-    // Text guide (Algorithmsandme)
-    // Video guide (Nick White)
-    // 3.13 Count of Smaller Numbers After Self
-    // Text guide (CodeStudio)
-    // Text guide (GeeksForGeeks)
-    // Video guide (Happygirlzt)
-    // 3.14 Palindrome Pairs
-    // Text guide (Seanpgallivan)
-    // Video guide (Happygirlzt)
-    // 3.15 Sort an array containing 0’s, 1’s and 2’s
-    // Text guide (Techie Delight)
-    // Text guide (GeeksForGeeks)
-    // Video guide (Take u Forward)
-    // Video guide (Back To Back SWE)
-    // 3.16 Longest increasing subsequence
-    // Text guide (GeeksForGeeks)
-    // Video guide (Back To Back SWE)
-    // Code example (LeetCode)
-    // 3.17 Trapping Rain Water
-    // Text guide (GeeksForGeeks)
-    // Video guide (Take u Forward)
-    // Code example (LeetCode)
+            // understand how this progresses, but do not follow how that yields only a
+            // continuously increasing sub-sequence...
+            // also seems like there are errors in where it suggests inserting values
+            // in the binary search tree
+
+            List<Integer> piles = new ArrayList<>(nums.length);
+            System.out.println("\n" + nums.length);
+            for (int num : nums) {
+                int pile = Collections.binarySearch(piles, num); // search for value at current array index
+                System.out.println("pile: " + pile);
+                if (pile < 0) // if failed to find, then value will be < 0 representing the point at which the
+                              // value would be inserted into the tree
+                    pile = ~pile; // bitwise invert (make the value positive and one less, so -19 becomes +18)
+                // System.out.println("(tilde)pile: " + pile);
+                if (pile == piles.size()) {
+                    piles.add(num); // if value is size of list, indicates all list contents are less than value, so
+                                    // simply add to end of list
+                } else {
+                    piles.set(pile, num); // otherwise, insert value at indicated insertion point from above
+                }
+            }
+            System.out.println(piles.size());
+            return piles.size(); // somehow, total size of all values inserted equals size of increasing
+                                 // subsequence
+            // Q: what happens if value is same as another (dupe)?
+            // Q: this (tree insertion) does not account for order in the array listing
+        } else {
+
+            // alternate approach
+
+            int[] tails = new int[nums.length];
+            int size = 0;
+            for (int num : nums) { // go through array
+                int i = 0, j = size; // initialize i, j => 0
+                while (i != j) { // check if i == j
+                    int m = (i + j) / 2;// take the average of i & j (note this is int division, so uses floor -- i.e.
+                                        // (2 + 3)/2 = 5/2 = 2.5 = 2)
+                    if (tails[m] < num) // if the value in tails[(i+j)/2] is less than the value at the current array
+                                        // index
+                        i = m + 1; // then increment i to m+1 (int(i+j)/2) + 1)
+                    else
+                        j = m; // or, if value at current array index is equal or greater than tails[(i+j)/2],
+                    System.out.println("i,j,m: " + i + "," + j + "," + m); // then increment j to m
+                }
+                System.out.println("\ninsert into tails at i: " + num);
+                tails[i] = num; // once while is satisfied (i == j), then set tails[i] to the value at current
+                                // array index
+                if (i == size) {
+                    ++size; // increment value of size if i has reached that value
+                    System.out.println("increment size: " + size);
+                }
+
+            }
+            return size;
+
+        }
+
+        /*
+         * Map<Integer, List<Integer>> kvp = new HashMap<>();
+         * List<Integer> list1 = new ArrayList<>();
+         * List<Integer> list2 = new ArrayList<>();
+         * List<Integer> swapList = new ArrayList<>();
+         * 
+         * List<Integer> tmpList = new ArrayList<>();
+         * 
+         * // initiate first 2 lists for comparison of sequence length with first 2
+         * values
+         * // in array
+         * list1.add(arr[0]);
+         * kvp.put(1, list1);
+         * list2.add(arr[1]);
+         * kvp.put(2, list2);
+         * 
+         * System.out.println();
+         * System.out.println(kvp.get(1));
+         * System.out.println(kvp.get(2));
+         * 
+         * // index through array
+         * boolean used = false;
+         * // for (int i = 2; i < arr.length; i++) {
+         * // if (arr[i] > kvp.get(1).get(kvp.get(1).size() - 1)) {
+         * // // System.out.println(arr[i]);
+         * // kvp.get(1).add(arr[i]);
+         * // used = true;
+         * // }
+         * // if (arr[i] > kvp.get(2).get(kvp.get(2).size() - 1)) {
+         * // // System.out.println(arr[i]);
+         * // kvp.get(2).add(arr[i]);
+         * // used = true;
+         * // }
+         * // if ((arr[i] != kvp.get(1).get(kvp.get(1).size() - 1) &&
+         * // arr[i] != kvp.get(2).get(kvp.get(2).size() - 1)) &&
+         * // swapList.size() > 0 &&
+         * // arr[i] > swapList.get(swapList.size() - 1)) {
+         * // swapList.add(arr[i]);
+         * // System.out
+         * // .println("adding... i: " + i + ", " + arr[i] + ", "
+         * // + (kvp.get(1).get(kvp.get(1).size() - 1)).toString()
+         * // + ", " + (kvp.get(2).get(kvp.get(2).size() - 1)).toString());
+         * // used = true;
+         * // }
+         * // if ((arr[i] != kvp.get(1).get(kvp.get(1).size() - 1) &&
+         * // arr[i] != kvp.get(2).get(kvp.get(2).size() - 1)) &&
+         * // !used) {
+         * // swapList.add(arr[i]);
+         * // System.out.println("adding to empty list... not used: " + i + ", " +
+         * arr[i]);
+         * // used = false;
+         * // }
+         * // }
+         * System.out.println(kvp.get(1));
+         * for (int i = 2; i < arr.length; i++) {
+         * for (int j = 1; j < i; j++) {
+         * if (arr[i] == kvp.get(1).get(kvp.get(1).size() - 1) + 1) {
+         * kvp.get(1).add(arr[i]);
+         * System.out.println("i: " + i + ", arr[i]: " + arr[i] + "... " + kvp.get(1));
+         * }
+         * }
+         * }
+         * 
+         * System.out.println(kvp.get(1));
+         * System.out.println(kvp.get(2));
+         * System.out.println(swapList);
+         * 
+         * if (kvp.get(1).size() > kvp.get(2).size()) {
+         * if (swapList.size() > kvp.get(1).size()) {
+         * tmpList = swapList;
+         * kvp.put(1, swapList);
+         * if (swapList.size() > kvp.get(2).size()) {
+         * kvp.put(2, kvp.get(1));
+         * } else {
+         * swapList = kvp.get(2);
+         * }
+         * } else {
+         * tmpList = kvp.get(1);
+         * // kvp.put(1, kvp.get(1)); //implicit - redundant
+         * if (swapList.size() > kvp.get(2).size()) {
+         * kvp.put(2, swapList);
+         * }
+         * // else {
+         * // kvp.put(2, kvp.get(1)); //implicit - redundant
+         * // }
+         * }
+         * } else {
+         * if (swapList.size() > kvp.get(2).size()) {
+         * tmpList = swapList;
+         * kvp.put(1, swapList);
+         * kvp.put(2, swapList);
+         * swapList = kvp.get(1);
+         * } else {
+         * tmpList = kvp.get(2);
+         * kvp.put(1, kvp.get(2));
+         * if (swapList.size() > kvp.get(1).size()) {
+         * kvp.put(2, swapList);
+         * swapList = kvp.get(1);
+         * } else {
+         * kvp.put(2, kvp.get(1));
+         * // swapList = swapList; //implicit - redundant
+         * }
+         * }
+         * }
+         * 
+         * int[] tmpArr = new int[tmpList.size()];
+         * 
+         * for (int i = 0; i < tmpList.size(); i++) {
+         * tmpArr[i] = tmpList.get(i);
+         * System.out.print(tmpArr[i] + " ");
+         * }
+         * 
+         * return tmpArr;
+         */
+    }
 
     // ALSO...
     // Given an array nums of n integers where n > 1, return an array output such
     // that output[i] is equal to the product of all the elements of nums except
     // nums[i] - see sumOfAllElementsPreviousToSpecified() below...
 
-    int[] sumOfAllElementsPreviousToSpecified(int[] arr) throws InvalidParameterException {
-        int product = 1; // product, not sum, so start with 1 as identity
-        int[] products = new int[arr.length];
+    long[] sumOfAllElementsPreviousToSpecified(int[] arr) throws InvalidParameterException {
+        long product = 1L; // product, not sum, so start with 1 as identity
+        long[] products = new long[arr.length];
 
         for (int i = 0; i < arr.length; i++) {
             product = 1;
@@ -445,7 +465,7 @@ public class ArrayMethods {
         }
         // print out to confirm/debugging
         for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i]);
+            System.out.print(arr[i] + ",");
         }
         System.out.print("\nLength of final array: " + arr.length);
         return count;
@@ -469,7 +489,7 @@ public class ArrayMethods {
         arr = newArr;
         // print out to confirm/debugging
         for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i]);
+            System.out.print(arr[i] + ",");
         }
         System.out.print("\nLength of final array: " + arr.length);
         return count;
@@ -610,4 +630,193 @@ public class ArrayMethods {
         }
         return retVal;
     }
+
+    // maybe someday...
+
+    // Given an array of N non-negative integers arr[] representing an elevation map
+    // where
+    // the width of each bar is 1, compute how much water it is able to trap after
+    // raining.
+
+    // Examples:
+
+    // Input: arr[] = {2, 0, 2}
+    // Output: 2
+    // Explanation: The structure is like below.
+    // We can trap 2 units of water in the middle gap.
+
 }
+
+// EASY:
+// 1.1 Merge two sorted arrays
+// Text guide (GeeksforGeeks)
+// Video guide (TECH DOSE)
+// 1.2 Remove duplicates from an array
+// Video guide (Kevin Naughton Jr.)
+// Text guide (W3Schools)
+// Text guide (Javarevisted)
+// Code example (LeetCode)
+// 1.3 Count the frequency of an element in an array
+// Text guide (GeeksforGeeks)
+// Video guide (SDET)
+// 1.4 Two sum
+// Text guide (Codeburst)
+// Video guide (Kevin Naughton Jr.)
+// 1.5 Find the minimum (or maximum) element of an array
+// Text guide (Enjoy Algorithms)
+// Text guide (After Academy)
+// Video guide (GeeksforGeeks)
+// 1.6 Remove duplicates from sorted array
+// Text guide (Redquark)
+// Video guide (Kevin Naughton Jr.)
+// Video guide (Take u Forward)
+// 1.7 Remove element in-place
+// Text guide (Redquark)
+// Video guide (Nick White)
+// Code example (LeetCode)
+// 1.8 Search Insert Position
+// Text guide (GeeksforGeeks)
+// Text guide (Codesdope)
+// Video guide (NeetCode)
+// 1.9 Maximum Subarray
+// Text guide (Wikipedia)
+// Text guide (Techie Delight)
+// Video guide (CS Dojo)
+// 1.10 Plus One
+// Text guide (Medium/Punitkmryh)
+// Video guide (Kevin Naughton Jr.)
+// Video guide (Back to Back SWE)
+// 1.11 Convert Sorted Array to Binary Search Tree (Arrays/Binary Trees)
+// Text guide (GeeksForGeeks)
+// Video guide (Kevin Naughton Jr)
+// 1.12 Single Number
+// Text guide (Akhilpokle)
+// Video guide (Kevin Naughton Jr)
+// Video guide (TECH DOSE)
+// 1.13 Count Primes
+// Text guide (GeeksForGeeks)
+// Video guide (Terrible Whiteboard)
+// 1.14 Contains Duplicate
+// Text guide (Medium/Punitkmryh)
+// Video guide (Terrible Whiteboard)
+// Code example (LeetCode)
+// 1.15 Third Largest Number
+// Text guide (GeeksForGeeks)
+// Video guide (Terrible Whiteboard)
+// 1.16 Count Odd Even
+// Text guide (W3resource)
+// Text guide (GeeksForGeeks)
+// Video guide (Technotip)
+
+// MEDIUM:
+// 2.1 Move all zeros to the beginning/end of an array
+// Text guide (Educative)
+// Video guide (Programming tutorials)
+// Code example (LeetCode)
+// 2.2 Find if a given element is in a sorted array (binary search)
+// Text guide (Khan academy)
+// Video guide (HackerRank)
+// Code example (LeetCode)
+// 2.3 Rotate an array
+// Text guide (GeeksforGeeks)
+// Video guide (Nick White)
+// Code example (LeetCode)
+// 2.4 Largest sum of non-adjacent numbers (Dynamic Programming)
+// Text guide (Medium/Arun Kumar)
+// Text guide (GeeksForGeeks)
+// Video guide (Coding Simplified)
+// 2.5 A Product Array Puzzle
+// Text guide (TutorialCup)
+// Text guide (Akhilpokle)
+// Video guide (Nick White)
+// 2.6 Maximum Product Subarray (Dynamic programming)
+// Text guide (Techie Delight)
+// Video guide (NeetCode)
+// Video guide (Back to Back SWE)
+// 2.7 Shortest Unsorted Continuous Subarray
+// Text guide (GeeksForGeeks)
+// Text guide (Seanpgallivan)
+// Video guide (Nick White)
+// 2.8 Maximum sum of hour glass in matrix
+// Text guide (GeeksforGeeks)
+// Video guide(Over The Shoulder Coding)
+// 2.9 Paint House (Dynamic programming)
+// Text guide (ProgrammerSought)
+// Video guide (NeetCode)
+// 2.10 Minimum number of jumps to reach end
+// Text guide (Medium/Himanshu)
+// Video guide (Nick White)
+// 2.11 Find duplicates in O(n) time and O(1) extra space
+// Text guide (GeeksForGeeks)
+// Video guide (Nick White)
+// 2.12 Find three numbers with the maximum product
+// Text guide (Techie Delight)
+// Video guide (Programmer Mitch)
+// 2.13 Maximum Sum Circular Subarray
+// Text Guide (Techie Delight)
+// Video Guide (TECH DOSE)
+// 2.14 Minimum number of swaps to sort an array
+// Text guide (GeeksForGeeks)
+// Video guide (Brian Dyck)
+
+// HARD:
+// 3.1 Rotate a 2D array
+// Text guide (Jack)
+// Text guide (GeeksforGeeks)
+// Video guide (Nick White)
+// 3.2 Create change with coins (dynamic programming)
+// Text guide (Educative)
+// Video guide (Back to Back SWE)
+// 3.3 Sliding window maximum
+// Text guide (After Academy)
+// Video guide (Jessica Lin)
+// 3.4 Find the smallest positive number missing from an unsorted array
+// Text guide (Codes Dope)
+// Video guide (Michael Muinos)
+// 3.5 Find the missing number in unordered Arithmetic Progression
+// Text guide (GeeksForGeeks)
+// 3.6 Find the maximum j – i such that arr[j] > arr[i] (Distance maximising
+// problem)
+// Text guide (GeeksForGeeks)
+// Text guide (Techie Delight)
+// Video guide (Genetic Coders)
+// 3.7 Array manipulation
+// Text guide (The Poor Coder)
+// Video guide (Brian Dyck)
+// 3.8 Median of Two Sorted Arrays
+// Text guide (GeeksForGeeks)
+// Video guide (Take u Forward)
+// Code example (LeetCode)
+// 3.9 Sudoku Solver
+// Text guide (After Academy)
+// Video guide (Back To Back SWE)
+// Code example (LeetCode)
+// 3.10 Largest Rectangle in Histogram
+// Text guide (After Academy)
+// Video guide (TECH DOSE)
+// 3.11 Maximal Rectangle in binary matrix
+// Text guide (GeeksForGeeks)
+// Video guide (TECH DOSE)
+// 3.12 Find Minimum in Rotated Sorted Array
+// Text guide (Algorithmsandme)
+// Video guide (Nick White)
+// 3.13 Count of Smaller Numbers After Self
+// Text guide (CodeStudio)
+// Text guide (GeeksForGeeks)
+// Video guide (Happygirlzt)
+// 3.14 Palindrome Pairs
+// Text guide (Seanpgallivan)
+// Video guide (Happygirlzt)
+// 3.15 Sort an array containing 0’s, 1’s and 2’s
+// Text guide (Techie Delight)
+// Text guide (GeeksForGeeks)
+// Video guide (Take u Forward)
+// Video guide (Back To Back SWE)
+// 3.16 Longest increasing subsequence
+// Text guide (GeeksForGeeks)
+// Video guide (Back To Back SWE)
+// Code example (LeetCode)
+// 3.17 Trapping Rain Water
+// Text guide (GeeksForGeeks)
+// Video guide (Take u Forward)
+// Code example (LeetCode)

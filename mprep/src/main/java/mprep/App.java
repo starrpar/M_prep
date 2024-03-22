@@ -9,12 +9,13 @@ public class App {
 
         ArrayMethods fcns = new ArrayMethods();
 
-        int arrayLength = 1000;
+        int arrayLength = 100;
         int bound = 100;
         int[] newIntArr = fcns.createRandomIntArray(arrayLength, bound);
         char[] newCharArr = fcns.createRandomCharArray(arrayLength);
         int[] arr1 = newIntArr.clone();
         int[] arr2 = newIntArr.clone();
+        int[] arr5 = newIntArr.clone();
         int intArrLen = newIntArr.length;
         int charArrLen = newCharArr.length;
         Object[] arr3 = new Object[intArrLen];
@@ -28,8 +29,8 @@ public class App {
         }
 
         // int[] testArr1 = { 1, 2, 2, 3, 4, 5, 5, 17, 1, 1 };
-        int[] testArr2 = { 13, 2, 2, 3, 4, 5, 5, 17, 10, 11 };
-        int[] resultsArr = null;
+        int[] testArr2 = { 13, 2, 2, 3, 4, 5, 5, 17, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
+        long[] resultsArr = null;
 
         System.out.println("\nNum primes: " + fcns.countPrimes(arr1));
 
@@ -41,17 +42,22 @@ public class App {
         for (int i = 0; i < resultsArr.length; i++) {
             System.out.print(resultsArr[i] + " ");
         }
+        /*
+         * List<Integer[]> lexiList =
+         * fcns.getNextLexicographicalOutputOfArray(testArr2);
+         * if (lexiList.size() <= 0) {
+         * System.out.println("lexiList is empty");
+         * }
+         * for (int i = 0; i < lexiList.size(); i++) {
+         * System.out.print("\n");
+         * for (int j = 0; j < lexiList.get(i).length; j++) {
+         * System.out.print(lexiList.get(i)[j] + " ");
+         * }
+         * }
+         */
 
-        List<Integer[]> lexiList = fcns.getNextLexicographicalOutputOfArray(testArr2);
-        if (lexiList.size() <= 0) {
-            System.out.println("lexiList is empty");
-        }
-        for (int i = 0; i < lexiList.size(); i++) {
-            System.out.print("\n");
-            for (int j = 0; j < lexiList.get(i).length; j++) {
-                System.out.print(lexiList.get(i)[j] + " ");
-            }
-        }
+        int seqLen = fcns.findLongestIncreasingSequence(arr5, false);
+        System.out.println("\nLongestSequenceLength: " + seqLen);
 
         // ************************************************************
         int val = 8;
