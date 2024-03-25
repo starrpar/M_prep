@@ -231,6 +231,19 @@ public class StringMethods {
     // 1 <= s.length <= 105
     // s consists of lowercase English letters.
 
+    boolean isPalindrome1(String s) {
+        String tempStr = s.toLowerCase().replaceAll("\\s", "").replaceAll(",", "");
+
+        char[] cArr = tempStr.toCharArray();
+
+        for (int i = 0; i < tempStr.length(); i++) {
+            if (cArr[i] != cArr[(tempStr.length() - 1) - i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     boolean isPalindrome2(String s) {
         // put all characters into a Hashmap (or List<KeyValuePair> ) with character as
         // key and count as value
