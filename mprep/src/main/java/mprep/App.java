@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import mprep.DynamicProgrammingMethods.NQueensProblem;
+
 public class App {
 
     public static void main(String[] args) {
@@ -11,6 +13,8 @@ public class App {
         SimpleMethods simple = new SimpleMethods();
         ArrayMethods arrMethods = new ArrayMethods();
         TreeMethods treeMethods = new TreeMethods();
+        DynamicProgrammingMethods dpMethods = new DynamicProgrammingMethods();
+        DynamicProgrammingMethods.NQueensProblem nqMethods = dpMethods.new NQueensProblem();
 
         // String methods (20%)
         String testStr = "a man, a plan, a canal, panama";
@@ -19,6 +23,11 @@ public class App {
         // Dynamic Programming (and Recursive) methods (20%)
         int inputVal = 8;
         System.out.println("\n" + inputVal + "th Fibonacci: " + simple.calculateNthFibonacci(inputVal));
+
+        // int n = 4; // n can be anything >= 4; try 8 for chessboard and n = 10
+        int n = 8;
+        // int n = 10;
+        nqMethods.solveNQueens(n);
 
         // Array methods (20%)
         Integer[] testArray = { 1, 0, 2, 1, 2, 1, 0, 0, 2, 0, 1, 1, 2, 0, 2, 1, 2, 1, 2, 2, 0, 0, 2 };
