@@ -10,6 +10,13 @@ public class DynamicProgrammingMethods {
     // of the smaller problems to build a solution to the bigger problem
     // recursion problems are apparently a subset of that category
 
+    // Some examples:
+    // Longest Common Subsequence
+    // Knapsack
+    // Matrix-chain multiplication
+    // Coin Change
+    // Fibonacci
+
     int calculateNthFibonacci(int n) {
         return fibo(n);
     }
@@ -57,7 +64,7 @@ public class DynamicProgrammingMethods {
 
             // Base case: If all queens are placed, back out, returning true
             if (col >= n)
-                return true;
+                return true;  
 
             // Consider this column and try placing
             // this queen in all rows one by one
