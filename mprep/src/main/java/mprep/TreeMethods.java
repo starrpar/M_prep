@@ -20,7 +20,7 @@ public class TreeMethods {
         }
     }
 
-    public static class BinaryTree {
+    public class BinaryTree {
         Node root = new Node();
 
         public void add(int i) {

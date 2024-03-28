@@ -14,6 +14,7 @@ public class App {
         DynamicProgrammingMethods dpMethods = new DynamicProgrammingMethods();
         DynamicProgrammingMethods.NQueensProblem nqMethods = dpMethods.new NQueensProblem();
         SearchAndSortMethods sortMethods = new SearchAndSortMethods();
+        StackAndQueueMethods stackMethods = new StackAndQueueMethods();
 
         // String methods (20%)
         String testStr = "a man, a plan, a canal, panama";
@@ -49,7 +50,7 @@ public class App {
         System.out.println("\nDuplicates removed: " + simple.removeDuplicates(array2));
 
         // Tree methods (15%)
-        TreeMethods.BinaryTree tree = new TreeMethods.BinaryTree();
+        TreeMethods.BinaryTree tree = treeMethods.new BinaryTree();
         List<Integer> treeList = new ArrayList<>();
         List<Integer> treeTraversalOutputList = new ArrayList<>();
 
@@ -132,6 +133,96 @@ public class App {
         // LinkedList methods (4%)
 
         // Stack/Queue methods (2%)
+        int numNodes = 5;
+        StackAndQueueMethods.Stack currentStack = stackMethods.new Stack();
+        StackAndQueueMethods.Node[] nodes = new StackAndQueueMethods.Node[numNodes];
+        for (int i = 0; i < numNodes; i++) {
+            StackAndQueueMethods.Node newNode = stackMethods.new Node();
+            newNode.value = i;
+            nodes[i] = newNode;
+        }
+        for (int i = 0; i < numNodes; i++) {
+            currentStack.push(nodes[i].value);
+        }
+
+        try {
+            System.out.println("\nContents of stack, peeked: ");
+            System.out.println(((Integer) currentStack.peek()).toString());
+
+            System.out.println("Contents of stack, popped: ");
+            for (int i = numNodes - 1; i >= 0; i--) {
+                System.out.println(((Integer) currentStack.pop()).toString());
+            }
+
+            // Commented out because will fail (stop program from running) by design
+            if (!currentStack.empty()) {
+                System.out.println("Contents of stack, peeked (will now be empty): ");
+                int val = currentStack.peek();
+                System.out.println(((Integer) val).toString());
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception caught: " + e.getMessage() + "; " + e.getStackTrace());
+        }
+
+        StackAndQueueMethods.Queue currentQueue = stackMethods.new Queue();
+        for (int i = 0; i < numNodes; i++) {
+            StackAndQueueMethods.Node newNode = stackMethods.new Node();
+            newNode.value = i;
+            nodes[i] = newNode;
+        }
+        for (int i = 0; i < numNodes; i++) {
+            currentQueue.enqueue(nodes[i].value);
+        }
+
+        try {
+            System.out.println("\nContents of queue, peeked: ");
+            System.out.println(((Integer) currentQueue.peek()).toString());
+
+            System.out.println("Contents of queue, dequeued: ");
+            for (int i = numNodes - 1; i >= 0; i--) {
+                System.out.println(((Integer) currentQueue.dequeue()).toString());
+            }
+
+            // Commented out because will fail (stop program from running) by design
+            if (!currentQueue.empty()) {
+                System.out.println("Contents of queue, peeked (will now be empty): ");
+                int val = currentQueue.peek();
+                System.out.println(((Integer) val).toString());
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception caught: " + e.getMessage() + "; " + e.getStackTrace());
+        }
+
+        StackAndQueueMethods.QueueUsingStacks queueViaStacks = stackMethods.new QueueUsingStacks();
+        for (int i = 0; i < numNodes; i++) {
+            StackAndQueueMethods.Node newNode = stackMethods.new Node();
+            newNode.value = i;
+            nodes[i] = newNode;
+        }
+        for (int i = 0; i < numNodes; i++) {
+            queueViaStacks.enQueue(nodes[i].value);
+        }
+        try {
+            System.out.println("\nContents of queueByStacks, peeked: ");
+            System.out.println(((Integer) queueViaStacks.peek()).toString());
+
+            System.out.println("Contents of queueByStacks, dequeued: ");
+            for (int i = numNodes - 1; i >= 0; i--) {
+                System.out.println(((Integer) queueViaStacks.deQueue()).toString());
+            }
+
+            // Commented out because will fail (stop program from running) by design
+            if (!queueViaStacks.empty()) {
+                System.out.println("Contents of queueByStacks, peeked (will now be empty): ");
+                int val = queueViaStacks.peek();
+                System.out.println(((Integer) val).toString());
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception caught: " + e.getMessage() + "; " + e.getStackTrace());
+        }
 
         // runAllOthers();
     }
