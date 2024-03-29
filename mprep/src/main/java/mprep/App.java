@@ -104,9 +104,11 @@ public class App {
             }
         }
 
+        System.out.println("\n");
+        System.out.println(s);
+        System.out.println("\nDFS graph: " + graphMethods.DFS(source, dest, s));
+        System.out.println("\nBFS graph: " + graphMethods.BFS(source, dest, s));
         System.out.println();
-        System.out.println("\ngraph: " + graphMethods.DFS(source, dest, s));
-        System.out.println("\ngraph: " + graphMethods.BFS(source, dest, s));
 
         // let's modify set now to force next relationships
 
@@ -163,22 +165,18 @@ public class App {
             }
         }
 
-        System.out.println("\nNode0 neighbors: " + node0.neighbors);
-        System.out.println("\nNode1 neighbors: " + node1.neighbors);
-        System.out.println("\nNode2 neighbors: " + node2.neighbors);
-        System.out.println("\nNode3 neighbors: " + node3.neighbors);
-        System.out.println("\nNode4 neighbors: " + node4.neighbors);
-        System.out.println("\nNode5 neighbors: " + node5.neighbors);
-        System.out.println("\nNode6 neighbors: " + node6.neighbors);
-        System.out.println("\nNode7 neighbors: " + node7.neighbors);
-
         node0.neighbors.add(node1);
+        node0.neighbors.add(node3);
         node1.neighbors.add(node2);
         node2.neighbors.add(node6);
-        node3.neighbors.add(node4);
+        node2.neighbors.add(node3);
+        node3.neighbors.add(node6);
+        // node3.neighbors.add(node7);
         node4.neighbors.add(node5);
+        node5.neighbors.add(node3);
         node5.neighbors.add(node7);
-        node6.neighbors.add(node7);
+        node6.neighbors.add(node3);
+        node6.neighbors.add(node4);
 
         for (GraphMethods.Node n2 : s) {
             if (n2.value == 0) {
@@ -188,19 +186,19 @@ public class App {
                 dest = n2;
             }
         }
-        System.out.println("\ngraph: " + graphMethods.DFS(source, dest, s));
-        System.out.println("\ngraph: " + graphMethods.BFS(source, dest, s));
+        System.out.println("\nDFS graph: " + graphMethods.DFS(source, dest, s));
+        System.out.println("\nBFS graph: " + graphMethods.BFS(source, dest, s));
 
         for (GraphMethods.Node n2 : s) {
             if (n2.value == 0) {
                 source = n2;
             }
-            if (n2.value == s.size() - 3) { // set dest to 5
+            if (n2.value == s.size() - 2) { // set dest to 6
                 dest = n2;
             }
         }
-        System.out.println("\ngraph: " + graphMethods.DFS(source, dest, s));
-        System.out.println("\ngraph: " + graphMethods.BFS(source, dest, s));
+        System.out.println("\nDFS graph: " + graphMethods.DFS(source, dest, s));
+        System.out.println("\nBFS graph: " + graphMethods.BFS(source, dest, s));
 
         // Search/Sort methods (10%)
         System.out.println("\n\nForward Sort: ");
