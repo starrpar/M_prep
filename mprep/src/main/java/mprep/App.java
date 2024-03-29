@@ -3,6 +3,8 @@ package mprep;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 public class App {
 
@@ -15,6 +17,7 @@ public class App {
         DynamicProgrammingMethods.NQueensProblem nqMethods = dpMethods.new NQueensProblem();
         SearchAndSortMethods sortMethods = new SearchAndSortMethods();
         StackAndQueueMethods stackMethods = new StackAndQueueMethods();
+        GraphMethods graphMethods = new GraphMethods();
 
         // String methods (20%)
         String testStr = "a man, a plan, a canal, panama";
@@ -75,6 +78,129 @@ public class App {
         }
 
         // Graph methods (15%)
+        Set<GraphMethods.Node> s = new HashSet<>();
+        int numNodesInGraph = 8;
+        GraphMethods.Node prevNode = null;
+        for (int i = 0; i < numNodesInGraph; i++) {
+            GraphMethods.Node n1 = graphMethods.new Node();
+
+            n1.value = i;
+            if (prevNode != null) {
+                n1.neighbors.add(prevNode);
+            }
+
+            prevNode = n1;
+            s.add(n1);
+        }
+
+        GraphMethods.Node source = null;
+        GraphMethods.Node dest = null;
+        for (GraphMethods.Node n2 : s) {
+            if (n2.value == 0) {
+                dest = n2;
+            }
+            if (n2.value == s.size() - 1) {
+                source = n2;
+            }
+        }
+
+        System.out.println();
+        System.out.println("\ngraph: " + graphMethods.DFS(source, dest, s));
+        System.out.println("\ngraph: " + graphMethods.BFS(source, dest, s));
+
+        // let's modify set now to force next relationships
+
+        // attach Nodes in Set to tangible instances so can assign to neighbor lists
+        GraphMethods.Node node0 = null;
+        GraphMethods.Node node1 = null;
+        GraphMethods.Node node2 = null;
+        GraphMethods.Node node3 = null;
+        GraphMethods.Node node4 = null;
+        GraphMethods.Node node5 = null;
+        GraphMethods.Node node6 = null;
+        GraphMethods.Node node7 = null;
+        for (GraphMethods.Node n3 : s) {
+
+            if (n3.value == 0) {
+                node0 = n3;
+                node0.neighbors = new ArrayList<>();
+                System.out.println("0: " + n3);
+            }
+            if (n3.value == 1) {
+                node1 = n3;
+                node1.neighbors = new ArrayList<>();
+                System.out.println("1: " + n3);
+            }
+            if (n3.value == 2) {
+                node2 = n3;
+                node2.neighbors = new ArrayList<>();
+                System.out.println("2: " + n3);
+            }
+            if (n3.value == 3) {
+                node3 = n3;
+                node3.neighbors = new ArrayList<>();
+                System.out.println("3: " + n3);
+            }
+            if (n3.value == 4) {
+                node4 = n3;
+                node4.neighbors = new ArrayList<>();
+                System.out.println("4: " + n3);
+            }
+            if (n3.value == 5) {
+                node5 = n3;
+                node5.neighbors = new ArrayList<>();
+                System.out.println("5: " + n3);
+            }
+            if (n3.value == 6) {
+                node6 = n3;
+                node6.neighbors = new ArrayList<>();
+                System.out.println("6: " + n3);
+            }
+            if (n3.value == 7) {
+                node7 = n3;
+                node7.neighbors = new ArrayList<>();
+                System.out.println("7: " + n3);
+            }
+        }
+
+        System.out.println("\nNode0 neighbors: " + node0.neighbors);
+        System.out.println("\nNode1 neighbors: " + node1.neighbors);
+        System.out.println("\nNode2 neighbors: " + node2.neighbors);
+        System.out.println("\nNode3 neighbors: " + node3.neighbors);
+        System.out.println("\nNode4 neighbors: " + node4.neighbors);
+        System.out.println("\nNode5 neighbors: " + node5.neighbors);
+        System.out.println("\nNode6 neighbors: " + node6.neighbors);
+        System.out.println("\nNode7 neighbors: " + node7.neighbors);
+
+        node0.neighbors.add(node1);
+        node1.neighbors.add(node2);
+        node2.neighbors.add(node6);
+        node3.neighbors.add(node4);
+        node4.neighbors.add(node5);
+        node5.neighbors.add(node7);
+        node6.neighbors.add(node7);
+
+        for (GraphMethods.Node n2 : s) {
+            if (n2.value == 0) {
+                source = n2;
+            }
+            if (n2.value == s.size() - 1) { // set dest to 7
+                dest = n2;
+            }
+        }
+        System.out.println("\ngraph: " + graphMethods.DFS(source, dest, s));
+        System.out.println("\ngraph: " + graphMethods.BFS(source, dest, s));
+
+        for (GraphMethods.Node n2 : s) {
+            if (n2.value == 0) {
+                source = n2;
+            }
+            if (n2.value == s.size() - 3) { // set dest to 5
+                dest = n2;
+            }
+        }
+        System.out.println("\ngraph: " + graphMethods.DFS(source, dest, s));
+        System.out.println("\ngraph: " + graphMethods.BFS(source, dest, s));
 
         // Search/Sort methods (10%)
         System.out.println("\n\nForward Sort: ");
