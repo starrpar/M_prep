@@ -20,8 +20,8 @@ public class App {
         GraphMethods graphMethods = new GraphMethods();
 
         // String methods (20%)
-        String testStr = "a man, a plan, a canal, panama";
-        simple.isPalindrome(testStr);
+        String testStr = "a man, a plan, a canal, panama.";
+        System.out.println(simple.isPalindrome(testStr));
 
         // Dynamic Programming (and Recursive) methods (20%)
         int inputVal = 8;
@@ -205,7 +205,7 @@ public class App {
         int[] array3 = newIntArray.clone();
         System.out.println("\nUnsorted array: ");
         System.out.print(Arrays.toString(array3));
-        sortMethods.forwardsort(array3);
+        sortMethods.forwardSort(array3);
         System.out.println("\nSorted array: ");
         System.out.print(Arrays.toString(array3));
 
@@ -214,31 +214,31 @@ public class App {
         int[] sortedArray = new int[array3.length];
         System.out.println("\nUnsorted array: ");
         System.out.print(Arrays.toString(array4));
-        sortedArray = sortMethods.reversesort(array4, false);
+        sortedArray = sortMethods.reverseSort(array4, false);
         System.out.println("\nSorted array: ");
         System.out.print(Arrays.toString(sortedArray));
 
         int[] array5 = newIntArray.clone();
         System.out.println("\nUnsorted array: ");
         System.out.print(Arrays.toString(array5));
-        sortMethods.reversesortInPlace(array5);
+        sortMethods.reverseSortInPlace(array5);
         System.out.println("\nSorted array: ");
         System.out.print(Arrays.toString(array5));
 
         int[] array6 = newIntArray.clone();
 
         System.out.println("\n\nBubble Sort: ");
-        System.out.println("\n" + sortMethods.issorted(array6));
+        System.out.println("\n" + sortMethods.isSorted(array6));
         System.out.println("\nUnsorted array: ");
         for (int i = 0; i < array6.length; i++) {
             System.out.print(array6[i] + ", ");
         }
-        sortMethods.bubblesort(array6);
+        sortMethods.bubbleSort(array6);
         System.out.println("\nSorted array: ");
         for (int i = 0; i < array6.length; i++) {
             System.out.print(array6[i] + ", ");
         }
-        System.out.println("\n" + sortMethods.issorted(array6));
+        System.out.println("\n" + sortMethods.isSorted(array6));
 
         System.out.println("\n\nMergeSort: ");
         int[] array7 = newIntArray.clone();
@@ -248,11 +248,26 @@ public class App {
         for (int i = 0; i < array7.length; i++) {
             System.out.print(array7[i] + ", ");
         }
-        sortedArray = sortMethods.mergesort(array7);
+        sortedArray = sortMethods.mergeSort(array7);
         System.out.println("\nSorted array: ");
         for (int i = 0; i < sortedArray.length; i++) {
             System.out.print(sortedArray[i] + ", ");
         }
+
+        int[] array8 = newIntArray.clone();
+
+        System.out.println("\n\nQuick Sort: ");
+        System.out.println("\n" + sortMethods.isSorted(array8));
+        System.out.println("\nUnsorted array: ");
+        for (int i = 0; i < array8.length; i++) {
+            System.out.print(array8[i] + ", ");
+        }
+        sortMethods.quickSort(array8);
+        System.out.println("\nSorted array: ");
+        for (int i = 0; i < array8.length; i++) {
+            System.out.print(array8[i] + ", ");
+        }
+        System.out.println("\n" + sortMethods.isSorted(array8));
 
         // LinkedList methods (4%)
 
