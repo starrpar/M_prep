@@ -23,9 +23,38 @@ public class App {
         String testStr = "a man, a plan, a canal, panama.";
         System.out.println(simple.isPalindrome(testStr));
 
+        String testStrA = "a man, a plan, a canal, panama";
+        // String testStrA = "abbcca";
+        // String testStrA = "aa";
+        // String testStrA = "aaa";
+        // String testStrA = "aaaaaaaaa";
+        // String testStrA = "abba";
+        // String testStrA = "abbcaacdda";
+        // String testStrA = "aba";
+
+        // System.out.println("removeSequences result: " +
+        // simple.removeSequencesUsingRegEx(testStrA));
+        System.out.println("removeSequences result: " +
+                simple.removeSequences(testStrA));
+
+        for (int i = 0; i < 5; i++) {
+            System.out.println(simple.alloc());
+        }
+        simple.free(2);
+        simple.free(3);
+        for (int i = 0; i < 5; i++) {
+            System.out.println(simple.allocations[i]);
+        }
+
         // Dynamic Programming (and Recursive) methods (20%)
         int inputVal = 8;
         System.out.println("\n" + inputVal + "th Fibonacci: " + simple.calculateNthFibonacci(inputVal));
+
+        int arr[] = { 10, 22, 9, 33, 21, 50, 41, 60 };
+        int len = arr.length;
+
+        // Function call
+        System.out.println("Length of lis is " + DynamicProgrammingMethods.LIS.lis(arr, len));
 
         // int n = 4; // n can be anything >= 4; try 8 for chessboard and n = 10
         int n = 8;
@@ -254,20 +283,20 @@ public class App {
             System.out.print(sortedArray[i] + ", ");
         }
 
-        int[] array8 = newIntArray.clone();
+        // int[] array8 = newIntArray.clone();
 
-        System.out.println("\n\nQuick Sort: ");
-        System.out.println("\n" + sortMethods.isSorted(array8));
-        System.out.println("\nUnsorted array: ");
-        for (int i = 0; i < array8.length; i++) {
-            System.out.print(array8[i] + ", ");
-        }
-        sortMethods.quickSort(array8);
-        System.out.println("\nSorted array: ");
-        for (int i = 0; i < array8.length; i++) {
-            System.out.print(array8[i] + ", ");
-        }
-        System.out.println("\n" + sortMethods.isSorted(array8));
+        // System.out.println("\n\nQuick Sort: ");
+        // System.out.println("\n" + sortMethods.isSorted(array8));
+        // System.out.println("\nUnsorted array: ");
+        // for (int i = 0; i < array8.length; i++) {
+        // System.out.print(array8[i] + ", ");
+        // }
+        // sortMethods.quickSort(array8);
+        // System.out.println("\nSorted array: ");
+        // for (int i = 0; i < array8.length; i++) {
+        // System.out.print(array8[i] + ", ");
+        // }
+        // System.out.println("\n" + sortMethods.isSorted(array8));
 
         // LinkedList methods (4%)
 

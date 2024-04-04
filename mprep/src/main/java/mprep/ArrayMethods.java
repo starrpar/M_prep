@@ -274,7 +274,7 @@ public class ArrayMethods {
         long[] products = new long[arr.length];
 
         for (int i = 0; i < arr.length; i++) {
-            product = 1;
+            product = 1L;
             if (arr[i] > 1) {
                 for (int j = 0; j < arr.length; j++) {
                     if (j != i) {
@@ -332,6 +332,8 @@ public class ArrayMethods {
             }
         }
         newArr.addAll(tmpArr);
+        // or could just keep count of how many zeroes to add back,
+        // then simply run a loop for that count and use "newArr.add(0);"
 
         return newArr;
     }
@@ -371,7 +373,8 @@ public class ArrayMethods {
                     // debugging output
                     // System.out.println("\nScore: " + arr[i]);
                     count++;
-                    isdivisible = false;
+                    isdivisible = false; // redundantSt
+
                 }
             }
         }

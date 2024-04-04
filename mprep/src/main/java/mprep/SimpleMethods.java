@@ -4,7 +4,107 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import mprep.TreeMethods.BinaryTree;
+import mprep.TreeMethods.CharNode;
+
 public class SimpleMethods {
+
+    int[] allocations = new int[65536]; // presuming initialized to 0
+
+    int alloc() {
+        for (int i = 0; i < allocations.length; i++) {
+            if (allocations[i] <= 0) {
+                allocations[i] = 1;
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    void free(int freed) {
+        allocations[freed] = 0;
+    }
+
+    // public static void main(String[] args) {
+
+    // // String str = "a man, a plan, a canal, panama";
+    // // String str = "abbcca";
+    // // String str = "aa";
+    // // String str = "aaa";
+    // // String str = "abba";
+    // String str = "abbcaacdda";
+    // // String str = "aba";
+
+    // removeSequences(str); //version I was working on during interview
+    // }
+
+    // Example expected functionalities:
+    // "aa" -> ""
+    // "aaa" -> ""
+    // "abba" -> "aa" -> ""
+    // "aab" -> "b"
+    // "aba" -> "aba"
+
+    String removeSequencesUsingRegEx(String s) {
+
+        // String regex = "[a-z]{2,}";
+        // String regex = "/a$";
+        // String regex = "([a-z]){2,}";
+        String regex = "(\\w)\\1+";
+        // String regex = "(\\w){2,}";
+
+        System.out.println(s);
+
+        s = s.replaceAll(regex, "");
+
+        System.out.println(s);
+
+        return s;
+    }
+
+    String removeSequences(String s) {
+
+        // NOTE: This is the brute force method I was initially pursuing during the
+        // interview - works now that is completed
+
+        // base case - do not process or recurse further when nothing to act on
+        if (s == "")
+            return s;
+
+        // clean up string first (could use RegEx)
+        s = s.replaceAll("\\s", "").replaceAll("\\t", "").replaceAll(",", "").toLowerCase();
+        char[] cArr = s.toCharArray();
+        String newStr = "";
+
+        for (int i = 0; i < s.length(); i++) {
+            int start = 0;
+            int end = 0;
+            boolean notYet = true;
+            for (int j = i; j < cArr.length - 1 - i; j++) {
+                if (cArr[j] == cArr[j + 1]) {
+                    if (notYet) {
+                        start = j;
+                        notYet = false;
+                    }
+                    end = j + 1;
+                }
+            }
+
+            if (!s.isEmpty() && (start != 0 || end != 0)) {
+                newStr = s.substring(0, start) + s.substring(end + 1, s.length());
+            }
+
+            if (end != 0) {
+                break;
+            }
+        }
+
+        if (newStr != "") {
+            return removeSequences(newStr);
+        }
+        return s;
+    }
 
     boolean isPalindrome(String s) {
         String tempStr = s.toLowerCase().replaceAll("\\s", "").replaceAll(",", "");
