@@ -1,5 +1,6 @@
 {
     "cmake.configureOnOpen": true,
     "java.dependency.packagePresentation": "flat",
-    "java.project.explorer.showNonJavaResources": true
+    "java.project.explorer.showNonJavaResources": true,
+    "java.debug.settings.onBuildFailureProceed": true
 }
