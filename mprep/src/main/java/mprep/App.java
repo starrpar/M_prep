@@ -44,6 +44,10 @@ public class App {
 
         System.out.println(practice.countSubstringsWithOnlyOneDistinctLetter(input));
 
+        System.out.println(practice.fizzBuzz(15));
+
+        System.out.println(practice.reverseString(testString));
+
         if (runBasics) {
 
             SimpleMethods simple = new SimpleMethods();

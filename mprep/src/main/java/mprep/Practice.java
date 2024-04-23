@@ -3,8 +3,8 @@ package mprep;
 import java.util.regex.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
+// import java.util.Set;
+// import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -19,11 +19,11 @@ public class Practice {
     // 1.5 Split a String in Balanced Strings (Balanced strings are those that have
     // an equal quantity of 'L' and 'R' characters.)
     // 1.6 To Lower Case
-    // 1.7 Unique Morse Code Words
+    // (1.7 Unique Morse Code Words)
     // 1.8 Count Substrings with Only One Distinct Letter
-    // 1.9 Robot Return to Origin
+    // (1.9 Robot Return to Origin)
     // 1.10 Fizz Buzz
-    // 1.11 First Unique Character in a String
+    // (1.11 First Unique Character in a String)
     // 1.12 Reverse String
     // 1.13 Valid Anagram
     // 1.14 Valid Palindrome
@@ -167,9 +167,54 @@ public class Practice {
         return setSubstrings.size();
     }
 
+    public List<String> fizzBuzz(int n) {
+        // insert "Fizz" if value is divisible by 3
+        // insert "Buzz" if value is divisible by 5
+        // insert "FizzBuzz" if value is divisible by both 3 and 5
+
+        // return List(String> of integer values (with Fizz and Buzz) up to value n
+        // (sent))
+
+        List<String> numList = new ArrayList<>();
+        String currentValue = "";
+
+        for (int i = 1; i <= n; i++) {
+            if (i % 3 == 0) {
+                currentValue = "Fizz";
+            }
+            if (i % 5 == 0) {
+                currentValue += "Buzz";
+            }
+            if (currentValue == "") {
+                currentValue = ((Integer) i).toString();
+            }
+            numList.add(currentValue);
+            currentValue = "";
+        }
+        return numList;
+    }
+
     // reverse a string character by character
+    public String reverseString(String s) {
+        String rtnStr = "";
+        char[] cArr = s.toCharArray();
+        char[] cNewArr = new char[cArr.length];
+
+        for (int i = 0; i < cArr.length; i++) {
+            cNewArr[i] = cArr[(cArr.length - 1) - i];
+        }
+        for (int i = 0; i < cArr.length; i++) {
+            rtnStr += cNewArr[i];
+        }
+        return rtnStr;
+    }
 
     // reverse a string word by word
+    public String reverseStringByWord(String s) {
+        String rtnStr = "";
+
+        return rtnStr;
+    }
 
     // isPalindrome - allow for typos
     public boolean isPalindromeAllowForTypos(String s) {
