@@ -420,6 +420,34 @@ public class Practice {
 
     }
 
+    // output of the following plus the keyReverseSort above yields the following:
+    // 178: [ ]
+    // 132: [e]
+    // 98: [i]
+    // 86: [n]
+    // 80: [o, r]
+    // 76: [s]
+    // 75: [a]
+    // 72: [t]
+    // 58: [g]
+    // 56: [m]
+    // 52: [l]
+    // 41: [d]
+    // 40: [c]
+    // 36: [p]
+    // 25: [f, h]
+    // 24: [u]
+    // 18: [,]
+    // 14: [y]
+    // 12: [w]
+    // 10: [v]
+    // 9: [b]
+    // 7: [.]
+    // 4: [k, x]
+    // 3: [-, q]
+    // 2: [P, [, ], z]
+    // 1: [A, C, I, ?, S, W, ', (, ), j, 1, 2]
+
     public Map<Integer, List<Object>> consolidateMapContents(Map<Object, Integer> map) {
         Map<Integer, List<Object>> sortedMap = new HashMap<>();
         List<Object> keysOfGivenValue = new ArrayList<>();
