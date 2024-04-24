@@ -7,6 +7,7 @@ import java.util.List;
 // import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
+import java.lang.reflect.Type;
 
 public class Practice {
     // Strings
@@ -213,19 +214,73 @@ public class Practice {
     public String reverseStringByWord(String s) {
         String rtnStr = "";
 
+        Pattern pattern = Pattern.compile("\\s");
+        String[] sArr = s.split(pattern.toString());
+
+        for (int i = sArr.length - 1; i >= 0; i--) {
+            System.out.println(sArr[i]);
+            rtnStr += sArr[i];
+            if (i > 0) {
+                rtnStr += " ";
+            }
+        }
+
         return rtnStr;
     }
 
-    // isPalindrome - allow for typos
-    public boolean isPalindromeAllowForTypos(String s) {
-
+    // isPalindrome
+    public boolean isPalindrome(String s) {
+        s = s.toLowerCase().replaceAll("\\s", "").replaceAll("\\.", "").replaceAll("\\,", "");
         char[] cArr = s.toCharArray();
-        for (char c : cArr) {
-            // so something
+        for (int i = 0; i < cArr.length; i++) {
+            if (cArr[i] == cArr[cArr.length - 1 - i]) {
+                continue;
+            } else {
+                return false;
+            }
         }
 
         return true;
     }
+
+    // isPalindrome - allow for typos
+    public boolean isPalindromeAllowForTypos(String s) {
+        s = s.toLowerCase().replaceAll("\\s", "").replaceAll("\\.", "").replaceAll("\\,", "");
+        char[] cArr = s.toCharArray();
+        for (int i = 0; i < cArr.length; i++) {
+            if (cArr[i] == cArr[cArr.length - 1 - i]) {
+                // System.out.println("A (i): " + i + ", " + cArr[i] + " :: " + cArr[cArr.length
+                // - 1 - i]);
+                continue;
+            } else {
+                // could probably make the following recursive possibly
+                if (cArr[i + 1] == cArr[cArr.length - 1 - i]) {
+                    // System.out.println("B (i): " + i + ", " + cArr[i + 1] + " :: " +
+                    // cArr[cArr.length - 1 - i]);
+                    continue;
+                } else if (cArr[i] == cArr[cArr.length - i]) {
+                    // System.out.println("C (i): " + i + ", " + cArr[i] + " :: " + cArr[cArr.length
+                    // - i]);
+                    continue;
+                } else {
+                    if (cArr[i] == cArr[cArr.length - 2 - i]) {
+                        // System.out.println("D (i): " + i + ", " + cArr[i] + " :: " + cArr[cArr.length
+                        // - 2 - i]);
+                        continue;
+                    } else if (cArr[i + 1] == cArr[cArr.length - 2 - i]) {
+                        // System.out.println("E (i): " + i + ", " + cArr[i + 1] + " :: " +
+                        // cArr[cArr.length - 2 - i]);
+                        continue;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
     // longest non-repeating subsequence (is there an optimal way?)
 
     // other?
@@ -248,4 +303,54 @@ public class Practice {
     // time...
 
     // other?
+
+    // EASY:
+    // [SKIP] ----merge 2 sorted arrays
+    // DONE: -----remove dupes from an array--
+    // DONE: -----count frequency of element in array--
+    // << ??? >> -two sum
+    // [SKIP] ----find min/max element in array
+    // [SKIP] ----remove dupes from sorted array
+    // DONE: -----remove element in-place (pass array by ref)--
+    // [SKIP] ----search insert position
+    // << NEXT >> max subarray
+    // << ??? >> -plus one
+    // << NEXT >> convert sorted array to binary search tree
+    // [SKIP] ----single number
+    // DONE: -----count primes--
+    // DONE: -----contains dupe--
+    // [SKIP] ----third largest num
+    // [SKIP] ----count odd/even
+
+    public Object[] removeDupes(Object[] objs, Type t) {
+
+        // Map<Object> objHash = new HashMap<>();
+        List<Object> objList = new ArrayList<>();
+
+        if (t == String.class) {
+            for (int i = 0; i < objs.length; i++) {
+                String myObj = objs[i].toString();
+                if (!objList.contains(myObj)) {
+                    System.out.print(myObj);
+                    objList.add(myObj);
+                }
+            }
+        } else if (t == Integer.class) {
+            for (int i = 0; i < objs.length; i++) {
+                Integer myObj = (Integer) objs[i];
+                if (!objList.contains(myObj)) {
+                    System.out.print(myObj);
+                    objList.add(myObj);
+                }
+            }
+        }
+
+        System.out.println();
+        Object[] rtnArr = new Object[objList.size()];
+        for (int i = 0; i < objList.size(); i++) {
+            rtnArr[i] = objList.get(i);
+        }
+        return rtnArr;
+    }
+
 }

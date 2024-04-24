@@ -2,9 +2,10 @@ package mprep;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.HashSet;
+import java.lang.reflect.Type;
 
 public class App {
 
@@ -47,6 +48,29 @@ public class App {
         System.out.println(practice.fizzBuzz(15));
 
         System.out.println(practice.reverseString(testString));
+
+        System.out.println(practice.reverseStringByWord(testString));
+
+        // String palindrome = "A man, a plan, a canal, panama.";
+        String palindrome = "A man, a plant, a canal, panmama.";
+        System.out.println("Is Palindrome? " + practice.isPalindrome(palindrome));
+
+        System.out.println("Is Palindrome? " + practice.isPalindromeAllowForTypos(palindrome));
+
+        Object[] objs = new Object[] { 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5,
+                1, 2, 3, 4, 5, 1, 2, 3, 4, 5 };
+        // char[] cArr = testString.toCharArray();
+        // Object[] objs = new Object[cArr.length];
+        // for (int i = 0; i < cArr.length; i++) {
+        // System.out.print(cArr[i]);
+        // objs[i] = (Object) cArr[i];
+        // }
+        System.out.print("\n");
+        Class<String> cls = String.class;
+        Object[] rtnObns = practice.removeDupes(objs, cls);
+        for (Object obj : rtnObns) {
+            System.out.print(obj);
+        }
 
         if (runBasics) {
 
