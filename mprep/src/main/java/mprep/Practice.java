@@ -7,7 +7,10 @@ import java.util.List;
 // import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.Comparator;
 import java.lang.reflect.Type;
+import java.util.Collections;
 
 public class Practice {
     // Strings
@@ -218,7 +221,7 @@ public class Practice {
         String[] sArr = s.split(pattern.toString());
 
         for (int i = sArr.length - 1; i >= 0; i--) {
-            System.out.println(sArr[i]);
+            // System.out.println(sArr[i]);
             rtnStr += sArr[i];
             if (i > 0) {
                 rtnStr += " ";
@@ -307,6 +310,8 @@ public class Practice {
     // EASY:
     // [SKIP] ----merge 2 sorted arrays
     // DONE: -----remove dupes from an array--
+    // made Object array so can take String or Integer types
+
     // DONE: -----count frequency of element in array--
     // << ??? >> -two sum
     // [SKIP] ----find min/max element in array
@@ -323,15 +328,13 @@ public class Practice {
     // [SKIP] ----count odd/even
 
     public Object[] removeDupes(Object[] objs, Type t) {
-
-        // Map<Object> objHash = new HashMap<>();
         List<Object> objList = new ArrayList<>();
 
         if (t == String.class) {
             for (int i = 0; i < objs.length; i++) {
                 String myObj = objs[i].toString();
                 if (!objList.contains(myObj)) {
-                    System.out.print(myObj);
+                    // System.out.print(myObj);
                     objList.add(myObj);
                 }
             }
@@ -339,7 +342,7 @@ public class Practice {
             for (int i = 0; i < objs.length; i++) {
                 Integer myObj = (Integer) objs[i];
                 if (!objList.contains(myObj)) {
-                    System.out.print(myObj);
+                    // System.out.print(myObj);
                     objList.add(myObj);
                 }
             }
@@ -353,4 +356,94 @@ public class Practice {
         return rtnArr;
     }
 
+    public Map<Object, Integer> countFrequencyOfObjectInArray(Object[] objs, Type t) {
+        Map<Object, Integer> objHash = new HashMap<>();
+
+        System.out.println();
+        if (t == String.class) {
+            for (int i = 0; i < objs.length; i++) {
+                String myObj = objs[i].toString();
+                objHash = insertValuesInMap(objHash, myObj);
+            }
+        } else if (t == Integer.class) {
+            for (int i = 0; i < objs.length; i++) {
+                Integer myObj = (Integer) objs[i];
+                objHash = insertValuesInMap(objHash, myObj);
+            }
+        }
+
+        return objHash;
+    }
+
+    public Map<Integer, List<Object>> keySort(Map<Integer, List<Object>> map) {
+
+        Comparator<Integer> valueComparator = new Comparator<Integer>() {
+            public int compare(Integer x, Integer y) {
+                int xInt = (int) x;
+                int yInt = (int) y;
+                return (xInt < yInt) ? -1 : ((xInt == yInt) ? 0 : 1);
+            }
+        };
+
+        Map<Integer, List<Object>> sorted = new TreeMap<Integer, List<Object>>(valueComparator);
+        sorted.putAll(map);
+        return sorted;
+    }
+
+    public Map<Integer, List<Object>> keyReverseSort(Map<Integer, List<Object>> map) {
+
+        Comparator<Integer> valueComparator = new Comparator<Integer>() {
+            public int compare(Integer x, Integer y) {
+                int xInt = (int) x;
+                int yInt = (int) y;
+                return (xInt < yInt) ? 1 : ((xInt == yInt) ? 0 : -1);
+            }
+        };
+
+        Map<Integer, List<Object>> sorted = new TreeMap<Integer, List<Object>>(valueComparator);
+        sorted.putAll(map);
+        return sorted;
+    }
+
+    public <K, V extends Comparable<V>> Map<V, List<K>> valueSort(Map<K, V> map) {
+
+        Comparator<K> valueComparator = new Comparator<K>() {
+            public int compare(K k1, K k2) {
+                int comp = map.get(k1).compareTo(map.get(k2));
+                return comp;
+            }
+        };
+
+        Map<K, V> sorted = new TreeMap<K, V>(valueComparator);
+        sorted.putAll(map);
+        return sorted;
+
+    }
+
+    public Map<Integer, List<Object>> consolidateMapContents(Map<Object, Integer> map) {
+        Map<Integer, List<Object>> sortedMap = new HashMap<>();
+        List<Object> keysOfGivenValue = new ArrayList<>();
+        for (Integer v : map.values()) {
+            for (Object k : map.keySet()) {
+                if (map.get(k) == v) {
+                    keysOfGivenValue.add(k);
+                }
+            }
+            sortedMap.put(v, keysOfGivenValue);
+            keysOfGivenValue = new ArrayList<>();
+        }
+
+        return sortedMap;
+    }
+
+    private Map<Object, Integer> insertValuesInMap(Map<Object, Integer> map, Object obj) {
+        if (map.get(obj) == null) {
+            // System.out.print(obj);
+            map.put(obj, 1);
+        } else {
+            // System.out.print(obj);
+            map.put(obj, map.get(obj) + 1);
+        }
+        return map;
+    }
 }

@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Set;
 import java.lang.reflect.Type;
+import java.util.Collections;
 
 public class App {
 
@@ -47,9 +51,9 @@ public class App {
 
         System.out.println(practice.fizzBuzz(15));
 
-        System.out.println(practice.reverseString(testString));
+        System.out.println("\nReverse string by character: \n" + practice.reverseString(testString));
 
-        System.out.println(practice.reverseStringByWord(testString));
+        System.out.println("\nReverse string by word: \n" + practice.reverseStringByWord(testString));
 
         // String palindrome = "A man, a plan, a canal, panama.";
         String palindrome = "A man, a plant, a canal, panmama.";
@@ -57,20 +61,41 @@ public class App {
 
         System.out.println("Is Palindrome? " + practice.isPalindromeAllowForTypos(palindrome));
 
+        Class<Integer> clsI = Integer.class;
         Object[] objs = new Object[] { 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5,
                 1, 2, 3, 4, 5, 1, 2, 3, 4, 5 };
-        // char[] cArr = testString.toCharArray();
-        // Object[] objs = new Object[cArr.length];
-        // for (int i = 0; i < cArr.length; i++) {
-        // System.out.print(cArr[i]);
-        // objs[i] = (Object) cArr[i];
-        // }
-        System.out.print("\n");
-        Class<String> cls = String.class;
-        Object[] rtnObns = practice.removeDupes(objs, cls);
+        Object[] rtnObns = practice.removeDupes(objs, clsI);
         for (Object obj : rtnObns) {
             System.out.print(obj);
         }
+
+        System.out.print("\n");
+        Class<String> clsS = String.class;
+        char[] cArr = testString.toCharArray();
+        objs = new Object[cArr.length];
+        for (int i = 0; i < cArr.length; i++) {
+            // System.out.print(cArr[i]);
+            objs[i] = (Object) cArr[i];
+        }
+        rtnObns = practice.removeDupes(objs, clsS);
+        for (Object obj : rtnObns) {
+            System.out.print(obj);
+        }
+
+        System.out.print("\n");
+        Map<Object, Integer> rtnMap = new HashMap<>();
+        rtnMap = practice.countFrequencyOfObjectInArray(objs, clsS);
+        for (Object obj : rtnMap.keySet()) {
+            System.out.println(obj + ": " + rtnMap.get(obj));
+        }
+        System.out.print("\n");
+        Map<Integer, List<Object>> sortedMap = practice.consolidateMapContents(rtnMap);
+        sortedMap = practice.keyReverseSort(sortedMap);
+        for (int i : sortedMap.keySet()) {
+            System.out.println(i + ": " + sortedMap.get(i));
+        }
+
+        // ***********************************************************/
 
         if (runBasics) {
 
