@@ -89,87 +89,88 @@ public class AlgoExp {
         return winner;
     }
 
-    public static int findClosestValueInBst(BST tree, int target) {
+    // public static int findClosestValueInBst(BST tree, int target) {
 
-        boolean found = false;
+    // boolean found = false;
 
-        System.out.println(tree.value + ", " + target);
+    // System.out.println(tree.value + ", " + target);
 
-        // only cases failing: targets: 29751 && 30000 (both closer to 55000, not 4500)
-        // {"id": "100", "left": "5", "right": "502", "value": 100},
-        // {"id": "502", "left": "204", "right": "55000", "value": 502},
-        // {"id": "55000", "left": "1001", "right": null, "value": 55000},
-        // {"id": "1001", "left": null, "right": "4500", "value": 1001},
-        // {"id": "4500", "left": null, "right": null, "value": 4500},
+    // // only cases failing: targets: 29751 && 30000 (both closer to 55000, not
+    // 4500)
+    // // {"id": "100", "left": "5", "right": "502", "value": 100},
+    // // {"id": "502", "left": "204", "right": "55000", "value": 502},
+    // // {"id": "55000", "left": "1001", "right": null, "value": 55000},
+    // // {"id": "1001", "left": null, "right": "4500", "value": 1001},
+    // // {"id": "4500", "left": null, "right": null, "value": 4500},
 
-        // base case
-        if (tree.value == target) {
-            return target;
-        }
-        // navigate
-        int previous = 1;
-        int retVal = 0;
-        while (!found) {
-            if (tree.value > target) {
-                if (tree.left != null) {
-                    System.out.println(tree.value);
-                    System.out.println("Prev1:" + Math.abs(previous - target));
-                    System.out.println("Next1:" + Math.abs(tree.left.value - target));
-                    if (Math.abs(tree.value - target) < Math.abs(previous - target)) {
-                        System.out.println("changing to: " + tree.value);
-                        previous = tree.value;
-                    }
-                    tree = tree.left;
-                    System.out.println(tree.value);
-                } else {
-                    System.out.println("Prev2:" + Math.abs(previous - target));
-                    System.out.println("Next2:" + Math.abs(tree.value - target));
-                    if (Math.abs(previous - target) < Math.abs(tree.value - target)) {
-                        System.out.println("using previous" + previous);
-                        retVal = previous;
-                    } else {
-                        retVal = tree.value;
-                    }
-                    System.out.println("return: " + retVal);
-                    found = true;
-                    return retVal;
-                }
-            } else if (tree.right != null) {
-                // System.out.println(tree.value);
-                System.out.println("Prev3:" + Math.abs(previous - target));
-                System.out.println("Next3:" + Math.abs(tree.value - target));
-                if (Math.abs(tree.value - target) < Math.abs(previous - target)) {
-                    System.out.println("changing to: " + tree.value);
-                    previous = tree.value;
-                }
-                tree = tree.right;
-                // System.out.println(tree.value);
-            } else {
-                System.out.println("Prev4:" + Math.abs(previous - target));
-                System.out.println("Next4:" + Math.abs(tree.value - target));
-                if (Math.abs(previous - target) < Math.abs(tree.value - target)) {
-                    System.out.println("using previous" + previous);
-                    retVal = previous;
-                } else {
-                    retVal = tree.value;
-                }
-                System.out.println("return: " + retVal);
-                found = true;
-                return retVal;
-            }
-        }
-        return -1;
-    }
+    // // base case
+    // if (tree.value == target) {
+    // return target;
+    // }
+    // // navigate
+    // int previous = 1;
+    // int retVal = 0;
+    // while (!found) {
+    // if (tree.value > target) {
+    // if (tree.left != null) {
+    // System.out.println(tree.value);
+    // System.out.println("Prev1:" + Math.abs(previous - target));
+    // System.out.println("Next1:" + Math.abs(tree.left.value - target));
+    // if (Math.abs(tree.value - target) < Math.abs(previous - target)) {
+    // System.out.println("changing to: " + tree.value);
+    // previous = tree.value;
+    // }
+    // tree = tree.left;
+    // System.out.println(tree.value);
+    // } else {
+    // System.out.println("Prev2:" + Math.abs(previous - target));
+    // System.out.println("Next2:" + Math.abs(tree.value - target));
+    // if (Math.abs(previous - target) < Math.abs(tree.value - target)) {
+    // System.out.println("using previous" + previous);
+    // retVal = previous;
+    // } else {
+    // retVal = tree.value;
+    // }
+    // System.out.println("return: " + retVal);
+    // found = true;
+    // return retVal;
+    // }
+    // } else if (tree.right != null) {
+    // // System.out.println(tree.value);
+    // System.out.println("Prev3:" + Math.abs(previous - target));
+    // System.out.println("Next3:" + Math.abs(tree.value - target));
+    // if (Math.abs(tree.value - target) < Math.abs(previous - target)) {
+    // System.out.println("changing to: " + tree.value);
+    // previous = tree.value;
+    // }
+    // tree = tree.right;
+    // // System.out.println(tree.value);
+    // } else {
+    // System.out.println("Prev4:" + Math.abs(previous - target));
+    // System.out.println("Next4:" + Math.abs(tree.value - target));
+    // if (Math.abs(previous - target) < Math.abs(tree.value - target)) {
+    // System.out.println("using previous" + previous);
+    // retVal = previous;
+    // } else {
+    // retVal = tree.value;
+    // }
+    // System.out.println("return: " + retVal);
+    // found = true;
+    // return retVal;
+    // }
+    // }
+    // return -1;
+    // }
 
-    static class BST {
-        public int value;
-        public BST left;
-        public BST right;
+    // static class BST {
+    // public int value;
+    // public BST left;
+    // public BST right;
 
-        public BST(int value) {
-            this.value = value;
-        }
-    }
+    // public BST(int value) {
+    // this.value = value;
+    // }
+    // }
 
     // not working:
     public int nonConstructibleChange(int[] coins) {
