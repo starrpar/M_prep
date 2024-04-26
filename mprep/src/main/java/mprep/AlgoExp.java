@@ -229,4 +229,169 @@ public class AlgoExp {
         return minNotAble;
     }
 
+    // This is the class of the input root. Do not edit it.
+    public class BinaryTree {
+        int value;
+        BinaryTree left;
+        BinaryTree right;
+
+        // BinaryTree(int value) {
+        // this.value = value;
+        // this.left = null;
+        // this.right = null;
+        // }
+    }
+
+    public List<Integer> branchSums(BinaryTree root) {
+
+        List<Integer> sums = new ArrayList<>();
+        List<Integer> currentSum = new ArrayList<>();
+        int sum = -1;
+        boolean done = false;
+
+        if (root.left == null && root.right == null) {
+            sums.add(root.value);
+            return sums;
+        } else {
+            while (sum != 0) {
+                System.out.println("Will add: " + root.value + ", currentSum: " + currentSum);
+                currentSum.add(root.value);
+                sum = sumHelper(root, currentSum, sums, done);
+                System.out.println("done = " + done);
+                if (sum > 0)
+                    sums.add(sum);
+                currentSum.clear();
+            }
+        }
+
+        System.out.println("Final: " + sums);
+        return sums;
+    }
+
+    private int sumHelper(BinaryTree root, List<Integer> currentSum, List<Integer> sums, boolean done) {
+        int returned = 0;
+        int sum = 0;
+
+        // base case
+        if (root.left == null && root.right == null) {
+            System.out.println("At base case, current value is: " + root.value);
+            sum = calculateSum(root.value, currentSum);
+            if (sum > 0) {
+                System.out.println("adding: " + sum);
+                sums.add(sum);
+                System.out.println("sums: " + sums);
+            }
+            done = true;
+            System.out.println("Returning: " + sum);
+            currentSum.remove(currentSum.size() - 1);
+            return sum;
+        }
+        if (root.left != null) {
+            System.out.println("Left: " + root.value);
+            // sums.add(root.value);
+            System.out.println("Will add: " + root.left.value + ", currentSum: " + currentSum);
+            currentSum.add(root.left.value);
+            sumHelper(root.left, currentSum, sums, done);
+            System.out.println("After: " + currentSum);
+        }
+        if (root.right != null) {
+            System.out.println("Right: " + root.value);
+            // sums.add(root.value);
+            System.out.println("Will add: " + root.right.value + ", currentSum: " + currentSum);
+            currentSum.add(root.right.value);
+            sumHelper(root.right, currentSum, sums, done);
+            System.out.println("After: " + currentSum);
+        }
+
+        currentSum.remove(currentSum.size() - 1);
+        System.out.println("Returning: " + sum);
+        return sum;
+    }
+
+    private int calculateSum(int currentValue, List<Integer> sumList) {
+        // sumList.add(currentValue);
+        int sum = 0;
+        for (int i = 0; i < sumList.size(); i++) {
+            sum += sumList.get(i);
+            System.out.println("Adding: " + sumList.get(i));
+        }
+        System.out.println("Returning from calculate: " + sum);
+        return sum;
+    }
+
+    public int nodeDepths(BinaryTree root) {
+        int depth = 0;
+        int sum = 0;
+        List<Integer> visited = new ArrayList<>();
+
+        System.out.println("Root: " + root.value + ", " + depth);
+        sum = walkNodes(root, depth, sum, visited) + depth;
+
+        // if(root.left != null){
+        // System.out.println("In Root Left: " + root.left.value + ", " + depth + ",
+        // sum: " + sum);
+        // sum = walkNodes(root.left, 1, sum) + depth;
+        // System.out.println("Out Root Left: " + root.value + ", " + depth + ", sum: "
+        // + sum);
+        // }
+        // if(root.right != null){
+        // System.out.println("In Root Right: " + root.right.value + ", " + depth + ",
+        // sum: " + sum);
+        // sum = walkNodes(root.right, 1, sum) + depth;
+        // System.out.println("Out Root Right: " + root.value + ", " + depth + ", sum: "
+        // + sum);
+        // }
+        return sum;
+    }
+
+    public int walkNodes(BinaryTree root, int depth, int sum, List<Integer> visited) {
+
+        // base case
+        if (root.left == null && root.right == null) {
+            // System.out.println("Base: " + root.value + ", " + depth + ", sum: " + sum);
+            if (!visited.contains(root.value))
+                visited.add(root.value);
+            System.out.println(visited);
+        }
+        System.out.println(">>>>>At: " + root.value);
+        // System.out.println("In: " + root.value + ", " + depth + ", sum: " + sum);
+
+        while (root.left != null && (!visited.contains(root.left.value))) {
+            depth++;
+            root = root.left;
+            System.out.println("Going left..." + root.value);
+            sum = walkNodes(root, depth, sum, visited) + depth;
+            if (!visited.contains(root.value))
+                visited.add(root.value);
+            System.out.println(visited);
+            // System.out.println("Out: " + root.value + ", " + depth + ", sum: " + sum);
+        }
+        while (root.right != null && (!visited.contains(root.right.value))) {
+            depth++;
+            root = root.right;
+            System.out.println("Going right..." + root.value);
+            sum = walkNodes(root, depth, sum, visited) + depth;
+            if (!visited.contains(root.value))
+                visited.add(root.value);
+            System.out.println(visited);
+            // System.out.println("Out: " + root.value + ", " + depth + ", sum: " + sum);
+        }
+
+        // sum += depth;
+        // System.out.println("hmmm..." + root.value + ", " + depth + ", " + sum);
+        return sum;
+    }
+
+    // class BinaryTree {
+    // int value;
+    // BinaryTree left;
+    // BinaryTree right;
+
+    // public BinaryTree(int value) {
+    // this.value = value;
+    // left = null;
+    // right = null;
+    // }
+    // }
+
 }

@@ -405,7 +405,7 @@ public class Practice {
         return sorted;
     }
 
-    public <K, V extends Comparable<V>> Map<V, List<K>> valueSort(Map<K, V> map) {
+    public <K, V extends Comparable<V>> Map<K, V> valueSort(Map<K, V> map) {
 
         Comparator<K> valueComparator = new Comparator<K>() {
             public int compare(K k1, K k2) {

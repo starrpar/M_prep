@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.TreeMap;
+
+import mprep.AlgoExp.BinaryTree;
+
 import java.util.Set;
 import java.lang.reflect.Type;
 import java.util.Collections;
@@ -95,6 +98,15 @@ public class App {
             System.out.println(i + ": " + sortedMap.get(i));
         }
 
+        Employee employee = new Employee();
+        employee.findOlderEmployees();
+
+        AlgoExp algoExp = new AlgoExp();
+        AlgoExp.BinaryTree bTree = algoExp.new BinaryTree();
+
+        algoExp.branchSums(bTree);
+
+        algoExp.nodeDepths(bTree);
         // ***********************************************************/
 
         if (runBasics) {
