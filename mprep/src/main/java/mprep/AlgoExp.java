@@ -648,4 +648,89 @@ public class AlgoExp {
 
         }
     }
+
+    public int firstNonRepeatingCharacter(String string) {
+        int index1 = 0;
+
+        System.out.println("For reference: " + string);
+        // assumption - incoming string is all lowercase (no need to force)
+        Map<Character, Integer> map1 = new HashMap<>();
+        Map<Character, Map<Integer, Integer>> map2 = new HashMap<>();
+        char[] cArr = string.toCharArray();
+
+        // oops - I found first repeating char - need to find first non-repeating
+        // character
+        for (int i = 0; i < cArr.length; i++) {
+            if (!map1.containsKey(cArr[i])) {
+                map1.put(cArr[i], i);
+            } else {
+                if (map1.containsKey(cArr[i])) {
+                    index1 = map1.get(cArr[i]);
+                    break;
+                }
+            }
+        }
+
+        Map<Integer, Integer> map3 = new HashMap<>();
+        // find first NON-repeating character ;)
+        for (int i = 0; i < cArr.length; i++) {
+            map3 = new HashMap<>();
+            if (!map2.containsKey(cArr[i])) {
+                // System.out.println("if: " + cArr[i] + ": " + i);
+                map3.put(i, 1);
+                map2.put(cArr[i], map3);
+            } else {
+                // System.out.println("else: ");
+                if (map2.containsKey(cArr[i])) {
+                    // System.out.println(cArr[i] + ": " + map2.get(cArr[i]));
+                    Map tmpMap = map2.get(cArr[i]);
+                    Integer tmpInt1 = null;
+                    Integer tmpInt2 = null;
+
+                    Set<Integer> keys = map2.get(cArr[i]).keySet();
+                    for (Integer myInt : keys) {
+                        // should only be a single value here, so assign to tmpInt
+                        tmpInt1 = myInt;
+                    }
+                    tmpInt2 = map2.get(cArr[i]).get(tmpInt1);
+                    Integer newInt = tmpInt2.intValue() + 1;
+                    map3.put(tmpInt1, newInt);
+
+                    map2.put(cArr[i], map3);
+                    continue;
+                }
+            }
+        }
+
+        System.out.println(map2);
+
+        int earliestNonRepeatingCharIndex = Integer.MAX_VALUE;
+        char earliestNonRepeatingChar = '\0';
+        for (char c : map2.keySet()) {
+            // System.out.println(c);
+            Integer tmpInt1 = null;
+            Set<Integer> keys = map2.get(c).keySet();
+            for (Integer myInt : keys) {
+                // should only be a single value here, so assign to tmpInt
+                // System.out.println(c + ": " + myInt);
+                tmpInt1 = myInt;
+            }
+            if (map2.get(c).get(tmpInt1) == 1) {
+                if (tmpInt1 < earliestNonRepeatingCharIndex) {
+                    earliestNonRepeatingCharIndex = tmpInt1;
+                    earliestNonRepeatingChar = c;
+                    System.out.println("Current earliest occurring non-repeating char: " +
+                            earliestNonRepeatingChar + ", occurring at: " +
+                            earliestNonRepeatingCharIndex);
+                }
+                System.out.println("char: " + c + ", index: " + tmpInt1);
+            }
+        }
+
+        if (earliestNonRepeatingCharIndex == Integer.MAX_VALUE) {
+            earliestNonRepeatingCharIndex = -1;
+        }
+        // System.out.println("Returning: " + earliestNonRepeatingCharIndex);
+        return earliestNonRepeatingCharIndex;
+    }
 }

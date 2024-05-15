@@ -184,6 +184,8 @@ public class App {
 
         assert (algoExp.tandemBicycle(redShirts, blueShirts, fastest)) == 32;
 
+        algoExp.firstNonRepeatingCharacter(testString);
+
         // ***********************************************************/
         // ***********************************************************/
         // ***********************************************************/
