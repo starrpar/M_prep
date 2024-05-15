@@ -102,11 +102,98 @@ public class App {
         employee.findOlderEmployees();
 
         AlgoExp algoExp = new AlgoExp();
-        AlgoExp.BinaryTree bTree = algoExp.new BinaryTree();
+        List<AlgoExp.BinaryTree> bTrees = new ArrayList<>();
+        for (int i = 10; i > 0; i--) {
+            AlgoExp.BinaryTree bTree = algoExp.new BinaryTree();
+            bTree.value = i;
+            // if (i % 2 == 0) {
+            // bTree.right = bTrees.get(i);
+            // } else {
+            // bTree.left = bTrees.get(i - 1);
+            // }
 
-        algoExp.branchSums(bTree);
+            bTrees.add(bTree);
+        }
+        // BTree Structure
+        // 9
+        // / \
+        // 7 8
+        // / /
+        // 5 4
+        // / / \
+        // 3 2 6
+        // /
+        // 1
 
-        algoExp.nodeDepths(bTree);
+        bTrees.get(9).left = bTrees.get(7);
+        bTrees.get(7).left = bTrees.get(5);
+        bTrees.get(5).left = bTrees.get(3);
+        bTrees.get(3).left = bTrees.get(1);
+
+        bTrees.get(9).right = bTrees.get(8);
+        bTrees.get(8).left = bTrees.get(4);
+        bTrees.get(4).right = bTrees.get(6);
+        bTrees.get(4).left = bTrees.get(2);
+
+        System.out.println(algoExp.branchSums(bTrees.get(9)));
+
+        System.out.println(algoExp.nodeDepths(bTrees.get(9)));
+
+        List<String> walkedGraph = new ArrayList<>();
+
+        AlgoExp.Node nodeA = algoExp.new Node("A");
+
+        nodeA = nodeA.addChild("B");
+        nodeA = nodeA.addChild("C");
+        nodeA = nodeA.addChild("D");
+
+        AlgoExp.Node nodeB = nodeA.children.get(0);
+        AlgoExp.Node nodeC = nodeA.children.get(1);
+        AlgoExp.Node nodeD = nodeA.children.get(2);
+
+        nodeB = nodeB.addChild("E");
+        nodeB = nodeB.addChild("F");
+
+        AlgoExp.Node nodeE = nodeB.children.get(0);
+        AlgoExp.Node nodeF = nodeB.children.get(1);
+
+        nodeD = nodeD.addChild("G");
+        nodeD = nodeD.addChild("H");
+
+        AlgoExp.Node nodeG = nodeD.children.get(0);
+        AlgoExp.Node nodeH = nodeD.children.get(1);
+
+        nodeF = nodeF.addChild("I");
+        nodeF = nodeF.addChild("J");
+
+        AlgoExp.Node nodeI = nodeF.children.get(0);
+        AlgoExp.Node nodeJ = nodeF.children.get(1);
+
+        nodeG = nodeG.addChild("K");
+
+        AlgoExp.Node nodeK = nodeG.children.get(0);
+
+        walkedGraph = nodeA.depthFirstSearch(walkedGraph);
+        System.out.println(walkedGraph);
+
+        int[] redShirts = new int[] { 5, 5, 3, 9, 2 };
+        int[] blueShirts = new int[] { 3, 6, 7, 2, 1 };
+        boolean fastest = true;
+
+        System.out.println(algoExp.tandemBicycle(redShirts, blueShirts, fastest));
+
+        assert (algoExp.tandemBicycle(redShirts, blueShirts, fastest)) == 32;
+
+        // ***********************************************************/
+        // ***********************************************************/
+        // ***********************************************************/
+        // ***********************************************************/
+        // ***********************************************************/
+        // ***********************************************************/
+        // ***********************************************************/
+        // ***********************************************************/
+        // ***********************************************************/
+        // ***********************************************************/
         // ***********************************************************/
 
         if (runBasics) {
