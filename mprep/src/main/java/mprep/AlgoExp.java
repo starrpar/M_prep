@@ -733,4 +733,49 @@ public class AlgoExp {
         // System.out.println("Returning: " + earliestNonRepeatingCharIndex);
         return earliestNonRepeatingCharIndex;
     }
+
+    public int binarySearchIterative(int[] array, int target) {
+        int retVal = -1;
+        boolean found = false;
+        int left = 0;
+        int right = array.length - 1;
+        int mid = (left + right) / 2;
+
+        // can assume input array is sorted per requirements
+        while (left <= right) {
+
+            mid = (left + right) / 2;
+
+            if (target == array[mid]) {
+                return mid;
+            } else if (target < array[mid]) {
+                right = mid - 1;
+                mid = (left + right) / 2;
+            } else {
+                left = mid + 1;
+                mid = (left + right) / 2;
+            }
+        }
+
+        return retVal;
+    }
+
+    public int binarySearch(int[] array, int target) {
+
+        return binarySearchHelper(array, target, 0, array.length - 1);
+    }
+
+    public int binarySearchHelper(int[] array, int target, int left, int right) {
+        if (left > right) {
+            return -1;
+        }
+        int mid = (left + right) / 2;
+        if (target == array[mid]) {
+            return mid;
+        } else if (target < array[mid]) {
+            return binarySearchHelper(array, target, left, mid - 1);
+        } else {
+            return binarySearchHelper(array, target, mid + 1, right);
+        }
+    }
 }
