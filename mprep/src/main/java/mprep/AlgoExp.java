@@ -1098,6 +1098,35 @@ public class AlgoExp {
         return retVal;
     }
 
+    // This is an input class. Do not edit.
+    public class LinkedList {
+        public int value;
+        public LinkedList next;
+
+        public LinkedList(int value) {
+            this.value = value;
+            this.next = null;
+        }
+    }
+
+    public LinkedList removeDuplicatesFromLinkedList(LinkedList linkedList) {
+
+        // assumptions - passed-in LinkedList IS sorted, so no need to address any
+        // out-of-order aspects
+
+        LinkedList pointerToOriginalHead = linkedList;
+
+        while (linkedList != null && linkedList.next != null) {
+            while (linkedList.next != null && linkedList.next.value <= linkedList.value) {
+                linkedList.next = linkedList.next.next;
+            }
+            if (linkedList.next != null) {
+                linkedList = linkedList.next;
+            }
+        }
+        return pointerToOriginalHead;
+    }
+
     // Medium difficulty algorithms:
 
     public int[] smallestDifference(int[] arrayOne, int[] arrayTwo) {
