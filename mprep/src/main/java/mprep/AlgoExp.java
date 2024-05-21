@@ -1127,6 +1127,32 @@ public class AlgoExp {
         return pointerToOriginalHead;
     }
 
+    public LinkedList middleNode(LinkedList linkedList) {
+        // assumptions - at least 1 node in input linkedList
+        // return middle node - return latter of 2 nodes in even number linkedList
+
+        LinkedList middleNode = linkedList;
+        int counter = 1;
+        // int halfCounter = 1;
+
+        // go through list until reaching end (i.e. when .next == null)
+        while (linkedList != null && linkedList.next != null) {
+            linkedList = linkedList.next;
+
+            // keep track of how many nodes
+            counter++;
+
+            // and track where middle node will be as a number (not required)
+            // halfCounter = counter/2 + 1;
+
+            // increment middle node every other time incrementing passing through node
+            // (above)
+            if (counter % 2 == 0)
+                middleNode = middleNode.next;
+        }
+        return middleNode;
+    }
+
     // Medium difficulty algorithms:
 
     public int[] smallestDifference(int[] arrayOne, int[] arrayTwo) {
