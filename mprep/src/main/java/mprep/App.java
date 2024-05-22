@@ -58,8 +58,8 @@ public class App {
 
         System.out.println("\nReverse string by word: \n" + practice.reverseStringByWord(testString));
 
-        // String palindrome = "A man, a plan, a canal, panama.";
-        String palindrome = "A man, a plant, a canal, panmama.";
+        String palindrome = "A man, a plan, a canal, panama.";
+        // String palindrome = "A man, a plant, a canal, panmama.";
         System.out.println("Is Palindrome? " + practice.isPalindrome(palindrome));
 
         System.out.println("Is Palindrome? " + practice.isPalindromeAllowForTypos(palindrome));
@@ -192,6 +192,24 @@ public class App {
 
         System.out.println(algoExp.binarySearchIterative(testArr3, target));
         System.out.println(algoExp.binarySearch(testArr3, target));
+
+        String parenStr1 = "(a(b)c))";
+        String parenStr2 = "(a(b)c)";
+        String parenStr3 = ")()()";
+        String parenStr4 = "(((((";
+        String parenStr5 = "(()()(";
+        System.out.print("input:  " + parenStr1);
+        System.out.println("output: " + algoExp.balance(parenStr1));
+        System.out.print("input:  " + parenStr2);
+        System.out.println("output: " + algoExp.balance(parenStr2));
+        System.out.print("input:  " + parenStr3);
+        System.out.println("output: " + algoExp.balance(parenStr3));
+        System.out.print("input:  " + parenStr4);
+        System.out.println("output: " + algoExp.balance(parenStr4));
+        System.out.print("input:  " + parenStr5);
+        System.out.println("output: " + algoExp.balance(parenStr5));
+
+        System.out.println(algoExp.isPalindromeInt(palindrome));
 
         // ***********************************************************/
         // ***********************************************************/

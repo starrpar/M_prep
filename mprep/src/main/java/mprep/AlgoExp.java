@@ -1233,4 +1233,71 @@ public class AlgoExp {
         return retVal;
     }
 
+    public String balance(String s) {
+
+        // move string into ArrayList (mutable String)
+        char[] cArr = s.toCharArray();
+        List<Character> cList = new ArrayList<>();
+        for (int i = 0; i < cArr.length; i++) {
+            cList.add(cArr[i]);
+        }
+
+        System.out.print("\n");
+
+        int open = 0; // track balance
+
+        // parse forward to remove extra closing parens
+        for (int i = 0; i < cList.size(); i++) {
+            if (cList.get(i) == '(') {
+                open++;
+            } else if (cList.get(i) == ')') {
+                open--;
+            }
+            if (open < 0) {
+                cList.remove(i);
+                i--;
+                open++;
+            }
+        }
+
+        open = 0; // reset
+
+        // parse in reverse to remove extra opening parens
+        for (int i = cList.size() - 1; i >= 0; i--) {
+            if (cList.get(i) == ')') {
+                open++;
+            } else if (cList.get(i) == '(') {
+                open--;
+            }
+            if (open < 0) {
+                cList.remove(i);
+                open++;
+            }
+        }
+
+        // convert contents of List back to String but without the parsing/commas that
+        // calling .toString() on a List gives you
+        // (so move to a char[] and then create a new String from that char[])
+        char[] newArr = null;
+        newArr = new char[cList.size()];
+
+        for (int i = 0; i < cList.size(); i++) {
+            newArr[i] = cList.get(i);
+        }
+        return new String(newArr);
+    }
+
+    public boolean isPalindromeInt(String s) {
+        String s1 = s.toLowerCase().replaceAll("\\s", "").replaceAll(",", "").replaceAll("\t", "").replaceAll("\\.",
+                ""); // etc...
+        char[] cArr = s1.toCharArray();
+
+        for (int i = 0; i < cArr.length / 2; i++) {
+            if (cArr[i] != cArr[cArr.length - i - 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
