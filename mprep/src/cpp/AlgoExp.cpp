@@ -7,6 +7,7 @@ string runLengthEncoding(string);
 vector<int> bubbleSort(vector<int>);
 vector<int> insertionSort(vector<int>);
 vector<int> selectionSort(vector<int>);
+int longestPeak(vector<int>);
 
 int main(int argc, char *argv[])
 {
@@ -31,6 +32,10 @@ int main(int argc, char *argv[])
     selectionSort(array);
     insertionSort(array);
     bubbleSort(array);
+
+    vector<int> array2 = {1, 1, 1, 2, 3, 10, 12, -3, -3, 2, 3, 45, 800, 99, 98, 0, -1, -1, 2, 3, 4, 5, 0, -1, -1};
+    // should output 9
+    cout << longestPeak(array2);
 }
 
 // expected results of below...
@@ -262,4 +267,112 @@ vector<int> bubbleSort(vector<int> array)
     cout << "\n";
 
     return array;
+}
+
+int longestPeak(vector<int> array)
+{
+
+    // strategy: find strictly increasing first (not == / flat); then find strictly decreasing until not
+    // track longest occurring and simply report longest at end
+    int longest = 0;
+    int count = 1;
+    bool peakReached = false;
+    bool peakWasReached = false;
+    bool climbing = false;
+    bool setPeakReachedTrue = false;
+    int previous = 0;
+
+    for (int i = 0; i < array.size(); i++)
+    {
+        if (i == 0)
+        {
+            previous = array[i];
+            continue;
+        }
+        if (!peakReached)
+        {
+            if (array[i] > previous)
+            { // strictly greater than
+                count++;
+                climbing = true;
+                cout << "climbing... " << previous << " -> " << array[i] << ", count = " << count << "\n";
+                previous = array[i];
+            }
+            else if (array[i] < previous)
+            {
+                if (climbing)
+                {
+                    climbing = false;
+                    setPeakReachedTrue = true;
+                    count++;
+                    cout << "Peak reached, descending... " << previous << " -> " << array[i] << ", longest = " << longest << ", count = " << count << "\n";
+                    previous = array[i];
+                }
+                else
+                {
+                    count = 1;
+                    cout << "descending... " << previous << " -> " << array[i] << ", count = " << count << "\n";
+                    previous = array[i];
+                }
+            }
+            else if (array[i] == previous)
+            {
+                count = 1;
+                climbing = false;
+                cout << "plateau " << previous << " == " << array[i] << ", count = " << count << "\n";
+            }
+            else
+            {
+                cout << "why are we here? -- investigate...\n";
+            }
+        }
+        // once peak reached
+        if (peakReached)
+        {
+            if (array[i] < previous)
+            { // strictly less than
+                count++;
+                cout << "descending: " << previous << " -> " << array[i] << ", count = " << count << "\n";
+                previous = array[i];
+            }
+            else if (array[i] > previous)
+            {
+                if (count > longest)
+                {
+                    longest = count;
+                }
+                count = 2;
+                peakReached = false;
+                climbing = true;
+                cout << "starting to climb again: " << previous << " -> " << array[i] << ", longest = " << longest << ", count = " << count << "\n";
+                previous = array[i];
+            }
+            else
+            { // plateau after reaching a peak, reset
+                if (count > longest)
+                {
+                    longest = count;
+                }
+                count = 1; // start over
+                peakReached = false;
+                cout << "plateau when descending from a peak - start over: " << previous << " -> " << array[i] << ", longest = " << longest << ", count = " << count << "\n";
+                previous = array[i];
+            }
+        }
+
+        if (setPeakReachedTrue)
+        {
+            peakReached = true;
+            peakWasReached = true;
+            setPeakReachedTrue = false;
+        }
+        if (i == array.size() - 1 && count > longest && peakWasReached)
+        {                    // at last array index
+            longest = count; // capture value at end
+            cout << "longest being set to: " << longest << "\n";
+        }
+    }
+
+    cout << "longest: " << longest << "\n";
+    return longest;
 }
