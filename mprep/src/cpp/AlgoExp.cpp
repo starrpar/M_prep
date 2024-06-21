@@ -1,8 +1,12 @@
+#include <vector>
 #include <iostream>
 #include <string>
 using namespace std;
 
 string runLengthEncoding(string);
+vector<int> bubbleSort(vector<int>);
+vector<int> insertionSort(vector<int>);
+vector<int> selectionSort(vector<int>);
 
 int main(int argc, char *argv[])
 {
@@ -22,6 +26,11 @@ int main(int argc, char *argv[])
     string testStr14 = ";;;;;;;;;;;;''''''''''''''''''''1233333332222211112222111s";
     string testStr15 = "AAAAAAAAAAAAABBCCCCDDDDDDDDDDD";
     cout << runLengthEncoding(testStr9);
+
+    vector<int> array = {8, 5, 2, 9, 5, 6, 3};
+    selectionSort(array);
+    insertionSort(array);
+    bubbleSort(array);
 }
 
 // expected results of below...
@@ -152,4 +161,105 @@ string runLengthEncoding(string str)
     // cout << retStr << "\n";
 
     return retStr;
+}
+
+void swap(int i, int j, vector<int> &array)
+{
+    int temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+}
+vector<int> selectionSort(vector<int> array)
+{
+    // methodology: find smallest value, and swap it with the value just past the end of sorted section at beginning of array
+    int leastIndex = 0;
+    int nextIndex = 0;
+
+    while (nextIndex < array.size() - 1)
+    {
+        for (int i = nextIndex; i < array.size(); i++)
+        {
+            if (array[i] < array[leastIndex])
+            {
+                leastIndex = i;
+            }
+        }
+        swap(leastIndex, nextIndex, array);
+        nextIndex++;
+        leastIndex = nextIndex;
+        for (int i = 0; i < array.size(); i++)
+        {
+            cout << array[i];
+        }
+        cout << "\n";
+    }
+
+    cout << "\n";
+    return array;
+}
+
+void swapPlaces(int j, vector<int> &array)
+{
+    int temp = array[j];
+    array[j] = array[j - 1];
+    array[j - 1] = temp;
+}
+vector<int> insertionSort(vector<int> array)
+{
+    int j = 0;
+    int temp = 0;
+    for (int i = 0; i < array.size(); i++)
+    {
+        j = i;
+        while (j > 0 && array[j] < array[j - 1])
+        {
+            // cout << array[j] << " is less than " << array[j-1] << ", so swapping\n";
+            swapPlaces(j, array);
+            j--;
+            for (int k = 0; k < array.size(); k++)
+            {
+                cout << array[k];
+            }
+            cout << "\n";
+        }
+    }
+    cout << "\n";
+    return array;
+}
+
+vector<int> bubbleSort(vector<int> array)
+{
+
+    bool sorted = false;
+    int counter = 0;
+    int temp = 0;
+    while (!sorted)
+    {
+        sorted = true;
+        for (int i = 0; i < array.size() - 1 - counter; i++)
+        {
+            // std::cout << "i = " << i << ", comparing: " << array[i] << " to " << array[i+1] << "\n";
+            if (array[i] > array[i + 1])
+            {
+                // std::cout << array[i] << ", " << array[i+1] << "\n";
+
+                sorted = false;
+                temp = array[i + 1];
+                array[i + 1] = array[i];
+                array[i] = temp;
+            }
+            // else{
+            //   std::cout << "else condition: " << array[i] << ", " << array[i+1] << "\n";
+            // }
+        }
+        counter++;
+    }
+    for (int i = 0; i < array.size(); i++)
+    {
+        cout << array[i];
+    }
+    cout << "\n";
+    cout << "\n";
+
+    return array;
 }
