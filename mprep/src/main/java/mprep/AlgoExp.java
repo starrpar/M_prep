@@ -1300,6 +1300,62 @@ public class AlgoExp {
         return true;
     }
 
-    
+    public static int longestPeakJava(int[] array) {
+        int count = 1;
+        int longest = 0;
+        int previous = 0;
+        int previous_to_previous = 0;
+        boolean peaked = false;
+
+        if (array.length == 0) {
+            return 0;
+        }
+        previous = array[0];
+        previous_to_previous = previous;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > previous) {
+                System.out.println("climbing");
+                if (previous_to_previous < previous) {
+                    count++;
+                } else {
+                    if (count > longest && peaked) {
+                        longest = count;
+                    }
+                    count = 2;
+                }
+                System.out.println("count: " + count + ", longest: " + longest + ", array[i]: " + array[i]);
+                previous_to_previous = previous;
+                previous = array[i];
+            } else if (array[i] == previous) {
+                System.out.println("plateau");
+                count = 1;
+                previous_to_previous = previous;
+                previous = array[i];
+            } else { // i.e. if (array[i] < previous) - only case left...
+                System.out.println("descending");
+                if (previous_to_previous < previous || peaked) {
+                    peaked = true;
+                    count++;
+                    System.out.println(
+                            "peaked...previous_to_previous: " + previous_to_previous + " < previous " + previous);
+                    System.out.println("count: " + count + ", longest: " + longest + ", array[i]: " + array[i]);
+                    if (array[i] == array[array.length - 1]) {
+                        System.out.println(
+                                "array[i]: " + array[i] + " == array[array.length - 1] " + array[array.length - 1]);
+                        if (count > longest) {
+                            longest = count;
+                        }
+                    }
+                    previous_to_previous = previous;
+                    previous = array[i];
+                } else {
+                    count = 1;
+                    previous_to_previous = previous;
+                    previous = array[i];
+                }
+            }
+        }
+        return longest;
+    }
 
 }

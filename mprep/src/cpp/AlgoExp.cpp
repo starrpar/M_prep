@@ -9,34 +9,34 @@ vector<int> insertionSort(vector<int>);
 vector<int> selectionSort(vector<int>);
 int longestPeak(vector<int>);
 
-int main(int argc, char *argv[])
-{
-    string testStr1 = "AAAAAAAAAAAAABBCCCCDD";
-    string testStr2 = "aA";
-    string testStr3 = "122333";
-    string testStr4 = "************^^^^^^^$$$$$$%%%%%%%!!!!!!AAAAAAAAAAAAAAAAAAAA";
-    string testStr5 = "aAaAaaaaaAaaaAAAABbbbBBBB";
-    string testStr6 = "                          ";
-    string testStr7 = "1  222 333    444  555";
-    string testStr8 = "1A2BB3CCC4DDDD";
-    string testStr9 = "........______=========AAAA   AAABBBB   BBB";
-    string testStr10 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-    string testStr11 = "        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-    string testStr12 = " ";
-    string testStr13 = "[(aaaaaaa,bbbbbbb,ccccc,dddddd)]";
-    string testStr14 = ";;;;;;;;;;;;''''''''''''''''''''1233333332222211112222111s";
-    string testStr15 = "AAAAAAAAAAAAABBCCCCDDDDDDDDDDD";
-    cout << runLengthEncoding(testStr9);
+// int main(int argc, char *argv[])
+// {
+//     string testStr1 = "AAAAAAAAAAAAABBCCCCDD";
+//     string testStr2 = "aA";
+//     string testStr3 = "122333";
+//     string testStr4 = "************^^^^^^^$$$$$$%%%%%%%!!!!!!AAAAAAAAAAAAAAAAAAAA";
+//     string testStr5 = "aAaAaaaaaAaaaAAAABbbbBBBB";
+//     string testStr6 = "                          ";
+//     string testStr7 = "1  222 333    444  555";
+//     string testStr8 = "1A2BB3CCC4DDDD";
+//     string testStr9 = "........______=========AAAA   AAABBBB   BBB";
+//     string testStr10 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+//     string testStr11 = "        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+//     string testStr12 = " ";
+//     string testStr13 = "[(aaaaaaa,bbbbbbb,ccccc,dddddd)]";
+//     string testStr14 = ";;;;;;;;;;;;''''''''''''''''''''1233333332222211112222111s";
+//     string testStr15 = "AAAAAAAAAAAAABBCCCCDDDDDDDDDDD";
+//     cout << runLengthEncoding(testStr9);
 
-    vector<int> array = {8, 5, 2, 9, 5, 6, 3};
-    selectionSort(array);
-    insertionSort(array);
-    bubbleSort(array);
+//     vector<int> array = {8, 5, 2, 9, 5, 6, 3};
+//     selectionSort(array);
+//     insertionSort(array);
+//     bubbleSort(array);
 
-    vector<int> array2 = {1, 1, 1, 2, 3, 10, 12, -3, -3, 2, 3, 45, 800, 99, 98, 0, -1, -1, 2, 3, 4, 5, 0, -1, -1};
-    // should output 9
-    cout << longestPeak(array2);
-}
+//     vector<int> array2 = {1, 1, 1, 2, 3, 10, 12, -3, -3, 2, 3, 45, 800, 99, 98, 0, -1, -1, 2, 3, 4, 5, 0, -1, -1};
+//     // should output 9
+//     cout << longestPeak(array2);
+// }
 
 // expected results of below...
 //  ---------- Test Case 1 ----------

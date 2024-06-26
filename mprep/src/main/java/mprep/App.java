@@ -211,6 +211,10 @@ public class App {
 
         System.out.println(algoExp.isPalindromeInt(palindrome));
 
+        int[] intArrLongestPeak = { 1, 1, 1, 2, 3, 10, 12, -3, -3, 2, 3, 45, 800, 99, 98, 0, -1, -1, 2, 3, 4, 5, 0, -1,
+                -1 };
+        System.out.println(algoExp.longestPeakJava(intArrLongestPeak));// correct answer is '9'
+
         // ***********************************************************/
         // ***********************************************************/
         // ***********************************************************/
