@@ -1,0 +1,20 @@
+...to create
+(mvn clean)
+(mvn compile)
+mvn package
+...to run
+java -jar .\target\restAPI-0.0.1-SNAPSHOT.jar
+
+..to connect to DB from cmd line (once already running):
+mysql -u root -pnmp102688 -h localhost mydb
+
+...to insert data into existing table (already created), once in mysql env:
+insert into mydb.user (lastName, firstName, age, occupation) values ('Parker', 'Starr', 63, 'SDM');
+
+...to see data in DB table, once in mysql environment:
+select * from mydb.user
+\G
+
+..to create new table in DB:
+create table occupations (id INT, occupation VARCHAR(45), category VARCHAR(45));
+\G
