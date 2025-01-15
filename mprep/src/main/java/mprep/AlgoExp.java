@@ -4,6 +4,200 @@ import java.util.*;
 
 public class AlgoExp {
 
+    // 123456789 = 100 (also known as targetSum)
+
+    // Using standard integer arithmetic operators +, -, return all solutions you
+    // can find by inserting the operators between some digits
+
+    // All combinations that sums up to 100:
+
+    // function comb(string input, int target, vec<string> operators): vec<string>
+    // {}
+
+    // comb('123456789', 100, vec['+', '-'])
+    // should return
+    // vec[
+    // -1+2-3+4+5+6+78+9
+    // 1+2+3-4+5+6+78+9
+    // 1+2+34-5+67-8+9
+    // 1+23-4+5+6+78-9
+    // 1+23-4+56+7+8+9
+    // 12+3+4+5-6-7+89
+    // 12+3-4+5+67+8+9
+    // 12-3-4+5-6+7+89
+    // 123+4-5+67-89
+    // 123+45-67+8-9
+    // . 123-4-5-6-7+8-9
+    // 123-45-67+89
+    // ]
+
+    // 123456789
+    // 1 23456789
+    // 2 3456789
+
+    // 12
+    // 123
+    // 1234
+
+    public List<String> comb(String input, int target, List<String> operators) {
+        List<String> retStrArray = new ArrayList<>();
+
+        String initValue = "";
+        int sum = 0;
+
+        parseRemainder(input);
+
+        return retStrArray;
+    }
+
+    public int ArrayChallenge(int num) {
+        char[] numAsCharArray = String.valueOf(num).toCharArray();
+        HashMap<Character, Integer> numDigits = new HashMap<>();
+
+        for (int i = 0; i < numAsCharArray.length; i++) {
+            if (numDigits.containsKey(numAsCharArray[i])) {
+                int currentNum = numDigits.get(numAsCharArray[i]);
+                numDigits.replace(numAsCharArray[i], currentNum + 1);
+            } else {
+                numDigits.put(numAsCharArray[i], 1);
+            }
+        }
+
+        int[] rtnVal = new int[2 * numAsCharArray.length];
+
+        int j = 0;
+        for (int i = 0; i < numAsCharArray.length; i++) {
+            int numOccurrences = numDigits.get(numAsCharArray[i]);
+            int currentNum = Integer.parseInt(String.valueOf(numAsCharArray[i]));
+
+            rtnVal[j] = Integer.parseInt(String.valueOf(numOccurrences));
+            rtnVal[j + 1] = Integer.parseInt(String.valueOf(currentNum));
+
+            j += 2;
+        }
+
+        String returnValue = "";
+
+        for (int i = 0; i < rtnVal.length; i++) {
+            returnValue += rtnVal[i];
+        }
+
+        return Integer.parseInt(returnValue);
+    }
+
+    public int numberOfClosingParensNeeded(String s) {
+        int numOpenParens = 0;
+        int numCloseParens = 0;
+        char[] aChar = s.toCharArray();
+
+        for (int i = 0; i < aChar.length; i++) {
+            if (aChar[i] == '(') {
+                numOpenParens++;
+            } else if (aChar[i] == ')') {
+                numCloseParens++;
+            }
+        }
+        return numOpenParens - numCloseParens;
+    }
+
+    private String parseRemainder(String input){
+        //base case
+        if(input.length() <= 1){
+        return input;
+        }
+    
+        char[] inputChars = input.ToCharArray();
+        String subStr;
+        String concatStr = "";
+        String strWithOps = "";
+        char initValue = '\0';
+
+        for(int i = 0; i < inputChars.length; i++){
+    
+            // TODO: figure out what method call would do the subString functionality I'm looking for here...
+            initValue = inputChars.subString(0, i);
+            subStr = inputChars.subString(i, inputChars.length);
+        
+            concatStr += parseRemainder(subStr) + ",";
+            System.out.println(concatStr);
+
+            strWithOps = applyOperators();
+            return concatStr;
+        }
+    
+        private String applyOperators(String s){
+            String retVal = "";
+
+            return retVal;
+        }
+  }
+
+    public boolean isValidSudoku(ArrayList<ArrayList<Integer>> board) {
+        // if any cell content either causes multiple entries in a map or has values not
+        // within 1-9 inclusive, that would be a violation of the rules
+
+        Map<Integer, Integer> cellContents = new HashMap<>();
+
+        // verify that each row contains only valid numbers (1-9, non-repeating (or
+        // empty))
+        for (int i = 0; i < board.size(); i++) {
+            cellContents = new HashMap<>();
+            for (int j = 0; j < board.get(i).size(); j++) {
+                if (board.get(i).get(j) != 0 && cellContents.containsKey(board.get(i).get(j))) {
+                    System.out.println("value present: " + board.get(i).get(j));
+                    System.out.println("exiting from row check");
+                    return false;
+                }
+                cellContents.put(board.get(i).get(j), 1);
+            }
+        }
+
+        // verify that each columns contains only valid numbers (1-9, non-repeating (or
+        // empty))
+        for (int i = 0; i < board.size(); i++) {
+            cellContents = new HashMap<>();
+            for (int j = 0; j < board.get(i).size(); j++) {
+                if (board.get(j).get(i) != 0 && cellContents.containsKey(board.get(j).get(i))) {
+                    System.out.println("value present: " + board.get(j).get(i));
+                    System.out.println("exiting from column check");
+                    return false;
+                }
+                cellContents.put(board.get(j).get(i), 1);
+            }
+        }
+
+        int m = 0;
+        int n = 0;
+        int k = 0;
+        int l = board.size() / 3;
+        // verify that each sub-box contains only valid numbers (1-9, non-repeating (or
+        // empty))
+        for (int i = 0; i < board.size(); i++) {
+            for (int j = 0; j < board.get(i).size(); j++) {
+                if (k == 0) {
+                    m = i / l;
+                    n = j / l;
+                    cellContents = new HashMap<>();
+                } else if (k == 1) {
+                    m = 2 * i / l;
+                    n = 2 * j / l;
+                    cellContents = new HashMap<>();
+                } else if (k == 2) {
+                    m = i;
+                    n = j;
+                    cellContents = new HashMap<>();
+                }
+                if (board.get(m).get(n) != 0 && cellContents.containsKey(board.get(m).get(n))) {
+                    System.out.println("value present (m,n): (" + m + "," + n + "), " + board.get(m).get(n));
+                    System.out.println("exiting from sub-box check");
+                    return false;
+                }
+                cellContents.put(board.get(m).get(n), 1);
+            }
+        }
+        return true;
+    }
+
     public int[] twoNumberSum(int[] array, int targetSum) {
         int[] rtnArr = new int[2];
 

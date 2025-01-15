@@ -186,6 +186,12 @@ public class App {
 
         algoExp.firstNonRepeatingCharacter(testString);
 
+        System.out.println("*********************************");
+
+        System.out.println(algoExp.ArrayChallenge(21378));
+
+        System.out.println("*********************************");
+
         int[] testArr3 = new int[] { 3, 6, 7, 2, 1, 21, 300, 27, 13, 13, 19 };
         int target = 19;
         Arrays.sort(testArr3);
@@ -209,11 +215,136 @@ public class App {
         System.out.print("input:  " + parenStr5);
         System.out.println("output: " + algoExp.balance(parenStr5));
 
+        String s3 = ")())";
+        System.out.println("numClosingParensNeeded: " + algoExp.numberOfClosingParensNeeded(s3));
+        System.out.println("numClosingParensNeeded: " + algoExp.numberOfClosingParensNeeded(parenStr1));
+        System.out.println("numClosingParensNeeded: " + algoExp.numberOfClosingParensNeeded(parenStr2));
+        System.out.println("numClosingParensNeeded: " + algoExp.numberOfClosingParensNeeded(parenStr3));
+        System.out.println("numClosingParensNeeded: " + algoExp.numberOfClosingParensNeeded(parenStr4));
+        System.out.println("numClosingParensNeeded: " + algoExp.numberOfClosingParensNeeded(parenStr5));
+
         System.out.println(algoExp.isPalindromeInt(palindrome));
 
         int[] intArrLongestPeak = { 1, 1, 1, 2, 3, 10, 12, -3, -3, 2, 3, 45, 800, 99, 98, 0, -1, -1, 2, 3, 4, 5, 0, -1,
                 -1 };
         System.out.println(algoExp.longestPeakJava(intArrLongestPeak));// correct answer is '9'
+
+        MetaCodingIntvw metaCoding = new MetaCodingIntvw();
+        int[][] matrix = { { 1, 2, 3 }, { 4, 1, 2 }, { 5, 4, 1 } };
+        System.out.println(metaCoding.isToeplitzMatrix(matrix));
+
+        ArrayList<ArrayList<Integer>> board = new ArrayList<>();
+        ArrayList<Integer> row1 = new ArrayList<>();
+        ArrayList<Integer> row2 = new ArrayList<>();
+        ArrayList<Integer> row3 = new ArrayList<>();
+        ArrayList<Integer> row4 = new ArrayList<>();
+        ArrayList<Integer> row5 = new ArrayList<>();
+        ArrayList<Integer> row6 = new ArrayList<>();
+        ArrayList<Integer> row7 = new ArrayList<>();
+        ArrayList<Integer> row8 = new ArrayList<>();
+        ArrayList<Integer> row9 = new ArrayList<>();
+
+        row1.add(8);
+        row1.add(0);
+        row1.add(0);
+        row1.add(3);
+        row1.add(4);
+        row1.add(0);
+        row1.add(1);
+        row1.add(9);
+        row1.add(0);
+
+        row2.add(9);
+        row2.add(0);
+        row2.add(0);
+        row2.add(0);
+        row2.add(0);
+        row2.add(6);
+        row2.add(4);
+        row2.add(0);
+        row2.add(0);
+
+        row3.add(4);
+        row3.add(3);
+        row3.add(0);
+        row3.add(0);
+        row3.add(0);
+        row3.add(0);
+        row3.add(0);
+        row3.add(0);
+        row3.add(8);
+
+        row4.add(0);
+        row4.add(7);
+        row4.add(0);
+        row4.add(0);
+        row4.add(0);
+        row4.add(8);
+        row4.add(0);
+        row4.add(0);
+        row4.add(3);
+
+        row5.add(0);
+        row5.add(9);
+        row5.add(0);
+        row5.add(0);
+        row5.add(6);
+        row5.add(3);
+        row5.add(0);
+        row5.add(0);
+        row5.add(0);
+
+        row6.add(0);
+        row6.add(0);
+        row6.add(3);
+        row6.add(0);
+        row6.add(0);
+        row6.add(5);
+        row6.add(0);
+        row6.add(0);
+        row6.add(0);
+
+        row7.add(0);
+        row7.add(0);
+        row7.add(0);
+        row7.add(0);
+        row7.add(9);
+        row7.add(0);
+        row7.add(3);
+        row7.add(0);
+        row7.add(0);
+
+        row8.add(5);
+        row8.add(0);
+        row8.add(4);
+        row8.add(8);
+        row8.add(0);
+        row8.add(1);
+        row8.add(0);
+        row8.add(0);
+        row8.add(7);
+
+        row9.add(0);
+        row9.add(0);
+        row9.add(0);
+        row9.add(0);
+        row9.add(0);
+        row9.add(4);
+        row9.add(0);
+        row9.add(5);
+        row9.add(0);
+
+        board.add(row1);
+        board.add(row2);
+        board.add(row3);
+        board.add(row4);
+        board.add(row5);
+        board.add(row6);
+        board.add(row7);
+        board.add(row8);
+        board.add(row9);
+
+        System.out.println("Sudoku: " + algoExp.isValidSudoku(board));
 
         // ***********************************************************/
         // ***********************************************************/

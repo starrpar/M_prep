@@ -376,3 +376,140 @@ int longestPeak(vector<int> array)
     cout << "longest: " << longest << "\n";
     return longest;
 }
+
+class BST
+{
+public:
+    int value;
+    BST *left;
+    BST *right;
+
+    BST(int val);
+    BST &insert(int val);
+};
+
+bool validateBstHelper(BST *, int, int);
+
+bool validateBst(BST *tree)
+{
+    return validateBstHelper(tree, INT_MIN, INT_MAX);
+}
+
+bool validateBstHelper(BST *tree, int min, int max)
+{
+    if (tree == NULL)
+    {
+        return true;
+    }
+    if (tree->value < min || tree->value >= max)
+    {
+        return false;
+    }
+    bool leftValid = validateBstHelper(tree->left, min, tree->value);
+    bool rightValid = validateBstHelper(tree->right, tree->value, max);
+    return leftValid && rightValid;
+}
+
+bool isPalindrome(string str)
+{
+    bool isPal = false;
+
+    int i = 0;
+    while (str[i] == str[str.length() - 1 - i] && i < (str.length() + 1) / 2)
+    {
+        i++;
+        continue;
+    }
+    if (i == (str.length() + 1) / 2)
+    {
+        isPal = true;
+    }
+
+    return isPal;
+}
+
+vector<int> sweetAndSavory(vector<int> dishes, int target)
+{
+    vector<int> retArr = {0, 0};
+    int total = 0;
+    int bestResult = INT_MIN;
+    int sweet = 0;
+    int savory = 0;
+    bool quit = false;
+
+    for (int i = 0; i < dishes.size(); i++)
+    {
+        total = 0;
+        quit = false;
+        for (int j = i; j >= 0; j--)
+        {
+            if (i != j)
+            {
+                if ((dishes[i] > 0 && dishes[j] < 0) || (dishes[i] < 0 && dishes[j] > 0))
+                {
+                    total = dishes[i] + dishes[j];
+                    // cout << "d[i]: " << dishes[i] << ", d[j]: " << dishes[j] << "\n";
+                    if (total <= target)
+                    {
+                        // cout << "total: " << total << ", target: " << target << "\n";
+                        if (total > bestResult)
+                        {
+                            bestResult = total;
+                            // cout << "bestResult: " << bestResult << "\n";
+                            if (dishes[i] < dishes[j])
+                            {
+                                sweet = dishes[i];
+                                savory = dishes[j];
+                            }
+                            else
+                            {
+                                savory = dishes[i];
+                                sweet = dishes[j];
+                            }
+                            // cout << "sweet: " << sweet << ", savory: " << savory << "\n";
+                            quit = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return {sweet, savory};
+}
+
+public
+boolean zeroSumSubarray(int[] nums)
+{
+    boolean retVal = false;
+    int total = 0;
+    int index = 0;
+
+    for (int i = 0; i < nums.length; i++)
+    {
+        total = 0;
+        for (int j = i; j >= 0; j--)
+        {
+            total += nums[j];
+            if (total == 0)
+            {
+                index = j;
+                retVal = true;
+                break;
+            }
+        }
+        if (!retVal)
+        {
+            int[] subA = new int[i - index];
+            for (int j = 0; j < i; j++)
+            {
+                subA[j] = nums[i - index];
+            }
+        }
+        else
+        {
+            break;
+        }
+    }
+    return retVal;
+}
