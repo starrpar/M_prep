@@ -186,6 +186,10 @@ public class App {
 
         algoExp.firstNonRepeatingCharacter(testString);
 
+        System.out.println("*********************************");
+        System.out.println(algoExp.ArrayChallenge(21378));
+        System.out.println("*********************************");
+        
         int[] testArr3 = new int[] { 3, 6, 7, 2, 1, 21, 300, 27, 13, 13, 19 };
         int target = 19;
         Arrays.sort(testArr3);
