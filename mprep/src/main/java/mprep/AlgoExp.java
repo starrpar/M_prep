@@ -2,6 +2,8 @@ package mprep;
 
 import java.util.*;
 
+import javafx.animation.KeyValue.Type;
+
 public class AlgoExp {
 
     // 123456789 = 100 (also known as targetSum)
@@ -38,6 +40,110 @@ public class AlgoExp {
     // 12
     // 123
     // 1234
+
+    public char NORDFindFirstNonRepeatingChar1(String s){
+        char retVal = '\0';
+        boolean found = false;
+    
+        char[] cArr = s.toCharArray();
+        
+        if(cArr.length <= 0){
+            return '^';
+        }
+    
+        for(int i = 0; i < cArr.length; i++){
+            System.out.println(cArr[i]);
+            for(int j = 0; j < cArr.length; j++){
+                System.out.println("..." + i + ":" + j + ", " + cArr[i] + "::" + cArr[j]);
+                if(i != j && cArr[i] == cArr[j]){
+                    System.out.println("found a match: " + cArr[i] + ", " + cArr[j]);
+                    found = true;
+                    continue;
+                }
+            }
+            if(!found){
+                System.out.println("i:" + i + ", " + cArr[i]);
+                if(i < cArr.length - 1){
+                    return cArr[i];
+                }
+            }
+            found = false;
+        }
+        if(!found){
+            return '^';
+        }
+    
+        return retVal;
+    }
+
+    //boolean vs. bool
+    //change single quotations from Word/Doc type to IDE type
+    //char[].length vs. char[].Length (lowercase is correct)
+    //containsKey() vs. ContainsKey() (lowercase is correct)
+    //replace() instead of Update(), but same signature otherwise
+    //put() vs. set()
+    //missing closing paren on if(containsKey) line of code
+    
+    public char NORDFindFirstNonRepeatingChar2(String s){
+        char retVal = '\0';
+    
+        char[] cArr = s.toCharArray();
+    
+        HashMap<Character, Integer> chars = new HashMap<>();
+    
+        for(int i = 0; i < cArr.length; i++){
+            int numOcc = 0;
+            if(chars.containsKey(cArr[i])){
+                numOcc = chars.get(cArr[i]);
+                chars.replace(cArr[i], numOcc+1);
+            }
+            else{
+                chars.put(cArr[i], 1);
+            }
+        }
+    
+        boolean returned = false;
+        for(int i = 0; i < cArr.length; i++){
+            if(chars.containsKey(cArr[i])){
+                if(chars.get(cArr[i]) <= 1){
+                returned = true;
+                return cArr[i];
+                //retVal = cArr[i];
+                //break;
+                }
+            }
+        }
+        if(!returned){
+            return '^';
+            //retVal = '^';
+        }
+    
+        return retVal;
+    }
+
+    public boolean NORDValidParenCheck(String s){
+        int numParen = 0;
+        char[] cArr = s.toCharArray();
+
+        for(int i = 0; i < cArr.length; i++){
+            if(numParen < 0){
+                return false;
+            }
+            if(cArr[i] == '(' || cArr[i] == '{' || cArr[i] == '['){
+                numParen++;
+            }
+            else if(cArr[i] == ')' || cArr[i] == '}' || cArr[i] == ']'){
+                numParen--;
+            }
+        }
+        
+        if(numParen == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     public List<String> comb(String input, int target, List<String> operators) {
         List<String> retStrArray = new ArrayList<>();
@@ -80,6 +186,53 @@ public class AlgoExp {
 
         for (int i = 0; i < rtnVal.length; i++) {
             returnValue += rtnVal[i];
+        }
+
+        return Integer.parseInt(returnValue);
+    }
+
+    //Different version - alternate interpretation of the requirements
+    //NOT counting ALL occurrences of a digit - but just how many are
+    //present "clumped together" in current point in string/char array.
+
+    public int ArrayChallenge2(int num) {
+        char[] numAsCharArray = String.valueOf(num).toCharArray();
+
+        char lastValue = '\0';
+        int numCurrent = 1;
+
+        List<Integer> rtnVal = new ArrayList<>();
+
+        int j = 0;
+
+        for (int i = 0; i < numAsCharArray.length; i++) {
+            System.out.println("value is: " + numAsCharArray[i]);
+            if(numAsCharArray[i] == lastValue){
+                System.out.println("current char is still: " + numAsCharArray[i]);
+                numCurrent++;
+            } else {
+                rtnVal.add(numCurrent);
+                numCurrent = 1;
+
+                //NOTE: Continue working here...
+
+                if(String.valueOf(lastValue) != "" && lastValue != '\0'){
+                    System.out.println("Adding: " + lastValue);
+                    rtnVal.add(Integer.parseInt(String.valueOf(lastValue)));
+                    lastValue = numAsCharArray[i];
+                }
+                for(int k = 0; k < rtnVal.size(); k++){
+                    System.out.print(rtnVal.get(k));
+                }
+            }
+            j += 2;
+            System.out.println("");
+        }
+
+        String returnValue = "";
+
+        for (int i = 0; i < rtnVal.size(); i++) {
+            returnValue += rtnVal.get(i);
         }
 
         return Integer.parseInt(returnValue);

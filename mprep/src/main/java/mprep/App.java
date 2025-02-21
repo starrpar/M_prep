@@ -186,8 +186,35 @@ public class App {
 
         algoExp.firstNonRepeatingCharacter(testString);
 
+        String newS1 = "racecar";
+        String newS2 = "aabbcc";
+        String newS3 = "aabbccdeefffg";
+        String newS4 = "";
+        System.err.println("should be e: " + algoExp.NORDFindFirstNonRepeatingChar1(newS1));
+        System.err.println("should be ^: " + algoExp.NORDFindFirstNonRepeatingChar1(newS2));
+        System.err.println("should be d: " + algoExp.NORDFindFirstNonRepeatingChar1(newS3));
+        System.err.println("should be ^: " + algoExp.NORDFindFirstNonRepeatingChar1(newS4));
+        System.err.println("should be e: " + algoExp.NORDFindFirstNonRepeatingChar2(newS1));
+        System.err.println("should be ^: " + algoExp.NORDFindFirstNonRepeatingChar2(newS2));
+        System.err.println("should be d: " + algoExp.NORDFindFirstNonRepeatingChar2(newS3));
+        System.err.println("should be ^: " + algoExp.NORDFindFirstNonRepeatingChar2(newS4));
+
+        String parenString1 = "()";
+        String parenString2 = ")()";
+        String parenString3 = "((()()))";
+        String parenString4 = "((()()))())";
+        String parenString5 = "))((()()))((()";
+        String parenString6 = "{}[]()";
+        System.err.println("reply is: " + algoExp.NORDValidParenCheck(parenString1));
+        System.err.println("reply is: " + algoExp.NORDValidParenCheck(parenString2));
+        System.err.println("reply is: " + algoExp.NORDValidParenCheck(parenString3));
+        System.err.println("reply is: " + algoExp.NORDValidParenCheck(parenString4));
+        System.err.println("reply is: " + algoExp.NORDValidParenCheck(parenString5));
+        System.err.println("reply is: " + algoExp.NORDValidParenCheck(parenString6));
+
+
         System.out.println("*********************************");
-        System.out.println(algoExp.ArrayChallenge(21378));
+        System.out.println(algoExp.ArrayChallenge2(211));
         System.out.println("*********************************");
         
         int[] testArr3 = new int[] { 3, 6, 7, 2, 1, 21, 300, 27, 13, 13, 19 };
