@@ -199,7 +199,7 @@ public class Practice {
     }
 
     // reverse a string character by character
-    public String reverseString(String s) {
+    public String reverseString1(String s) {
         String rtnStr = "";
         char[] cArr = s.toCharArray();
         char[] cNewArr = new char[cArr.length];
@@ -210,6 +210,17 @@ public class Practice {
         for (int i = 0; i < cArr.length; i++) {
             rtnStr += cNewArr[i];
         }
+        return rtnStr;
+    }
+
+    public String reverseString(String s) {
+        String rtnStr = "";
+        char[] cArr = s.toCharArray();
+
+        for (int i = 0; i < cArr.length; i++) {
+            rtnStr += cArr[(cArr.length - 1) - i];
+        }
+
         return rtnStr;
     }
 

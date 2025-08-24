@@ -1,10 +1,258 @@
 package mprep;
 
-import java.util.*;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
-import javafx.animation.KeyValue.Type;
+import javafx.animation.KeyValue;
 
-public class AlgoExp {
+public class Test {
+    public static void main(String[] args) {
+
+		List<Student> studentList = new ArrayList<Student>();
+
+		List<Department> departmentList = new ArrayList<Department>();
+        
+		// Find All the departments having at-least two students
+        HashMap<Integer, Integer> numStudents = new HashMap<>();
+        for(int i = 0; i < studentList.size(); i++){
+            List<Integer> deptIds = studentList.get(i).deptIds;
+            for(int j = 0; j < deptIds.size(); j++){
+                if(numStudents.containsKey(studentList.get(i).deptIds)){
+                    numStudents.replace(deptIds.get(j), numStudents.get(i) + 1);
+                }
+                else {
+                    numStudents.put(deptIds.get(j), 1);)
+                }
+            }
+        }
+
+        //get keylist
+
+        //go through all keys and determine if value is >= 2
+
+        //return list of depts that did have at least 2 students
+        }
+
+    }
+
+    class Student {
+
+        Integer student_id;
+
+        String name;
+
+        List<Integer> deptIds;
+
+    }
+    class Department {
+
+        Integer departmentId;
+
+        String deptName;
+
+    }
+    
+    //List/Dictionary - practice uses of these and KV types - use .size param for length
+
+
+    //arrays - uses .length param (Strings use .length() method)
+
+
+    //other?
+
+
+
+    //************************************************** */
+    public String multiplyNumsAsString(String num1, String num2){
+        String retVal  = "";
+        int iNum1 = Integer.parseInt(num1);
+        int iNum2 = Integer.parseInt(num2);
+
+        int result = iNum1 * iNum2;
+
+        retVal = String.valueOf(result);
+
+        return retVal;
+    }
+
+    public String multiplyLongNumsAsString(String num1, String num2){
+        String retVal  = "";
+        char[] cArrNum1 = num1.toCharArray();
+        char[] cArrNum2 = num2.toCharArray();
+
+        long a = Long.parseLong(num1);
+        long b = Long.parseLong(num2);
+        long m = 10L;
+
+        long multValue = ((a % m) * (b % m));
+
+        //Example:
+        //num1 = 123
+        //num2 = 345
+        //should result in: 42435
+
+        int shift1 = 1;
+        int shift2 = 1;
+        List<Integer> sums = new ArrayList<>();
+        List<Integer> overallSum = new ArrayList<>();
+        int currentSum = 0;
+        for(int i = num1.length() - 1; i >= 0; i--){
+            for(int j = num2.length() - 1; j >= 0; j--){
+                int iNum1 = Integer.parseInt(((Character)cArrNum1[i]).toString());
+                int iNum2 = Integer.parseInt(((Character)cArrNum2[j]).toString());
+                int tmp = iNum1 * iNum2;
+                sums.add(tmp * shift1);
+                shift1 *= 10;
+            }
+            for(int j = 0; j < sums.size(); j++){
+                currentSum += sums.get(j);//1035
+            }
+            shift1 = 1;
+            sums = new ArrayList<>();
+            overallSum.add(currentSum * shift2);
+            currentSum = 0;
+            shift2 *= 10;
+        }
+        int total = 0;
+        for(int i = 0; i < overallSum.size(); i++){
+            total += overallSum.get(i); 
+        }
+        retVal = String.valueOf(total);
+        return retVal;
+    }
+
+
+    public String multiplyLongNumsAsString2(String num1, String num2){
+        String retVal  = "";
+        char[] cArrNum1 = num1.toCharArray();
+        char[] cArrNum2 = num2.toCharArray();
+
+        // long a = Long.parseLong(num1);
+        // long b = Long.parseLong(num2);
+        long m = 10L;
+
+        //Example:
+        //num1 = 123
+        //num2 = 345
+        //should result in: 42435
+
+        //peel off the number using 
+        // long multValue = ((a % m) * (b % m));
+        //then to modify, just use:
+        // a /= m and b /= m
+
+        int shift1 = 1;
+        int shift2 = 1;
+        List<Long> sums = new ArrayList<>();
+        List<Long> overallSum = new ArrayList<>();
+        long currentSum = 0;
+        long a = Long.parseLong(num1);
+        long b = Long.parseLong(num2);
+        for(int i = num1.length() - 1; i >= 0; i--){
+            a = Long.parseLong(num1);
+            for(int j = num2.length() - 1; j >= 0; j--){
+                long iNum1 = a % m;
+                long iNum2 = b % m;
+                System.out.println(iNum1 + ", " + iNum2);
+                long tmp = iNum1 * iNum2;
+                sums.add(tmp * shift1);
+                a /= m;
+                shift1 *= 10;
+            }
+            for(int j = 0; j < sums.size(); j++){
+                currentSum += sums.get(j);//1035
+            }
+            shift1 = 1;
+            sums = new ArrayList<>();
+            overallSum.add(currentSum * shift2);
+            currentSum = 0;
+            b /= m;
+            shift2 *= 10;
+        }
+        int total = 0;
+        for(int i = 0; i < overallSum.size(); i++){
+            total += overallSum.get(i); 
+        }
+        retVal = String.valueOf(total);
+        return retVal;
+    }
+
+    public String multiplyLongNumsAsString3(String num1, String num2){
+  
+        // Convert the string input to BigInteger 
+        BigInteger biNum1 = new BigInteger(num1); 
+        BigInteger biNum2 = new BigInteger(num2); 
+  
+        // Using multiply() method 
+        BigInteger mult = biNum1.multiply(biNum2);
+
+        return mult.toString();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //Create test functions here...
+    public boolean isPalindrome(String s){
+        for(int i = 0; i < s.length(); i++){
+            if(s.charAt(i) != s.charAt(s.length() - 1 - i)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public String reverseString(String s){
+        String revString = "";
+        for(int i = s.length() - 1; i >= 0; i--){
+            revString += s.charAt(i);
+        }
+        return revString;
+    }
+
+    //convert integer to character array
+    public char[] convertNumToCharArray(int num){
+
+        return String.valueOf(num).toCharArray();
+    }
+
+
+
+
+
 
     // 123456789 = 100 (also known as targetSum)
 
@@ -121,9 +369,6 @@ public class AlgoExp {
         return retVal;
     }
 
-    //following is invalid because it does not keep track of order between
-    //the different type of "parens" (brackets, square brackets and parenthesis)
-
     public boolean NORDValidParenCheck(String s){
         int numParen = 0;
         char[] cArr = s.toCharArray();
@@ -159,8 +404,6 @@ public class AlgoExp {
         return retStrArray;
     }
 
-    //asked on a Costco prequalification test
-    
     public int ArrayChallenge(int num) {
         char[] numAsCharArray = String.valueOf(num).toCharArray();
         HashMap<Character, Integer> numDigits = new HashMap<>();
@@ -1654,7 +1897,7 @@ public class AlgoExp {
         return true;
     }
 
-    public int longestPeakJava(int[] array) {
+    public static int longestPeakJava(int[] array) {
         int count = 1;
         int longest = 0;
         int previous = 0;

@@ -21,6 +21,7 @@ public class DynamicProgrammingMethods {
         return fibo(n);
     }
 
+    //NOTE: this method is incorrect...
     int fibo(int n) {
         int fibAns = 0;
 
@@ -34,6 +35,14 @@ public class DynamicProgrammingMethods {
         return fibAns;
     }
 
+    //LIS = Longest Increasing Subsequence
+    //in a nutshell:
+    //call with 'n'
+    //start recursing from i = 1
+    //base case, return 1
+    //for i = 2, compare arr[0] < arr[1] (i.e. i - 1 (1 - 1 = 0); n - 1 (2 - 1 = 1))
+    //if yes ([0] < [1]), update mark (static private class variable) and continue
+    //until through n, or whenever comparison fails, return current mark
     static class LIS {
 
         // Stores the LIS
@@ -41,9 +50,11 @@ public class DynamicProgrammingMethods {
 
         // To make use of recursive calls, this function must
         // return two things: 1) Length of LIS ending with
-        // element arr[n-1]. We use max_ending_here for this
+        // element arr[n-1].
+        // -> We use max_ending_here for this
         // purpose 2) Overall maximum as the LIS may end with an
-        // element before arr[n-1] max_ref is used this purpose.
+        // element before arr[n-1].
+        // -> max_ref is used this purpose.
         // The value of LIS of full array of size n is stored in
         // *max_ref which is our final result
         static int _lis(int arr[], int n) {
