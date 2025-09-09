@@ -93,6 +93,12 @@ public class App {
         c_N = 10;
         System.out.println("Debugging - addUp values to N: " + c_N + "..." + costcoPrep.addUpToNWithoutLooping(c_N));
 
+        System.out.println("climbStairs: " + costcoPrep.climbStairs(6));
+        System.out.println("climbStairs: " + costcoPrep.climbStairs(16));
+        System.out.println("climbStairs: " + costcoPrep.climbStairs(10));
+        System.out.println("climbStairs: " + costcoPrep.climbStairs(45));
+        System.out.println("climbStairs: " + costcoPrep.climbStairs(2));
+        System.out.println("climbStairs: " + costcoPrep.climbStairs(4));
 
         //reverse linked list using recursion
 

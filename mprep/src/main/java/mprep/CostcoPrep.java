@@ -25,8 +25,70 @@ public class CostcoPrep {
     //lists
     //dictionaries
 
-    //this is NOT sufficient - order matters...
 
+    //from Leetcode; shows how to use either recursion or DP alternately...
+    public int climbStairs(int n) {
+
+        //cheated - looked up best way to solve - recursion, but with memoization for efficiency
+        //or even better - skip recursion and store values only
+
+        if(n < 0){
+            return 0;
+        }
+        if(n == 1){
+            return 1;
+        }
+        if(n == 2){
+            return 2;
+        }
+
+        // //least efficient, simplest/basic method - recursion only - no storage of results:
+
+        // return climbStairs(n-1) + climbStairs(n-2);
+
+        // //space conserving solution
+        // //0ms, 40.65MB
+
+        // int prev1 = 2;
+        // int prev2 = 1;
+        // int current = prev1 + prev2;
+
+        // //...builds stored values map from previous/lower values, without recursion calls
+        // for(int i = 3; i < n+1; i++){
+        //     current = prev1 + prev2;
+        //     prev2 = prev1;
+        //     prev1 = current;
+        // }
+        // return current;
+
+        // for use with data storing approaches:
+        HashMap<Integer, Integer> computedValues = new HashMap<>();
+
+        //more efficient solution - no recursion...
+        //0ms, 40.56MB
+
+        computedValues.put(1, 1);
+        computedValues.put(2, 2);
+        //...builds stored values map from previous/lower values, without recursion calls
+        for(int i = 3; i < n+1; i++){
+            computedValues.put(i, computedValues.get(i-1) + computedValues.get(i-2));
+        }
+        return computedValues.get(n);
+
+        // //less efficient method... uses recursion:
+
+        // if(computedValues.containsKey(n)){
+        //    return computedValues.get(n);
+        // }
+        // //...uses recursion twice for every value of n - 
+        // else {
+        //    computedValues.put(n, climbStairs(n-1) + climbStairs(n-2));
+        // }
+        // return computedValues.get(n);
+    }
+
+
+    //this is NOT sufficient - order matters...
     public boolean NORDValidParenCheck(String s){
 
         int numParen = 0;
