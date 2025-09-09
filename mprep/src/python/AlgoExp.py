@@ -199,7 +199,7 @@ def isPatternMatch(s, p):
         # if i < len(s):
         #     i = i + 1
         # if j < len(p):
-        #     j = j + 1
+        #     j = j + 1+--
         
     return retVal
 

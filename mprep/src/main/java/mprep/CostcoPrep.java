@@ -24,23 +24,69 @@ public class CostcoPrep {
     // lists
     // dictionaries
 
-    public int makeTheIntegerZero(int num1, int num2) {
+    // from Leetcode; shows how to use either recursion or DP alternately...
+    public int climbStairs(int n) {
 
-        for (int k = 1; k <= 60; k++) {
-            long x = 1L * num1 - 1L * num2 * k;
-            // if (num1 - (num2 * k)) < k, then no solution (why?) - parens solely for
-            // clarification...
-            if (x < k) {
-                return -1;
-            }
-            System.out.println("k: " + k + ", x: " + x + ", bitCount: " + Long.bitCount(x));
-            // once k > num bits set in Binary representation of int value, then number of
-            // iterations is found (why?)
-            if (k >= Long.bitCount(x)) {
-                return k;
-            }
+        // cheated - looked up best way to solve - recursion, but with memoization for
+        // efficiency
+        // or even better - skip recursion and store values only
+
+        if (n < 0) {
+            return 0;
         }
-        return -1;
+        if (n == 1) {
+            return 1;
+        }
+        if (n == 2) {
+            return 2;
+        }
+
+        // //least efficient, simplest/basic method - recursion only - no storage of
+        // results:
+
+        // return climbStairs(n-1) + climbStairs(n-2);
+
+        // //space conserving solution
+        // //0ms, 40.65MB
+
+        // int prev1 = 2;
+        // int prev2 = 1;
+        // int current = prev1 + prev2;
+
+        // //...builds stored values map from previous/lower values, without recursion
+        // calls
+        // for(int i = 3; i < n+1; i++){
+        // current = prev1 + prev2;
+        // prev2 = prev1;
+        // prev1 = current;
+        // }
+        // return current;
+
+        // for use with data storing approaches:
+        HashMap<Integer, Integer> computedValues = new HashMap<>();
+
+        // more efficient solution - no recursion...
+        // 0ms, 40.56MB
+
+        computedValues.put(1, 1);
+        computedValues.put(2, 2);
+        // ...builds stored values map from previous/lower values, without recursion
+        // calls
+        for (int i = 3; i < n + 1; i++) {
+            computedValues.put(i, computedValues.get(i - 1) + computedValues.get(i - 2));
+        }
+        return computedValues.get(n);
+
+        // //less efficient method... uses recursion:
+
+        // if(computedValues.containsKey(n)){
+        // return computedValues.get(n);
+        // }
+        // //...uses recursion twice for every value of n -
+        // else {
+        // computedValues.put(n, climbStairs(n-1) + climbStairs(n-2));
+        // }
+        // return computedValues.get(n);
     }
 
     // this is NOT sufficient - order matters...
