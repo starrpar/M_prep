@@ -24,71 +24,6 @@ public class CostcoPrep {
     // lists
     // dictionaries
 
-    // from Leetcode; shows how to use either recursion or DP alternately...
-    public int climbStairs(int n) {
-
-        // cheated - looked up best way to solve - recursion, but with memoization for
-        // efficiency
-        // or even better - skip recursion and store values only
-
-        if (n < 0) {
-            return 0;
-        }
-        if (n == 1) {
-            return 1;
-        }
-        if (n == 2) {
-            return 2;
-        }
-
-        // //least efficient, simplest/basic method - recursion only - no storage of
-        // results:
-
-        // return climbStairs(n-1) + climbStairs(n-2);
-
-        // //space conserving solution
-        // //0ms, 40.65MB
-
-        // int prev1 = 2;
-        // int prev2 = 1;
-        // int current = prev1 + prev2;
-
-        // //...builds stored values map from previous/lower values, without recursion
-        // calls
-        // for(int i = 3; i < n+1; i++){
-        // current = prev1 + prev2;
-        // prev2 = prev1;
-        // prev1 = current;
-        // }
-        // return current;
-
-        // for use with data storing approaches:
-        HashMap<Integer, Integer> computedValues = new HashMap<>();
-
-        // more efficient solution - no recursion...
-        // 0ms, 40.56MB
-
-        computedValues.put(1, 1);
-        computedValues.put(2, 2);
-        // ...builds stored values map from previous/lower values, without recursion
-        // calls
-        for (int i = 3; i < n + 1; i++) {
-            computedValues.put(i, computedValues.get(i - 1) + computedValues.get(i - 2));
-        }
-        return computedValues.get(n);
-
-        // //less efficient method... uses recursion:
-
-        // if(computedValues.containsKey(n)){
-        // return computedValues.get(n);
-        // }
-        // //...uses recursion twice for every value of n -
-        // else {
-        // computedValues.put(n, climbStairs(n-1) + climbStairs(n-2));
-        // }
-        // return computedValues.get(n);
-    }
-
     // this is NOT sufficient - order matters...
     public boolean NORDValidParenCheck(String s) {
 
@@ -768,4 +703,264 @@ public class CostcoPrep {
 
     // return Integer.parseInt(returnValue);
     // }
+
+    // *************************************************************************************************************
+    // Leetcode algorithms
+    // *************************************************************************************************************
+
+    // from Leetcode; shows how to use either recursion or DP alternately...
+    public int climbStairs(int n) {
+
+        // cheated - looked up best way to solve - recursion, but with memoization for
+        // efficiency
+        // or even better - skip recursion and store values only
+
+        if (n < 0) {
+            return 0;
+        }
+        if (n == 1) {
+            return 1;
+        }
+        if (n == 2) {
+            return 2;
+        }
+
+        // //least efficient, simplest/basic method - recursion only - no storage of
+        // results:
+
+        // return climbStairs(n-1) + climbStairs(n-2);
+
+        // //space conserving solution
+        // //0ms, 40.65MB
+
+        // int prev1 = 2;
+        // int prev2 = 1;
+        // int current = prev1 + prev2;
+
+        // //...builds stored values map from previous/lower values, without recursion
+        // calls
+        // for(int i = 3; i < n+1; i++){
+        // current = prev1 + prev2;
+        // prev2 = prev1;
+        // prev1 = current;
+        // }
+        // return current;
+
+        // for use with data storing approaches:
+        HashMap<Integer, Integer> computedValues = new HashMap<>();
+
+        // more efficient solution - no recursion...
+        // 0ms, 40.56MB
+
+        computedValues.put(1, 1);
+        computedValues.put(2, 2);
+        // ...builds stored values map from previous/lower values, without recursion
+        // calls
+        for (int i = 3; i < n + 1; i++) {
+            computedValues.put(i, computedValues.get(i - 1) + computedValues.get(i - 2));
+        }
+        return computedValues.get(n);
+
+        // //less efficient method... uses recursion:
+
+        // if(computedValues.containsKey(n)){
+        // return computedValues.get(n);
+        // }
+        // //...uses recursion twice for every value of n -
+        // else {
+        // computedValues.put(n, climbStairs(n-1) + climbStairs(n-2));
+        // }
+        // return computedValues.get(n);
+    }
+
+    public int romanToInt(String s) {
+        String sLower = s.toLowerCase();
+        char[] cArr = sLower.toCharArray();
+
+        int retVal = 0;
+        int ones = 0;
+        int fives = 0;
+        int tens = 0;
+        int fifties = 0;
+        int hundreds = 0;
+        int fivehundreds = 0;
+        int thousands = 0;
+        char prevChar = '\0';
+
+        System.out.println(s);
+
+        for (char c : cArr) {
+            // System.out.println(prevChar + " :: " + c);
+            switch (c) {
+                case 'i':
+                    // System.out.println("1?");
+                    ones++;
+                    break;
+                case 'v':
+                    if (prevChar == 'i') {
+                        // System.out.println("4");
+                        ones++;
+                        ones++;
+                        ones++;
+                        // ones++;
+                    } else {
+                        // System.out.println("5");
+                        fives++;
+                    }
+                    break;
+                case 'x':
+                    if (prevChar == 'i') {
+                        // System.out.println("9");
+                        fives++;
+                        ones++;
+                        ones++;
+                        ones++;
+                        // ones++;
+                    } else {
+                        // System.out.println("10?");
+                        tens++;
+                    }
+                    break;
+                case 'l':
+                    if (prevChar == 'x') {
+                        // System.out.println("40");
+                        tens++;
+                        tens++;
+                        tens++;
+                        // tens++;
+                    } else {
+                        // System.out.println("50");
+                        fifties++;
+                    }
+                    break;
+                case 'c':
+                    if (prevChar == 'x') {
+                        // System.out.println("90");
+                        fifties++;
+                        tens++;
+                        tens++;
+                        tens++;
+                        // tens++;
+                    } else {
+                        // System.out.println("100?");
+                        hundreds++;
+                    }
+                    break;
+                case 'd':
+                    if (prevChar == 'c') {
+                        // System.out.println("400");
+                        hundreds++;
+                        hundreds++;
+                        hundreds++;
+                        // hundreds++;
+                    } else {
+                        // System.out.println("500");
+                        fivehundreds++;
+                    }
+                    break;
+                case 'm':
+                    if (prevChar == 'c') {
+                        // System.out.println("900");
+                        fivehundreds++;
+                        hundreds++;
+                        hundreds++;
+                        hundreds++;
+                        // hundreds++;
+                    } else {
+                        // System.out.println("1000");
+                        thousands++;
+                    }
+                    break;
+                default:
+                    // System.out.println("default");
+                    break;
+            }
+            prevChar = c;
+        }
+
+        retVal = ones * 1 + fives * 5 + tens * 10 + fifties * 50 + hundreds * 100 + fivehundreds * 500
+                + thousands * 1000;
+        System.out.println("returning value: " + retVal);
+        return retVal;
+    }
+
+    public int myAtoi(String s) {
+        String retStr = "";
+        char[] cArr = s.toCharArray();
+        boolean signed = false;
+        boolean initial = true;
+        boolean nonWhiteSpace = false;
+        char prev = '\0';
+
+        for (char c : cArr) {
+            if (c == '-' && initial) {
+                signed = true;
+                initial = false;
+            } else if (c == '+' && initial) {
+                initial = false;
+                continue;
+            } else if (c == ' ' && initial) {
+                // simply continue if leading whitespace
+                continue;
+            } else if (c >= '0' && c <= '9') {
+                nonWhiteSpace = true;
+                initial = false;
+                // if '0' follows '-' simply drop
+                if (c == '0' && prev == '-') {
+                    continue;
+                }
+                // System.out.println("c: " + c);
+                // otherwise, add digit to string for building return integer
+                if (signed && prev == '-') {
+                    retStr += '-';
+                }
+                retStr += c;
+            } else {
+                nonWhiteSpace = true;
+                initial = false;
+                // System.out.println("ignore: " + c);
+                break;
+            }
+            // only set prev to current value of c if c is NOT '0'
+            // as use of "prev" is only valid to determine if previous value was '-'
+            // and can only validly be followed by '0' values until the applicable use (of
+            // "prev")
+            if (c != 0) {
+                prev = c;
+            }
+        }
+        if (retStr == "") {
+            retStr += '0';
+        }
+        // System.out.println(retStr);
+        // parseInt() returns a signed int (primitive)
+        // valueOf() returns an Integer object, which can be unboxed assigning to an int
+        // parameter
+        // btw: valueOf() calls parseInt() behind the scenes...
+        // return Integer.parseInt(retStr);
+        // return Integer.valueOf(retStr);
+
+        int retInt = 0;
+        long retLong = 0L;
+        try {
+            retLong = Long.parseLong(retStr);
+        } catch (java.lang.NumberFormatException e) {
+            if (signed) {
+                return Integer.MIN_VALUE;
+            } else {
+                return Integer.MAX_VALUE;
+            }
+        }
+        try {
+            retInt = Math.toIntExact(retLong);
+        } catch (java.lang.ArithmeticException e) {
+            if (signed) {
+                return Integer.MIN_VALUE;
+            } else {
+                return Integer.MAX_VALUE;
+            }
+        }
+        // int retInt = (int)retLong;
+        return retInt;
+    }
 }
